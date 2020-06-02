@@ -13,14 +13,14 @@ Symbilfow Installer currently is designed to run on the below Linux 64bit versio
 
 To build and run sample example, you will need *Make* package
 
-Installation varies depending on your platform:
+**make** Installation varies depending on your platform:
 
 Platform   | Make  
 ---------- | -----
 *Debian/Ubuntu* | `sudo apt-get install make`
 *Fedora* | `sudo dnf install make` 
 
-## The Symbilfow Package location and contents
+## The Symbilfow Package Location and Contents
 
 Download [Symbiflow_v0.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v0.1.0/Symbiflow_v0.1.0.gz.run)
 
