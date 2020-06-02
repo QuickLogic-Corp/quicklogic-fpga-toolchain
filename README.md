@@ -22,8 +22,7 @@ Platform   | Make
 
 ## The Symbilfow Package location and contents
 
-Download the Symbiflow_v0.1.0.gz.run present at : 
-https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases
+Download [Symbiflow_v0.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v0.1.0/Symbiflow_v0.1.0.gz.run)
 
 This package installs these toolchain :
 
