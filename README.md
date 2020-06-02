@@ -34,7 +34,7 @@ This package installs these toolchain :
 
 
 ```bash
-export SYM_INSTALL_PATH=*<specify the installpath>*
+export SYM_INSTALL_PATH=*specify the installpath*
 bash Symbiflow_v0.1.0.gz.run
 
 #Enter the directory $SYM_INSTALL_PATH/symbiflow-arch-defs/install/bin
