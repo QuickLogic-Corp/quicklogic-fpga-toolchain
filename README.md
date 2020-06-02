@@ -3,13 +3,15 @@ Contains release packages for Quicklogic FPGA toolchain
 
 This guide describes everything you need to set up your system to develop for QuickLogic FPGA Toolchain 
 
-This quickstart guide currently is designed to be used only Linux.
+Symbilfow Installer currently is designed to run on the below Linux 64bit versions :
+
+- CentOS : 7.3
+- RHEL : 7.7
+- Ubuntu : 20.04
 
 ## Overview of Requirements
 
-To build and run sample example, you will need below things:
-
-1. Make
+To build and run sample example, you will need *Make* package
 
 Installation varies depending on your platform:
 
@@ -18,7 +20,12 @@ Platform   | Make
 *Debian/Ubuntu* | `sudo apt-get install make`
 *Fedora* | `sudo dnf install make` 
 
-This block of code regards the toolchain installation :
+## The Symbilfow Package location and contents
+
+Download the Symbiflow_v0.1.0.gz.run present at : 
+https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases
+
+This package installs these toolchain :
 
 - Yosys
 - Yosys-Plugins
@@ -26,11 +33,9 @@ This block of code regards the toolchain installation :
 - Iverilog
 - Architecture definitions installation
 
-Download the Symbiflow_v0.1.0.gz.run present at : 
-https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases
 
 ```bash
-export SYM_INSTALL_PATH=/opt/ql_symbiflow
+export SYM_INSTALL_PATH=*<specify the installpath>*
 bash Symbiflow_v0.1.0.gz.run
 
 #Enter the directory $SYM_INSTALL_PATH/symbiflow-arch-defs/install/bin
@@ -50,7 +55,13 @@ The example designs are provided in separate directories at $SYM_INSTALL_PATH/sy
 1. `counter_16bit` - simple 16-bit up-counter . The design targets the the device ql-eos-s3 and package PD64.
 
 To run the examples, run following commands:
+```bash
 cd $SYM_INSTALL_PATH/symbiflow-arch-defs/quicklogic/tests/counter_16bit
 ql_symbiflow -compile -d ql-eos-s3 -k pd64 -v counter_16bit.v -t top -p counter_16bit.pcf -dump header 
 
-```bash
+```
+
+For more details on the symbiflow options refer the tutorial guide:
+[Symbiflow Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4717066/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+
+
