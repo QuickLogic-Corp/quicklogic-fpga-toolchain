@@ -7,7 +7,7 @@ Symbilfow Installer currently is designed to run on the below Linux 64bit versio
 
 - CentOS : 7.3
 - RHEL : 7.7
-- Ubuntu : 20.04
+- Ubuntu : 18,20.04
 
 ## Overview of Requirements
 
@@ -61,6 +61,6 @@ ql_symbiflow -compile -d ql-eos-s3 -k pd64 -v counter_16bit.v -t top -p counter_
 ```
 
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4717066/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4723490/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 
