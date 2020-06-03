@@ -7,7 +7,7 @@ Symbilfow Installer currently is designed to run on the below Linux 64bit versio
 
 - CentOS : 7.3
 - RHEL : 7.7
-- Ubuntu : 18,20.04
+- Ubuntu : 18, 20.04
 
 ## Overview of Requirements
 
