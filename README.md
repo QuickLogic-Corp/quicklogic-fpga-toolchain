@@ -20,7 +20,7 @@ Platform   | Make
 *Debian/Ubuntu* | `sudo apt-get install make`
 *Fedora* | `sudo dnf install make` 
 
-## The Symbilfow Package Location and Contents
+## The Symbiflow Package Location and Contents
 
 Download [Symbiflow_v0.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v0.1.0/Symbiflow_v0.1.0.gz.run)
 
