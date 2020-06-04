@@ -11,14 +11,11 @@ Symbilfow Installer currently is designed to run on the below Linux 64bit versio
 
 ## Overview of Requirements
 
-To build and run sample example, you will need *Make* package
+To build and run sample example, you will need the below packages :
 
-**make** Installation varies depending on your platform:
-
-Platform   | Make  
----------- | -----
-*Debian/Ubuntu* | `sudo apt-get install make`
-*Fedora* | `sudo dnf install make` 
+- *Make*
+- *iverilog* [Install guide](https://iverilog.fandom.com/wiki/Installation_Guide)
+- *gtkwave* [Install guide](http://gtkwave.sourceforge.net/gtkwave.pdf)
 
 ## The Symbiflow Package Location and Contents
 
@@ -29,7 +26,6 @@ This package installs these toolchain :
 - Yosys
 - Yosys-Plugins
 - VTR
-- Iverilog
 - Architecture definitions installation
 
 
