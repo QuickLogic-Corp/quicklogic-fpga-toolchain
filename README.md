@@ -61,6 +61,6 @@ ql_symbiflow -compile -d ql-eos-s3 -k pd64 -v counter_16bit.v -t top -p counter_
 ```
 
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4723490/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4728312/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 
