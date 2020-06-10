@@ -3,18 +3,11 @@ Contains release packages for Quicklogic FPGA toolchain
 
 This guide describes everything you need to set up your system to develop for QuickLogic FPGA Toolchain 
 
-Symbilfow Installer currently is designed to run on the below Linux 64bit versions :
-
-- CentOS : 7.3
-- RHEL : 7.7
-- Ubuntu : 18, 20.04
+Symbiflow Installer currently is designed to run only on Linux 64bit
 
 ## Overview of Requirements
 
-To build and run sample example, you will need the below packages :
-
-- *Make*
-- *iverilog* [Install guide](https://iverilog.fandom.com/wiki/Installation_Guide)
+To build and run sample example, you will need the below package :
 - *gtkwave* [Install guide](http://gtkwave.sourceforge.net/gtkwave.pdf)
 
 ## The Symbiflow Package Location and Contents
@@ -26,18 +19,20 @@ This package installs these toolchain :
 - Yosys
 - Yosys-Plugins
 - VTR
+- iverilog
 - Architecture definitions installation
 
 
 ```bash
-export SYM_INSTALL_PATH=*specify the installpath*
+#To Install
+export INSTALL_DIR="specify the installpath"
 bash Symbiflow_v0.1.0.gz.run
 
-#Enter the directory $SYM_INSTALL_PATH/symbiflow-arch-defs/install/bin
-cd $SYM_INSTALL_PATH/symbiflow-arch-defs/install/bin
-
-#Execute the following command to source the installation file
-source ql_env
+#To Run example
+export INSTALL_DIR="specify the installpath"
+export PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
+source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
+conda activate
 
 #Execute the help command to display the help
 ql_symbiflow -h
@@ -45,19 +40,19 @@ ql_symbiflow -h
 
 ## Run Example Design
 
-The example designs are provided in separate directories at $SYM_INSTALL_PATH/symbiflow-arch-defs/quicklogic/tests:
+The example designs are provided in separate directories at $INSTALL_DIR/install/tests:
 
 1. `counter_16bit` - simple 16-bit up-counter . The design targets the the device ql-eos-s3 and package PD64.
 
 To run the examples, run following commands:
 ```bash
-cd $SYM_INSTALL_PATH/symbiflow-arch-defs/quicklogic/tests/counter_16bit
-ql_symbiflow -compile -d ql-eos-s3 -k pd64 -v counter_16bit.v -t top -p counter_16bit.pcf -dump header 
+cd $INSTALL_DIR/install/tests/counter_16bit
+ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_16bit.pcf 
 
 ```
 
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4730471/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4760374/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to the following document:
 [Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4751774/S3B_Hardmacro_User_Guide.pdf)
