@@ -11,7 +11,7 @@ Below are the three ways user can run the symbiflow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v0.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v0.1.0/Symbiflow_v0.1.0.gz.run)
+Download [Symbiflow_v1.0.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.0.0/Symbiflow_v1.0.0.gz.run)
 
 This package installs these toolchain :
 
@@ -25,7 +25,7 @@ This package installs these toolchain :
 ```bash
 #To Install
 export INSTALL_DIR="specify the installpath"
-bash Symbiflow_v0.1.0.gz.run
+bash Symbiflow_v1.0.0.gz.run
 
 #To Run example
 export INSTALL_DIR="specify the installpath"
@@ -51,7 +51,7 @@ ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_
 ```
 
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4785704/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4786977/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to the following document:
 [Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4751774/S3B_Hardmacro_User_Guide.pdf)
