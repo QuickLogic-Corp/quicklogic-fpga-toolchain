@@ -118,23 +118,23 @@ pushd examples/eos-s3 && make && popd
 This release package contains the following GitHub repositories that are compiled to create this package:
 You may use the following command to get the source, compile and install it:
 ```bash
-#Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased** with tag: **yosys-0.6.0**. 
-git clone -b yosys-0.6.0 --single-branch https://github.com/QuickLogic-Corp/yosys.git quicklogic-yosys
+#Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased**. 
+git clone https://github.com/QuickLogic-Corp/yosys.git -b quicklogic-rebased quicklogic-yosys
 cd quicklogic-yosys
 make config-gcc // for compiling using gcc
 make install PREFIX='specify installation path'
 cd -
 
-#Checkout *yosys-symbiflow-plugins* (https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins), branch: **ql-ios** with tag: **v1.1.0**.
-git clone -b v1.1.0 --single-branch https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins
+#Checkout *yosys-symbiflow-plugins* (https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins), branch: **ql-ios**.
+git clone https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins -b ql-ios
 cd yosys-symbiflow-plugins
 export PATH='specify Yosys installation path as specified in PREFIX in previous step':$PATH
 make
 make install
 cd -
 
-#Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **quicklogic-upstream-rebase** with tag: **v0.1.0**. 
-git clone -b v0.1.0 --single-branch https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git
+#Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **quicklogic-upstream-rebase**. 
+git clone https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git -b quicklogic-upstream-rebase
 export YOSYS='path to Yosys binary, installed in first step'
 cd symbiflow-arch-defs
 make env
