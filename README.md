@@ -11,7 +11,7 @@ Below are the three ways user can run the symbiflow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.runhn)
+Download [Symbiflow_v1.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.run)
 
 This package installs these toolchain :
 
@@ -152,5 +152,4 @@ make bin2seven-ql-chandalar_fasm
 - IO registers: Usage of IO registers available in the IO block (Hardware) 
 - RAM Initialization: RAM initialization as part of the FPGA configuration, We can initialize the FPGA RAM through wishbone interface using M4 (after FPGA configuration). We need to have the wishbone slave interface in the FPGA IP that we design.
 M4 -> Wishbone master (in ASSP)-> Wishbone slave (in FPGA IP)-> FPGA RAMs
-- gclkbuff support: Usage of gclkbuff (clock buffer) in designs
 - Yosys does not target wider muxes (4-8 input) on Logic cell
