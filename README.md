@@ -11,7 +11,7 @@ Below are the three ways user can run the symbiflow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.0.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.0.0/Symbiflow_v1.0.0.gz.run)
+Download [Symbiflow_v1.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.runhn)
 
 This package installs these toolchain :
 
@@ -25,7 +25,7 @@ This package installs these toolchain :
 ```bash
 #To Install
 export INSTALL_DIR="specify the installpath"
-bash Symbiflow_v1.0.0.gz.run
+bash Symbiflow_v1.1.0.gz.run
 
 #To Run example
 export INSTALL_DIR="specify the installpath"
@@ -144,7 +144,7 @@ cd quicklogic
 make file_build_quicklogic_techmap_cells_sim.v
 
 #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-cd tests/quicklogic_testsuite/bin2seven
+cd pp3/tests/quicklogic_testsuite/bin2seven
 make bin2seven-ql-chandalar_fasm
 ```
 
