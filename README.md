@@ -51,7 +51,7 @@ ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_
 ```
 
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4787620/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4870517/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to the following document:
 [Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4751774/S3B_Hardmacro_User_Guide.pdf)
@@ -152,4 +152,3 @@ make bin2seven-ql-chandalar_fasm
 - IO registers: Usage of IO registers available in the IO block (Hardware) 
 - RAM Initialization: RAM initialization as part of the FPGA configuration, We can initialize the FPGA RAM through wishbone interface using M4 (after FPGA configuration). We need to have the wishbone slave interface in the FPGA IP that we design.
 M4 -> Wishbone master (in ASSP)-> Wishbone slave (in FPGA IP)-> FPGA RAMs
-- Yosys does not target wider muxes (4-8 input) on Logic cell
