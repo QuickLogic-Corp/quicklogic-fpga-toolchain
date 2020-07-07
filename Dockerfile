@@ -1,6 +1,4 @@
-FROM ubuntu:18.04 as builder
-# ubuntu:20.04 does not include libffi.so.6, but the version of yosys in the 
-# Quicklogic Symbiflow_v1.1.1.gz.run installer needs libffi.so.6, so use 18.04
+FROM ubuntu:20.04 as builder
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
