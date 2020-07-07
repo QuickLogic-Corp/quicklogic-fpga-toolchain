@@ -11,7 +11,7 @@ Below are the three ways user can run the symbiflow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.run)
+Download [Symbiflow_v1.1.0_Beta](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0_Beta/Symbiflow_v1.1.0.gz.run)
 
 This package installs these toolchain :
 
@@ -133,9 +133,16 @@ make
 make install
 cd -
 
+#Checkout *vpr* (https://github.com/QuickLogic-Corp/vtr-verilog-to-routing.git), branch: **blackbox_timing**.
+https://github.com/SymbiFlow/vtr-verilog-to-routing -b blackbox_timing
+cd vtr-verilog-to-routing
+make
+
 #Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **quicklogic-upstream-rebase**. 
 git clone https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git -b quicklogic-upstream-rebase
 export YOSYS='path to Yosys binary, installed in first step'
+export VPR='path to vpr binary built'
+export GENFASM='path to genfasm binary built'
 cd symbiflow-arch-defs
 make env
 cd build
