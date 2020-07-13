@@ -121,7 +121,7 @@ You may use the following command to get the source, compile and install it:
 #Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased**. 
 git clone https://github.com/QuickLogic-Corp/yosys.git -b quicklogic-rebased quicklogic-yosys
 cd quicklogic-yosys
-make config-gcc // for compiling using gcc
+make config-gcc # for compiling using gcc
 make install PREFIX='specify installation path'
 cd -
 
