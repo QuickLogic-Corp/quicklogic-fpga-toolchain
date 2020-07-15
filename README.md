@@ -130,8 +130,7 @@ cd -
 git clone https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins -b ql-ios
 cd yosys-symbiflow-plugins
 export PATH='specify Yosys installation path as specified in PREFIX in previous step':$PATH
-make
-make install
+make plugins
 cd -
 
 #Checkout *vpr* repository (https://github.com/QuickLogic-Corp/vtr-verilog-to-routing.git), branch: **blackbox_timing**.
