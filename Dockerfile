@@ -14,7 +14,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
-RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0_Beta/Symbiflow_v1.1.0.gz.run
+RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.run
 RUN chmod 755 Symbiflow_v1.1.0.gz.run
 RUN ./Symbiflow_v1.1.0.gz.run
 RUN rm Symbiflow_v1.1.0.gz.run
