@@ -11,7 +11,7 @@ Below are the three ways user can run the symbiflow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.1.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.run)
+Download [Symbiflow_v1.2.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.2.0/Symbiflow_v1.2.0.gz.run)
 
 This package installs these toolchain :
 
@@ -25,7 +25,7 @@ This package installs these toolchain :
 ```bash
 #To Install
 export INSTALL_DIR="specify the installpath"
-bash Symbiflow_v1.1.0.gz.run
+bash Symbiflow_v1.2.0.gz.run
 
 #To Run example
 export INSTALL_DIR="specify the installpath"
@@ -50,10 +50,10 @@ ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_
 
 ```
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4933375/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199560/Symbiflow_Installation_Guide_and_Tutorial.pdf)
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to the following document:
-[Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/4933425/S3B_Hardmacro_User_Guide.pdf)
+[Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199568/S3B_Hardmacro_User_Guide.pdf)
 
 ## 2) Compile from source code and run example
 
@@ -89,15 +89,11 @@ cd symbiflow-arch-defs
 make env
 cd build
 make all_conda
-cd quicklogic
-make file_build_quicklogic_techmap_cells_sim.v
 
 #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-cd pp3/tests/quicklogic_testsuite/bin2seven
+cd quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
 make bin2seven-ql-chandalar_fasm
 ```
 
 ## Hardware features that are not supported in this release
 - IO registers: Usage of IO registers available in the IO block (Hardware) 
-- RAM Initialization: RAM initialization as part of the FPGA configuration, We can initialize the FPGA RAM through wishbone interface using M4 (after FPGA configuration). We need to have the wishbone slave interface in the FPGA IP that we design.
-M4 -> Wishbone master (in ASSP)-> Wishbone slave (in FPGA IP)-> FPGA RAMs
