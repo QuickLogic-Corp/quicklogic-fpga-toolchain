@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ dockerfile-build-src ]
+    branches: [ master ]
   pull_request:
-    branches: [ dockerfile-build-src ]
+    branches: [ master ]
 
 jobs:
 
@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag symbiflow-ql-slim-buster:$(date +%s)
+      run: docker build . --file Dockerfile --tag symbiflow-ql-src:$(date +%s)
