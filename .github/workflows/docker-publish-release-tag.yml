@@ -2,12 +2,10 @@ name: Docker
 
 on:
   push:
-    branches: [ docker-image-ci ]
-  pull_request:
-    branches: [ docker-image-ci ]
-
+    tags: [ v* ]
+    
 env:
-  IMAGE_NAME: symbiflow-ql-src
+  IMAGE_NAME: symbiflow-ql
 
 jobs:
   
@@ -23,7 +21,7 @@ jobs:
             docker-compose --file docker-compose.test.yml build
             docker-compose --file docker-compose.test.yml run sut
           else
-            docker build --build-arg GITHUB_WORKSPACE=$GITHUB_WORKSPACE . --file Dockerfile
+            docker build --build-arg GITHUB_WORKSPACE=$GITHUB_WORKSPACE . --file Dockerfile.use-installer
           fi
 
   push:
