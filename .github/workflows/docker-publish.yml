@@ -2,9 +2,9 @@ name: Docker
 
 on:
   push:
-    branches: [ docker-image-ci ]
+    branches: [ master ]
   pull_request:
-    branches: [ docker-image-ci ]
+    branches: [ master ]
 
 env:
   IMAGE_NAME: symbiflow-ql-src
