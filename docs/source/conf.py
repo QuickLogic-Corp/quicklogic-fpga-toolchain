@@ -5,6 +5,14 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 
+import sphinx_rtd_theme
+
+#extensions = [
+#    ...
+#    'sphinx_rtd_theme',
+#]
+
+
 # -- Project information -----------------------------------------------------
 
 project = 'QuickLogic-FPGA-Toolchain'
@@ -31,6 +39,9 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',
 ]
+
+def setup(app):
+    app.add_css_file('my_theme.css')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -86,5 +97,7 @@ html_last_updated_fmt = '%d %B %Y'
 # 'searchbox.html']``.
 #
 # html_sidebars = {}
-html_theme = 'bizstyle'
+html_theme = "sphinx_rtd_theme"
+html_theme_path = ["_themes", ]
+#html_theme = 'bizstyle'
 #html_theme = 'bizstyle'
