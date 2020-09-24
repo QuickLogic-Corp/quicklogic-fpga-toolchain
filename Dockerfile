@@ -79,11 +79,19 @@ RUN make
 
 #---
 
-FROM base
+FROM base AS release-candidate
 
 COPY --from=build /opt/symbiflow/eos-s3 /opt/symbiflow/eos-s3/
 COPY --from=build /symbiflow-arch-defs /symbiflow-arch-defs/
 COPY --from=build /yosys-symbiflow-plugins /yosys-symbiflow-plugins/
+COPY --from=build /vtr-verilog-to-routing /vtr-verilog-to-routing/
+
+FROM release-candidate AS all_quick_tests
+
+WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
+RUN make all_quick_tests
+
+FROM release-candidate AS release
 
 
 # Build the container with something like:
@@ -99,4 +107,5 @@ COPY --from=build /yosys-symbiflow-plugins /yosys-symbiflow-plugins/
 # Run any test case in the container running bash interactively.  For example, follow these steps to run a test case:
 # cd /symbiflow-arch-defs/build/quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
 # make bin2seven-ql-chandalar_fasm
+
 
