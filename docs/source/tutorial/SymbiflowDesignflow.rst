@@ -15,7 +15,7 @@ Symbiflow: Design flow
 
 
 .. image:: fig1.png
-  :width: 600
+  :width: 700
   :alt: Design flow
                 
 

@@ -9,9 +9,7 @@ Running pack, Place and Route tools
     
 
    The eblif file generated during the synthesis is used for pack, place and route along with device information, pcf and the sdc file.
-    |br| 
-   Syntax:
-    |br|
+    |br| Syntax:
 
     .. code-block:: none
 
@@ -34,7 +32,6 @@ Running pack, Place and Route tools
    The above command will also run synthesis if it was not run before.
 
    To Generate Various files during compile, use the below options
-  |br| 
    Common command with just output file change:
 
     .. code-block:: shell

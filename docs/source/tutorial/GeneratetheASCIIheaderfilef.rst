@@ -74,8 +74,8 @@ Generate the ASCII header file format
 
    The highlighted pins are the clock ports and can also be used as BIDIR IO. Either IO Location or Alias name can be used.
 
-   .. image:: table_1.PNG
-      :width: 600
+.. image:: table_1.PNG
+   :width: 700
 
 
 .. |BR| raw:: html

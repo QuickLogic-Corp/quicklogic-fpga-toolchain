@@ -9,7 +9,6 @@ Generate the Jlink file
 
 
    JLINK file contains a script that can flash the board with the generated FPGA configuration via the JLink Connector
-    |br| 
     |br| Syntax:
 
     .. code-block:: shell
