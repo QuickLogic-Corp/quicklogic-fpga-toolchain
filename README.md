@@ -1,13 +1,13 @@
 # Quicklogic FPGA Toolchain
-Contains release packages for Quicklogic FPGA toolchain
+Contains SymbiFlow toolchain release packages for Quicklogic FPGAs
 
 This guide describes everything you need to set up your system to develop for QuickLogic FPGA Toolchain 
-Symbiflow Installer currently is designed to run only on Linux 64bit
+Currently, the SymbiFlow Installer runs only on Linux 64bit
 
-Below are the three ways user can run the symbiflow:
-1) Run an installer and follow instructions to run example
-2) Install conda step by step and run example
-3) Compile from source code and run example
+Below are some ways to run SymbiFlow:
+1) Run an installer and follow the instructions to run an example
+2) Compile from source code and run example
+3) Run SymbiFlow in a container
 
 ## 1) Run an installer and follow instructions to run example
 
@@ -94,6 +94,90 @@ make all_conda
 cd quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
 make bin2seven-ql-chandalar_fasm
 ```
+## 3) Run SymbiFlow in a container
+
+### Option A) Use a container image that is built automatically by a github action workflow
+
+See the 'packages' links for the Docker command to pull a Symbiflow container image, or use it as the basis of a new container. 
+
+You can run bash interactively inside of a prebuilt SymbiFlow container using a docker command like this:
+```
+docker run -it docker.pkg.github.com/quicklogic-corp/quicklogic-fpga-toolchain/symbiflow-ql-src:latest bash
+```
+
+From your bash session in the container, try:
+```
+#Run any test case in the current terminal window. For example, follow these steps to run a test case:
+cd /symbiflow-arch-defs/build/quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
+make bin2seven-ql-chandalar_fasm
+
+#Or try:
+cd /symbiflow-arch-defs/build/quicklogic/pp3/tests
+make all_quick_tests
+```
+
+### Option B) Build a container image locally from Dockerfile
+
+The Dockerfile in this repo builds SymbiFlow from source.  You can create and tag a local image with a Docker command like:
+```
+docker build . -t symbiflow-ql-slim-buster
+```
+Then you can run the container interactively with a docker command like:
+```
+docker run -it symbiflow-ql-slim-buster bash
+```
+From your bash session in the container, try:
+```
+#Run any test case in the current terminal window. For example, follow these steps to run a test case:
+cd /symbiflow-arch-defs/build/quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
+make bin2seven-ql-chandalar_fasm
+
+#Or try:
+cd /symbiflow-arch-defs/build/quicklogic/pp3/tests
+make all_quick_tests
+```
+
+### Option C) Build a container image locally from Dockerfile.use-installer
+
+The Dockerfile.use-installer in this repo builds a SymbiFlow container from a released installer.  
+You can build and tag the symbiflow-ql container with:
+```
+docker build . -f Dockerfile.use-installer -t symbiflow-ql
+```
+In order to view the gtkwave program, the easiest (but not the safest) thing to do is allow x connections: 
+```
+xhost +
+
+docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" symbiflow-ql bash
+```
+Inside your running docker container, try some of the commands from the tutorial:
+[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199560/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+```
+source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
+conda activate
+
+#Execute the help command to display the help
+ql_symbiflow -h
+
+cd $INSTALL_DIR/install/tests/counter_16bit
+
+# Use iverilog to simulate the design
+iverilog -o my_design counter_16bit.v counter_16bit_tb.v
+vvp my_design
+
+# use gtkwave to view the results (assumes you have allowed x connections, and have an xserver running)
+gtkwave counter_16bit_tb.vcd
+
+ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_16bit.pcf 
+
+```
+
+When you are finished, it would be wise to disallow x connections: 
+```
+xhost -
+```
+
+
 
 ## Hardware features that are not supported in this release
 - IO registers: Usage of IO registers available in the IO block (Hardware) 
