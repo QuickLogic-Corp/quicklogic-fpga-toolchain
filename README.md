@@ -149,6 +149,10 @@ In order to view the gtkwave program, the easiest (but not the safest) thing to 
 xhost +
 
 docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" symbiflow-ql bash
+
+or run a prebuilt container automatically built from the installer by github actions:
+
+docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" docker.pkg.github.com/thirsty2/quicklogic-fpga-toolchain/symbiflow-ql:1.2.0.0 bash
 ```
 Inside your running docker container, try some of the commands from the tutorial:
 [Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199560/Symbiflow_Installation_Guide_and_Tutorial.pdf)
