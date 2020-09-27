@@ -1,8 +1,8 @@
 # Quicklogic FPGA Toolchain
 Contains SymbiFlow toolchain release packages for Quicklogic FPGAs
 
-This guide describes everything you need to set up your system to develop for QuickLogic FPGA Toolchain 
-Currently, the SymbiFlow Installer runs only on Linux 64bit
+This guide describes everything you need to set up your system to develop for QuickLogic FPGA Toolchain. 
+Currently, the SymbiFlow Installer runs only on Linux 64bit.
 
 Below are some ways to run SymbiFlow:
 1) Run an installer and follow the instructions to run an example
@@ -13,7 +13,7 @@ Below are some ways to run SymbiFlow:
 
 Download [Symbiflow_v1.2.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.2.0/Symbiflow_v1.2.0.gz.run)
 
-This package installs these toolchain :
+This package installs these toolchains :
 
 - Yosys
 - Yosys-Plugins
@@ -41,7 +41,7 @@ ql_symbiflow -h
 
 The example designs are provided in separate directories at $INSTALL_DIR/install/tests:
 
-1. `counter_16bit` - simple 16-bit up-counter . The design targets the the device ql-eos-s3 and package PD64.
+1. `counter_16bit` - simple 16-bit up-counter. The design targets the the device ql-eos-s3 and package PD64.
 
 To run the examples, run following commands:
 ```bash
