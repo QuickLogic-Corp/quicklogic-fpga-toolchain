@@ -11,7 +11,7 @@ Hardware Limitations and Online References
 
     Limitations:
 
-    - IO registers: Usage of IO registers available in the IO block (Hardware) 
+    - RAM/FIFO: Only symmetrical combinations of RAM are supported 
 
         
 

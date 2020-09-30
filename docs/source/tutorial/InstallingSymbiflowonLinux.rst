@@ -7,6 +7,7 @@
 Installing Symbiflow on Linux
 =============================
 
+Download the required `Symbiflow Installer <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/>`_
 
 To install Symbiflow on Linux:
 

@@ -63,6 +63,16 @@ Running pack, Place and Route tools
         ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc -dump post_verilog
 
 
+   The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder
+
+    For the counter design below is the timing report from the top.log file:
+    |br|
+    |br| *Hold Worst Negative Slack (hWNS): 0 ns*
+    |br| *Hold Total Negative Slack (hTNS): 0 ns*
+    |br| *Setup Worst Negative Slack (sWNS): -35.2295 ns*
+    |br| *Setup Total Negative Slack (sTNS): -1062.29 ns*
+    |br| *Final critical path: 35.2295 ns, Fmax: 28.3853 MHz*
+
 .. |BR| raw:: html
 
    <BR/>
