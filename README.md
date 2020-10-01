@@ -96,6 +96,12 @@ make bin2seven-ql-chandalar_fasm
 ```
 ## 3) Run SymbiFlow in a container
 
+Containers provide isolated environments, similar to VMs, but lighter weight, and with performance closer to the native machine they run on.  Containers start quickly from an efficient layered image which provides an identical environment each time the container starts.  This solves the "it worked on my machine" issues that often plague development due to differences between versions of the tools or libraries on different machines.  Used properly, they are ideal for building software as part of a continuous integration envorinment, or deploying software as part of a continuous deployment system (CI/CD.)  Today, Docker is the defacto container ecosystem, which means there are lots of resources for learning Docker, and lots of people familiar with it.  The Dockerfile used to build a container image can be quite simple, and therefore it also provides a form of executable documentation on what is required to build and/or install a piece of software.  A great place to start is the Docker website, which provides links to tutorials and documentation:
+
+https://www.docker.com/why-docker
+
+This project uses containers to build Symbiflow automatically whenever a change is pushed to Quicklogic/quicklogic-fpga-toolchain.  With each successful build, a container image is pushed as a github package, and may be pulled or run directly by a container runtime such as Docker.  Such images are useful for developing continuous integration of FPGA projects.  The act of building and testing them automatically through github actions also provides assurances that what is checked into the github source repositories can be built and executed.  Below are some of the options for using containers to run or build SymbiFlow for Quicklogic development.
+
 ### Option A) Use a container image that is built automatically by a github action workflow
 
 See the 'packages' links for the Docker command to pull a Symbiflow container image, or use it as the basis of a new container. 
