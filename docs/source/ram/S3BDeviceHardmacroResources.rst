@@ -2,10 +2,12 @@
 
 
 .. index::
-   single: S3B Device Hardmacro Resources:
+   single: S3B Device:
 
-S3B Device Hardmacro Resources
-===============================
+S3B Device
+==========
+ Hardmacro Resources
+
   * RAMs
     |br| - 8 blocks of 8K bits
 
@@ -57,11 +59,21 @@ Multiplier Features
   * Signed multiplier
   * Supports Latched input
 
+.. index::
+   single: Macro Usage and examples:
+  
+Macro Usage and examples
+------------------------
 
 
+.. toctree::
+   :maxdepth: 2
 
-
-
+   RAMUsage
+   FIFOUsage
+   MultiplierUsage
+   DesignexampleUsingSRAMs
+   DesignexampleUsingFIFOs
 
 
 .. |BR| raw:: html

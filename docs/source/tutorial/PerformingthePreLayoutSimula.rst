@@ -47,6 +47,11 @@ Performing the Pre-Layout Simulation
    This command compiles the design, which is spread across two input files, and generates the compiled result into the "my_design" file.
    |br| Another technique is to use a commandfile, which lists the input files in a text file. For example, create a text file called "file_list.txt" with the files listed one per line:
 
+    .. code-block:: shell
+
+        #Inside file_list.txt 
+        counter_16bit.v
+        counter_16bit_tb.v
 
     .. code-block:: shell
     
@@ -60,6 +65,9 @@ Performing the Pre-Layout Simulation
    
         gtkwave testbench.vcd &
 
+    .. image:: gtk_wave.png
+      :width: 700
+      :alt: Waveform
     
 
 .. |BR| raw:: html

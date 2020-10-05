@@ -17,7 +17,7 @@ import sphinx_rtd_theme
 
 project = 'QuickLogic-FPGA-Toolchain'
 html_title = 'QuickLogic-FPGA-Toolchain'
-copyright = '2020, Kishore Kumar'
+copyright = '2020, QuickLogic Corporation'
 author = 'Kishore Kumar'
 
 # The short X.Y version
@@ -69,7 +69,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
-
+html_show_sourcelink = False
 
 # -- Options for HTML output -------------------------------------------------
 

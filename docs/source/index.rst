@@ -22,7 +22,6 @@ System Requirements
 |br| Ram Size: 2 GB or more
 |br| Free Hard-Disc space: 5GB or more
 
-`Software Requirements <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain>`_
 
 .. toctree::
    :maxdepth: 3
@@ -33,20 +32,14 @@ System Requirements
    tutorial/HardwareLimitationsandOnline
 
 
-S3B Hardmacro User Guide
-========================
+S3B Device
+==========
 This provides the details of in-built RAMs/FIFOs and Multipliers in S3B and their usage in the user design.
 
 .. toctree::
    :maxdepth: 3
 
    ram/S3BDeviceHardmacroResources
-   ram/RAMUsage
-   ram/FIFOUsage
-   ram/MultiplierUsage
-   ram/DesignexampleUsingSRAMs
-   ram/DesignexampleUsingFIFOs
-
 
 
 .. |BR| raw:: html
@@ -62,5 +55,7 @@ This provides the details of in-built RAMs/FIFOs and Multipliers in S3B and thei
    :ltrim:
 
 * :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+.. 
+  * :ref:`modindex`
+
