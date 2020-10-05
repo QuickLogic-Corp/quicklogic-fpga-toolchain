@@ -50,10 +50,10 @@ ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_
 
 ```
 For more details on the symbiflow options refer the tutorial guide:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199560/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html)
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to the following document:
-[Ram_Fifo_Mult_User_Document](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199568/S3B_Hardmacro_User_Guide.pdf)
+[Ram_Fifo_Mult_User_Document](https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/ram/S3BDeviceHardmacroResources.html)
 
 ## 2) Compile from source code and run example
 
@@ -161,7 +161,7 @@ or run a prebuilt container automatically built from the installer by github act
 docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" docker.pkg.github.com/thirsty2/quicklogic-fpga-toolchain/symbiflow-ql:1.2.0.0 bash
 ```
 Inside your running docker container, try some of the commands from the tutorial:
-[Symbiflow_Tutorial](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/files/5199560/Symbiflow_Installation_Guide_and_Tutorial.pdf)
+[Symbiflow_Tutorial](https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html)
 ```
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate
