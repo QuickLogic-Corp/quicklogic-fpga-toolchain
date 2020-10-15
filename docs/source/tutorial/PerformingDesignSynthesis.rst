@@ -28,7 +28,7 @@ Performing Design Synthesis
 
     .. code-block:: shell
 
-        ql_symbiflow -synth -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64
+        ql_symbiflow -synth -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64
    
    Output files for synthesis are:
    |br| <TOP>.eblif : netlist file for the design

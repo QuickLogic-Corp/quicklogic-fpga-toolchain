@@ -23,7 +23,7 @@ Generate the Jlink and openOCD file
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc -dump jlink
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump jlink
    |br| 
    |br| For details on how to configure the FPGA using the top.jlink file, refer to Download Binaries using Jlink SWD section in the `QuickFeather_UserGuide <https://github.com/QuickLogic-Corp/quick-feather-dev-board/blob/3b8566c83ed9df56282701710165a9afbb5c5a49/doc/QuickFeather_UserGuide.pdf>`_ pdf.
    |br| 
@@ -43,7 +43,7 @@ Generate the Jlink and openOCD file
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc -dump openocd
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump openocd
    |br|    
 
 .. |BR| raw:: html

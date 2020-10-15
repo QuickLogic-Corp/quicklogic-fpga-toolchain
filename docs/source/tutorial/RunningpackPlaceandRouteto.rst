@@ -27,7 +27,7 @@ Running pack, Place and Route tools
     .. code-block:: shell
 
         cd <INSTALL_PATH>/install/tests/counter_16bit
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc
 
    The above command will also run synthesis if it was not run before.
 
@@ -36,7 +36,7 @@ Running pack, Place and Route tools
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc -dump jlink/post_verilog/header
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump jlink/post_verilog/header
 
 
    To Generate the Post-Layout Verilog file
@@ -60,7 +60,7 @@ Running pack, Place and Route tools
     
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc -dump post_verilog
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump post_verilog
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder

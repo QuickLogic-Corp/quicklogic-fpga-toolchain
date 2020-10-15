@@ -27,7 +27,7 @@ Generate the ASCII header file format
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc  -dump header
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc  -dump header
 
     
 
@@ -38,7 +38,7 @@ Generate the ASCII header file format
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p counter_16bit.pcf -P PD64 -s counter_16bit.sdc  -dump header jlink post_verilog
+        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc  -dump header jlink post_verilog
 
 
 .. |BR| raw:: html
