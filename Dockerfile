@@ -91,17 +91,11 @@ FROM release-candidate AS all_quick_tests
 WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
 RUN make all_quick_tests
 
-# Comment out the follwing section to allow a successful build
-
-# If using buildkit, starting from release-candidate allows concurrent builds
-# FROM release-candidate AS all_ql_tests
-# otherwise if some tests in all_ql_tests have already been run in all_quick_tests,
-# basing this on all_quick_tests may be somewhat faster.
-FROM all_quick_tests AS all_ql_tests
+FROM release-candidate AS all_ql_tests
 
 WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
 RUN make all_ql_tests
-# End of section to comment out to allow a successful build
+
 
 FROM release-candidate AS release
 
@@ -111,10 +105,6 @@ FROM release-candidate AS release
 
 # Run bash in the container interactively with something like:
 # docker run -it symbiflow-ql-slim-buster bash
-
-# cd /symbiflow-arch-defs/build/quicklogic
-# The following command doesn't work, but may be extraneous
-# make file_build_quicklogic_techmap_cells_sim.v
 
 # Run any test case in the container running bash interactively.  For example, follow these steps to run a test case:
 # cd /symbiflow-arch-defs/build/quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
