@@ -11,7 +11,7 @@ Below are some ways to run SymbiFlow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.2.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.2.0/Symbiflow_v1.2.0.gz.run)
+Download [Symbiflow_v1.3.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.0/Symbiflow_v1.3.0.gz.run)
 
 This package installs these toolchains :
 
@@ -25,7 +25,7 @@ This package installs these toolchains :
 ```bash
 #To Install
 export INSTALL_DIR="specify the installpath"
-bash Symbiflow_v1.2.0.gz.run
+bash Symbiflow_v1.3.0.gz.run
 
 #To Run example
 export INSTALL_DIR="specify the installpath"
@@ -46,7 +46,7 @@ The example designs are provided in separate directories at $INSTALL_DIR/install
 To run the examples, run following commands:
 ```bash
 cd $INSTALL_DIR/install/tests/counter_16bit
-ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_16bit.pcf 
+ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf 
 
 ```
 For more details on the symbiflow options refer the tutorial guide:
@@ -75,8 +75,8 @@ export PATH='specify Yosys installation path as specified in PREFIX in previous 
 make install
 cd -
 
-#Checkout *vpr* repository (https://github.com/QuickLogic-Corp/vtr-verilog-to-routing.git), branch: **blackbox_timing**.
-git clone https://github.com/QuickLogic-Corp/vtr-verilog-to-routing -b blackbox_timing
+#Checkout *vpr* repository (https://github.com/SymbiFlow/vtr-verilog-to-routing.git), branch: **master**.
+git clone https://github.com/SymbiFlow/vtr-verilog-to-routing -b master
 cd vtr-verilog-to-routing
 make
 
@@ -178,7 +178,7 @@ vvp my_design
 # use gtkwave to view the results (assumes you have allowed x connections, and have an xserver running)
 gtkwave counter_16bit_tb.vcd
 
-ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p counter_16bit.pcf 
+ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf 
 
 ```
 
