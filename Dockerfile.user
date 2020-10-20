@@ -1,0 +1,33 @@
+ARG IMAGE="symbiflow-ql:1.2.0"
+FROM ${IMAGE} as base
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Los_Angeles
+
+RUN apt-get update && apt-get install -y \
+    libusb-1.0-0 \
+    udev && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN chmod 755 /opt/symbiflow && \
+    chmod 755 /opt/symbiflow/eos-s3 && \
+    chmod -R 755 /opt/symbiflow/eos-s3/conda
+
+FROM base as release-candidate
+
+ARG USER=ic
+ARG UID=1000
+ARG GID=1000
+RUN addgroup --gid ${GID} ${USER}
+# RUN useradd -m -u $UID -g $GID -o -s /bin/bash $USER
+RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
+# RUN groupadd plugdev # error - already exists
+RUN usermod -a -G plugdev ${USER}
+# COPY 99-fomu.rules /etc/udev/rules.d/99-fomu.rules
+# RUN udevadm control --reload-rules
+# RUN udevadm trigger
+USER ${USER}
+WORKDIR /home/${USER}
+
+FROM release-candidate as symbiflow-ql-user
+
