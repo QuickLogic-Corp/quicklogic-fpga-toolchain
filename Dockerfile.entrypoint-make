@@ -26,7 +26,9 @@ RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bi
 USER ${USER}
 WORKDIR /home/${USER}
 
-ENTRYPOINT [ "make" ]
+SHELL [ "/bin/bash" ]
+COPY conda-make.sh /scripts/conda-make.sh
+ENTRYPOINT [ "/scripts/conda-make.sh" ]
 
 FROM release-candidate as symbiflow-ql-make
 
