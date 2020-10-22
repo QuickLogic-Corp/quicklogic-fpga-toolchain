@@ -16,7 +16,7 @@ Setup environment
 
     .. code-block:: shell
 
-        export INSTALL_DIR="/opt/symbiflow/eos-s3"
+        export INSTALL_DIR=""specify the installpath"
         #adding symbiflow toolchain binaries to PATH
         export PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
         source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
