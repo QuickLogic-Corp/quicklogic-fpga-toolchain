@@ -1,4 +1,4 @@
-ARG PARENT_IMAGE="symbiflow-ql:1.3.0"
+ARG PARENT_IMAGE="symbiflow-ql:latest"
 FROM ${PARENT_IMAGE} as base
 
 ARG DEBIAN_FRONTEND=noninteractive
