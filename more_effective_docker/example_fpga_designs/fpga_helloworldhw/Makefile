@@ -10,8 +10,8 @@ BUILDDIR := build
 
  
 .PHONY: all
-all: ${BUILDDIR}/${TOP}_bit.h 
-#all: ${BUILDDIR}/${TOP}.bit ${BUILDDIR}/${TOP}_jlink.h ${BUILDDIR}/${TOP}.post_v
+all: ${BUILDDIR}/${TOP}.bit 
+#all: ${BUILDDIR}/${TOP}_bit.h ${BUILDDIR}/${TOP}_jlink.h ${BUILDDIR}/${TOP}.post_v
 
 ${BUILDDIR}:
 	mkdir ${BUILDDIR}
