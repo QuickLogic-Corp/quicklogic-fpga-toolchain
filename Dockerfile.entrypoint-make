@@ -1,18 +1,18 @@
-ARG IMAGE="symbiflow-ql:1.2.0"
-FROM ${IMAGE} as base
+ARG PARENT_IMAGE="symbiflow-ql:1.3.0"
+FROM ${PARENT_IMAGE} as base
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
 RUN apt-get update && apt-get install -y \
     libusb-1.0-0 \
-    make \
     udev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN chmod 755 /opt/symbiflow && \
-    chmod 755 /opt/symbiflow/eos-s3 && \
-    chmod -R 755 /opt/symbiflow/eos-s3/conda
+# Moving this to the base ${PARENT_IMAGE} saves almost 1.9 GB in image space
+# RUN chmod 755 /opt/symbiflow && \
+#     chmod 755 /opt/symbiflow/eos-s3 && \
+#     chmod -R 755 /opt/symbiflow/eos-s3/conda
 
 FROM base as release-candidate
 
@@ -21,7 +21,7 @@ ARG UID=1000
 ARG GID=1000
 RUN addgroup --gid ${GID} ${USER}
 RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
-#RUN usermod -a -G plugdev ${USER}
+RUN usermod -a -G plugdev ${USER}
 # COPY 99-fomu.rules /etc/udev/rules.d/99-fomu.rules
 USER ${USER}
 WORKDIR /home/${USER}
@@ -37,7 +37,7 @@ FROM release-candidate as symbiflow-ql-make
 # docker build -f Dockerfile.entrypoint-make . -t symbiflow-ql-make 
 # 
 # In a directory containing a Makefile that runs symbiflow tools:
-# docker run -v $(pwd):/home/ic symbiflow-ql-make
+# docker run --rm -v $(pwd):/home/ic symbiflow-ql-make
 #
 # The above will execute make within the running container.  Any
 # tools called by the makefile will run within the container.
@@ -45,4 +45,4 @@ FROM release-candidate as symbiflow-ql-make
 # You can run the container with an optional command, which it 
 # passes to make.  For instance to run 'make clean' in the container:
 #
-# # docker run -v $(pwd):/home/ic symbiflow-ql-make clean
+# docker run --rm -v $(pwd):/home/ic symbiflow-ql-make clean

@@ -10,7 +10,8 @@ BUILDDIR := build
 
  
 .PHONY: all
-all: ${BUILDDIR}/${TOP}.bit
+all: ${BUILDDIR}/${TOP}_bit.h 
+#all: ${BUILDDIR}/${TOP}.bit ${BUILDDIR}/${TOP}_jlink.h ${BUILDDIR}/${TOP}.post_v
 
 ${BUILDDIR}:
 	mkdir ${BUILDDIR}
@@ -43,9 +44,8 @@ ${BUILDDIR}/${TOP}_jlink.h: ${BUILDDIR}/${TOP}.jlink
 	cd ${BUILDDIR} && write_jlinkheader 2>&1 >> ${TOP}.log
 
 ${BUILDDIR}/${TOP}.post_v: ${BUILDDIR}/${TOP}.bit
-	cd ${BUILDDIR} && \
-	write_fasm2bels -e ${TOP}.eblif -d ${DEVICE} -p ../${PCF} -n ${TOP}.net -P ${PARTNAME} 2>&1 >> ${TOP}.log && \
-	analysis -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 >> ${TOP}.log
+	cd ${BUILDDIR} && write_fasm2bels -e ${TOP}.eblif -d ${DEVICE} -p ../${PCF} -n ${TOP}.net -P ${PARTNAME} 2>&1 >> ${TOP}.log
+	cd ${BUILDDIR} && analysis -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 >> ${TOP}.log
 
 .PHONY: clean
 clean:

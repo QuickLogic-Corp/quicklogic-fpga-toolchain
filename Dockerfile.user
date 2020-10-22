@@ -1,18 +1,18 @@
-ARG IMAGE="symbiflow-ql:1.2.0"
-FROM ${IMAGE} as base
+ARG PARENT_IMAGE="symbiflow-ql:1.3.0"
+FROM ${PARENT_IMAGE} as base
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
 RUN apt-get update && apt-get install -y \
     libusb-1.0-0 \
-    make \
     udev && \
     rm -rf /var/lib/apt/lists/*
 
-RUN chmod 755 /opt/symbiflow && \
-    chmod 755 /opt/symbiflow/eos-s3 && \
-    chmod -R 755 /opt/symbiflow/eos-s3/conda
+# Moving this to the base ${PARENT_IMAGE} saves almost 1.9 GB in image space
+# RUN chmod 755 /opt/symbiflow && \
+#     chmod 755 /opt/symbiflow/eos-s3 && \
+#     chmod -R 755 /opt/symbiflow/eos-s3/conda
 
 FROM base as release-candidate
 
@@ -20,15 +20,28 @@ ARG USER=ic
 ARG UID=1000
 ARG GID=1000
 RUN addgroup --gid ${GID} ${USER}
-# RUN useradd -m -u $UID -g $GID -o -s /bin/bash $USER
 RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
-# RUN groupadd plugdev # error - already exists
 RUN usermod -a -G plugdev ${USER}
 # COPY 99-fomu.rules /etc/udev/rules.d/99-fomu.rules
-# RUN udevadm control --reload-rules
-# RUN udevadm trigger
 USER ${USER}
 WORKDIR /home/${USER}
 
 FROM release-candidate as symbiflow-ql-user
 
+# Below are some example commands to build and run a docker container
+#
+# docker build -f Dockerfile.user . -t symbiflow-ql-user 
+# 
+# In a directory containing a symbiflow project:
+# docker run -it -v $(pwd):/home/ic symbiflow-ql-user bash
+#
+# The above will execute bash within the running container.  Any
+# tools called within the bash session will run within the container.
+#
+# To list running (or stopped) containers, execute the following
+# docker ps -a
+# You may find a lot of stopped containers.  If you know you won't
+# need a container later, and prefer to remove it on exit, add -rm
+# to the command when you run the container:
+#
+# docker run --rm -it -v $(pwd):/home/ic symbiflow-ql-user bash
