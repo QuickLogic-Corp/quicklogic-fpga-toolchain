@@ -5,6 +5,7 @@ ENV TZ=America/Los_Angeles
 
 RUN apt-get update && apt-get install -y \
     libcanberra-gtk-module \
+    make \
     wget \
     xz-utils && \
     rm -rf /var/lib/apt/lists/*
@@ -13,12 +14,17 @@ RUN apt-get update && apt-get install -y \
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
+# add ARGs so that these can be passed in while doing a docker build, the following will be default values
+ARG TAG=v1.3.0
 ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
-RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.0/Symbiflow_v1.3.0.gz.run && \
-    chmod 755 Symbiflow_v1.3.0.gz.run && \
-    ./Symbiflow_v1.3.0.gz.run && \
-    rm Symbiflow_v1.3.0.gz.run
+# Appending all of these commands (mostly the chmod 755 commands) saved about 1.9 GB in image size
+RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/${TAG}/Symbiflow_${TAG}.gz.run && \
+    chmod 755 Symbiflow_${TAG}.gz.run && \
+    ./Symbiflow_${TAG}.gz.run && \
+    rm Symbiflow_${TAG}.gz.run && \
+    chmod 755 /opt/symbiflow && \
+    chmod 755 /opt/symbiflow/eos-s3 && \
+    chmod -R 755 /opt/symbiflow/eos-s3/conda
 
 ENV PATH="${INSTALL_DIR}/install/bin:${INSTALL_DIR}/install/bin/python:$PATH"
-
 
