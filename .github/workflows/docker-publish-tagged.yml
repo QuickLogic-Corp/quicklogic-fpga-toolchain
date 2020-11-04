@@ -17,7 +17,11 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: docker build --build-arg GITHUB_WORKSPACE=$GITHUB_WORKSPACE . --file Dockerfile.use-installer --tag $IMAGE_NAME
+        run:  |
+          # Strip git ref prefix from version
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+
+          docker build --build-arg TAG=$VERSION . --file Dockerfile.use-installer --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
@@ -31,7 +35,7 @@ jobs:
   
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-  
+
           # Strip "v" prefix from tag name
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
   
