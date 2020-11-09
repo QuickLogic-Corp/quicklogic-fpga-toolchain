@@ -57,8 +57,7 @@ For details on the usage of RAM, FIFO and Multiplier blocks, refer to the follow
 
 ## 2) Compile from source code and run example
 
-This release package contains the following GitHub repositories that are compiled to create this package:
-Note: Refer the repositories read.md pages for the prerequisites to build.
+This release package contains the following GitHub repositories that are compiled to create this package.  Note: Refer the repositories read.md pages for the prerequisites to build.
 
 You may use the following command to get the source, compile and install it:
 ```bash
