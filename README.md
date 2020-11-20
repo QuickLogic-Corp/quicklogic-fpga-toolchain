@@ -29,7 +29,7 @@ bash Symbiflow_v1.3.0.gz.run
 
 #To Run example
 export INSTALL_DIR="specify the installpath"
-export PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
+export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate
 
@@ -39,13 +39,13 @@ ql_symbiflow -h
 
 ## Run Example Design
 
-The example designs are provided in separate directories at $INSTALL_DIR/install/tests:
+The example designs are provided in separate directories at $INSTALL_DIR/quicklogic-arch-defs/tests:
 
 1. `counter_16bit` - simple 16-bit up-counter. The design targets the the device ql-eos-s3 and package PD64.
 
 To run the examples, run following commands:
 ```bash
-cd $INSTALL_DIR/install/tests/counter_16bit
+cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
 ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf 
 
 ```
@@ -129,7 +129,7 @@ conda activate
 #Execute the help command to display the help
 ql_symbiflow -h
 
-cd $INSTALL_DIR/install/tests/counter_16bit
+cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
 
 # Use iverilog to simulate the design
 iverilog -o my_design counter_16bit.v counter_16bit_tb.v
