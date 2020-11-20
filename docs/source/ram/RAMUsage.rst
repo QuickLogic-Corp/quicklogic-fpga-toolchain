@@ -12,10 +12,10 @@ The RAM macros (RAM_8K_BLK.v & RAM_16K_BLK.v) are part of pp3_cells_sim.v at:
 |br| *<Install_Path>*/conda/share/yosys/quicklogic
 
 The examples of RAMs are present at:
-|br| *<Install_Path>*/install/tests/RAM_Examples
+|br| *<Install_Path>*/quicklogic-arch-defs/tests/RAM_Examples
 
 The Design example using S3 SRAM block are present at:
-|br| *<Install_Path>*/install/tests/ram_test
+|br| *<Install_Path>*/quicklogic-arch-defs/tests/ram_test
 
   1. RAM_8K_BLK RAM macro is 8K bits block which can be configured as:
 

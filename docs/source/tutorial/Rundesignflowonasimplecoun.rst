@@ -18,7 +18,7 @@ Setup environment
 
         export INSTALL_DIR="specify the installpath"
         #adding symbiflow toolchain binaries to PATH
-        export PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
+        export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
         source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
         conda activate
 
@@ -29,7 +29,7 @@ Setup environment
     |br| 3.Create the simulation stimuli using any text editor.
 
    The code and testbench for the example design are present at:
-   |br| *<Install_Path>*/install/tests/counter_16bit/
+   |br| *<Install_Path>*/quicklogic-arch-defs/tests/counter_16bit/
 
 
 .. toctree::

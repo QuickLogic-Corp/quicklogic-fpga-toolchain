@@ -26,7 +26,7 @@ Running pack, Place and Route tools
     
     .. code-block:: shell
 
-        cd <INSTALL_PATH>/install/tests/counter_16bit
+        cd <INSTALL_PATH>/quicklogic-arch-defs/tests/counter_16bit
         ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc
 
    The above command will also run synthesis if it was not run before.
