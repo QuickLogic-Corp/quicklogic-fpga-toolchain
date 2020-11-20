@@ -23,7 +23,7 @@ RUN apt-get update -qq \
  && rm -rf /var/lib/apt/lists
 
 ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
-ENV PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
+ENV PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
 ENV YOSYS=${INSTALL_DIR}/install/bin/yosys
 
 #---
