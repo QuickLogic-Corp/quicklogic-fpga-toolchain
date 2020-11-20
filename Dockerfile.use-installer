@@ -26,5 +26,5 @@ RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/d
     chmod 755 /opt/symbiflow/eos-s3 && \
     chmod -R 755 /opt/symbiflow/eos-s3/conda
 
-ENV PATH="${INSTALL_DIR}/install/bin:${INSTALL_DIR}/install/bin/python:$PATH"
+ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:$PATH"
 
