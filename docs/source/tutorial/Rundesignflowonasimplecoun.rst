@@ -41,6 +41,7 @@ Setup environment
    PerformingthePostLayoutSimul
    GeneratetheJlinkfile
    GeneratetheASCIIheaderfilef
+   GeneratetheBinaryFile
    PcfDescription
 
 .. |BR| raw:: html
