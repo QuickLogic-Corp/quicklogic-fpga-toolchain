@@ -12,10 +12,10 @@ The FIFO macros (FIFO_8K_BLK.v & FIFO_16K_BLK.v) are part of pp3_cells_sim.v at:
 |br| *<Install_Path>*/conda/share/yosys/quicklogic
 
 The examples of FIFOs are present at:
-|br| *<Install_Path>*/install/tests/FIFO_Examples
+|br| *<Install_Path>*/quicklogic-arch-defs/tests/FIFO_Examples
 
 The Design example using S3 FIFO block are present at:
-|br| *<Install_Path>*/install/tests/fifo_test
+|br| *<Install_Path>*/quicklogic-arch-defs/tests/fifo_test
 
 Example 1: 1 8Kbits FIFO
 

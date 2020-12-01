@@ -32,7 +32,7 @@ Performing the Pre-Layout Simulation
 
     .. code-block:: shell
     
-        cd <INSTALL_PATH>/install/tests/counter_16bit
+        cd <INSTALL_PATH>/quicklogic-arch-defs/tests/counter_16bit
 
 
    The "iverilog" command supports multi-file designs by two methods. The simplest is
