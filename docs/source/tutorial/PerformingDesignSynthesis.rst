@@ -21,7 +21,7 @@ Performing Design Synthesis
 
     .. code-block:: shell
 
-        cd <INSTALL_PATH>/install/tests/counter_16bit
+        cd <INSTALL_PATH>/quicklogic-arch-defs/tests/counter_16bit
     
    and run the below command:
    |br| 

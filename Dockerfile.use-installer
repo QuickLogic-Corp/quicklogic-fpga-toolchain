@@ -6,6 +6,8 @@ ENV TZ=America/Los_Angeles
 RUN apt-get update && apt-get install -y \
     libcanberra-gtk-module \
     make \
+    curl \
+    git \
     wget \
     xz-utils && \
     rm -rf /var/lib/apt/lists/*
@@ -15,7 +17,7 @@ RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 # add ARGs so that these can be passed in while doing a docker build, the following will be default values
-ARG TAG=v0.0.0
+ARG TAG=v1.3.0
 ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
 # Appending all of these commands (mostly the chmod 755 commands) saved about 1.9 GB in image size
 RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/${TAG}/Symbiflow_${TAG}.gz.run && \
@@ -26,5 +28,5 @@ RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/d
     chmod 755 /opt/symbiflow/eos-s3 && \
     chmod -R 755 /opt/symbiflow/eos-s3/conda
 
-ENV PATH="${INSTALL_DIR}/install/bin:${INSTALL_DIR}/install/bin/python:$PATH"
+ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:$PATH"
 

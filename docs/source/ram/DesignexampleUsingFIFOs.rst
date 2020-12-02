@@ -9,7 +9,7 @@ Design example Using FIFOs
 
 
 The Design example using S3 FIFO block are present at:
-|br| *<Install_Path>*/install/tests/fifo_test
+|br| *<Install_Path>*/quicklogic-arch-defs/tests/fifo_test
 
 Address Map:
 
