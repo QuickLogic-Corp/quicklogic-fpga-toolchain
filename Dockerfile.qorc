@@ -1,0 +1,97 @@
+FROM ubuntu:20.04 as base
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Los_Angeles
+
+RUN apt-get update && apt-get install -y \
+    libcanberra-gtk-module \
+    make \
+    curl \
+    git \
+    wget \
+    xz-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+# make /bin/sh symlink to bash instead of dash:
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+# add ARGs so that these can be passed in while doing a docker build, the following will be default values
+ARG TAG=v0.0.0
+ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
+# Appending all of these commands (mostly the chmod 755 commands) saved about 1.9 GB in image size
+RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/${TAG}/Symbiflow_${TAG}.gz.run && \
+    chmod 755 Symbiflow_${TAG}.gz.run && \
+    ./Symbiflow_${TAG}.gz.run && \
+    rm Symbiflow_${TAG}.gz.run && \
+    chmod 755 /opt/symbiflow && \
+    chmod 755 /opt/symbiflow/eos-s3 && \
+    chmod -R 755 /opt/symbiflow/eos-s3/conda && \
+    chmod -R 755 /opt/symbiflow/eos-s3/quicklogic-arch-defs
+
+ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:$PATH"
+
+FROM base as symbiflow-ql
+
+FROM symbiflow-ql as qorc-base
+
+WORKDIR /opt
+
+RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
+    tar -xjvf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
+    rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+
+ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux:$PATH
+
+
+FROM qorc-base as qorc-test-base
+
+WORKDIR /
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+
+FROM qorc-test-base as qorc-test-qf_apps
+
+WORKDIR /qorc-sdk/qf_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
+
+FROM qorc-test-base as qorc-test-qf_vr_apps
+
+WORKDIR /qorc-sdk/qf_vr_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
+
+#FROM qorc-test-base as qorc-test-qorc_testapps
+
+#WORKDIR /qorc-sdk/qorc-testapps
+#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+#conda activate && \
+#make
+FROM qorc-base as qorc-user
+
+RUN apt-get update && apt-get install -y \
+    libusb-1.0-0 \
+    python3-pip \
+    usbutils \
+    udev && \
+    rm -rf /var/lib/apt/lists/*
+
+ARG USER=ic
+ARG UID=1000
+ARG GID=1000
+RUN addgroup --gid ${GID} ${USER}
+RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
+RUN usermod -a -G plugdev ${USER} && usermod -a -G dialout ${USER}
+COPY 98-quickfeather.rules /etc/udev/rules.d/98-quickfeather.rules
+USER ${USER}
+WORKDIR /home/${USER}
+
+SHELL [ "/bin/bash" ]
+COPY conda-user.sh /scripts/conda-user.sh
+
+ENTRYPOINT [ "/scripts/conda-user.sh" ]
+
+FROM qorc-base as qorc
+
