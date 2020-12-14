@@ -21,7 +21,6 @@ Generate the ASCII header file format
 
 
    The output files dumped will be :
-    |br| <TOP>_jlink.h - *file generated from the jlink input*
     |br| <TOP>_bit.h - *file generated from the bit file input*
     |br| 
 
