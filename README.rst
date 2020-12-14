@@ -22,6 +22,56 @@ the following document:
 `Ram_Fifo_Mult_User_Document <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/ram/S3BDeviceHardmacroResources.html>`_
 
 
+**NOTE:**
+
+While running the compilation with the latest toolchain (v1.3.1 or the daily-build), the following warning would be seen:
+
+::
+
+  fasm/fasm/parser/__init__.py:27: RuntimeWarning: 
+  Falling back on slower textX parser implementation:
+    ImportError: cannot import name 'tags' from 'fasm.parser' (/path/to/toolchain/install/quicklogic-arch-defs/tests/counter_16bit/fasm/fasm/parser/__init__.py)
+  Please install all dependencies and reinstall with:
+    pip uninstall
+    pip install -v fasm
+    '  pip install -v fasm'.format(e), RuntimeWarning)
+  ['textx']
+
+| This is due to recent changes in the `Symbiflow fasm <https://github.com/SymbiFlow/fasm>`_ which adds support for the :code:`antlr` parser in place of :code:`textx`.
+| This is not a problem, and current installation will continue to use :code:`textx` as the parser, as with previous releases.
+| :code:`antlr` installation requires a few extra steps, which needs to be integrated into the toolchain installation.
+| This is not yet incorporated in the current install, and will be added in a future release.
+| Manual Installation of :code:`antlr` can be done from the instructions at the `Symbiflow fasm <https://github.com/SymbiFlow/fasm>`_ readme.
+|
+| A brief of the steps for manual installation (optional), after toolchain installation is completed:
+
+- Ensure :code:`conda activate` is executed
+
+- Execute the following sequence
+
+  ::
+
+    cd $INSTALL_DIR
+    git clone https://github.com/SymbiFlow/fasm.git
+    cd fasm
+    git submodule update --init
+    sudo apt install cmake default-jre-headless uuid-dev libantlr4-runtime-dev
+    make build
+    python setup.py test
+
+- If all goes well, run the below to test:
+
+  ::
+
+    python3 -c "import fasm.parser as p; print(p.available)"
+
+  An output similar to below:
+
+  ::
+     
+    ['antlr', 'textx']
+
+  indicates that :code:`antlr` is now installed and available, and will be used as the default parser.
 
 .. _1-run-an-installer-and-run-an-example:
 
