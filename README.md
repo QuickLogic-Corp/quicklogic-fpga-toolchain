@@ -11,7 +11,7 @@ Below are some ways to run SymbiFlow:
 
 ## 1) Run an installer and follow instructions to run example
 
-Download [Symbiflow_v1.3.0](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.0/Symbiflow_v1.3.0.gz.run)
+Download latest [Symbiflow](https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases)
 
 This package installs these toolchains :
 
