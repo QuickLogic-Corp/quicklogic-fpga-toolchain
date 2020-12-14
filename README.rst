@@ -79,7 +79,7 @@ While running the compilation with the latest toolchain (v1.3.1 or the daily-bui
 ----------------------------------------------------------
 
 Download
-`Symbiflow_v1.3.0 <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.0/Symbiflow_v1.3.0.gz.run>`__
+`Symbiflow_v1.3.1 <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.1/Symbiflow_v1.3.1.gz.run>`__
 
 This package installs these toolchains :
 
@@ -96,7 +96,7 @@ Steps:
 ::
 
   export INSTALL_DIR="specify the installpath"
-  bash Symbiflow_v1.3.0.gz.run
+  bash Symbiflow_v1.3.1.gz.run
 
 - Initialize
 
