@@ -33,6 +33,18 @@ ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch
 
 FROM base as symbiflow-ql
 
+# The qorc-base target has no user and no entrypoint specified, which makes
+# it useful as a base image.  
+
+# Build the qorc-base target with a command like this:
+# docker build --build-arg TAG=v1.3.0 -f Dockerfile.qorc --target qorc-base . -t qorc-base
+#
+# Run it in the qorc-sdk directory or another project directory with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root qorc-base bash
+#
+# Note that when using the qorc-base target, there is no entrypoint script so you need to source 
+# the conda.sh file, and activate conda before running make in qorc-sdk.
+#
 FROM symbiflow-ql as qorc-base
 
 WORKDIR /opt
@@ -47,25 +59,26 @@ ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux:$PATH
 # images that eat a large percentage of the small remaning space on my chromebook.
 # Uncomment them if you have the disk space needed to run the tests.
 
-#FROM qorc-base as qorc-test-base
+FROM qorc-base as qorc-test-base
 
-#WORKDIR /
-#RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+WORKDIR /
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
 
-#FROM qorc-test-base as qorc-test-qf_apps
+FROM qorc-test-base as qorc-test-qf_apps
 
-#WORKDIR /qorc-sdk/qf_apps
-#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
-#    conda activate && \
-#    make
+WORKDIR /qorc-sdk/qf_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
 
-#FROM qorc-test-base as qorc-test-qf_vr_apps
+FROM qorc-test-base as qorc-test-qf_vr_apps
 
-#WORKDIR /qorc-sdk/qf_vr_apps
-#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
-#    conda activate && \
-#    make
+WORKDIR /qorc-sdk/qf_vr_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
 
+# The following qorc_testapps wouldn't build
 #FROM qorc-test-base as qorc-test-qorc_testapps
 
 #WORKDIR /qorc-sdk/qorc-testapps
@@ -83,12 +96,6 @@ ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux:$PATH
 # Note that the conda-user.sh file used as an entrypoint sources the conda.sh file and activates conda
 # so there is no need to do those things when using this qorc-user target.  Simply run make inside qorc-sdk.
 #
-# The qorc-user target is the most convenient to use of the targets in this file, but it is not the default
-# because a default target with no entrypoint or user is more convinent for re-use.  For instance, to reuse
-# the default qorc image, you could create a new Dockerfile containing only the contents of the following 
-# qorc-user section, and replacing the top line with:
-# FROM qorc
-# assuming the qorc:latest image exists on your system, or as a Docker hub image. 
 FROM qorc-base as qorc-user
 
 RUN apt-get update && apt-get install -y \
@@ -103,8 +110,7 @@ ARG UID=1000
 ARG GID=1000
 RUN addgroup --gid ${GID} ${USER}
 RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
-RUN usermod -a -G plugdev ${USER} && usermod -a -G dialout ${USER}
-COPY 98-quickfeather.rules /etc/udev/rules.d/98-quickfeather.rules
+
 USER ${USER}
 WORKDIR /home/${USER}
 
@@ -113,18 +119,17 @@ COPY conda-user.sh /scripts/conda-user.sh
 
 ENTRYPOINT [ "/scripts/conda-user.sh" ]
 
-# qorc is the default target.  There is no user and no entrypoint specified, which makes
-# it useful as a base image.  
 
+
+FROM qorc-user as qorc
+# If the above test builds complete, the qorc-user becomes the default target, qorc.
 # Build the default qorc target with a command like this:
 # docker build --build-arg TAG=v1.3.0 -f Dockerfile.qorc . -t qorc
 #
-# Run it in the qorc-sdk directory or another project directory with a command like this:
-# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root qorc bash
+# Run it in the qorc-sdk directory or any project directory with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc bash
 #
-# Note that when using the default qorc target, there is no entrypoint script so you need to source 
-# the conda.sh file, and activate conda before running make in qorc-sdk.
-# See the tests above for examples of how this may be done.
+# Note that the conda-user.sh file used as an entrypoint sources the conda.sh file and activates conda
+# so there is no need to do those things when using this qorc target.  Simply run make inside qorc-sdk.
 #
-FROM qorc-base as qorc
 
