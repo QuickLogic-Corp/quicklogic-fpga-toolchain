@@ -21,7 +21,7 @@ jobs:
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
-          docker build --build-arg TAG=$VERSION . --file Dockerfile.use-installer --tag $IMAGE_NAME
+          docker build --build-arg TAG=$VERSION --target symbiflow-ql . --file Dockerfile.use-installer --tag $IMAGE_NAME
 
       - name: Log into registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
