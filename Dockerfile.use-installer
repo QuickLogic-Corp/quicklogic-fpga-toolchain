@@ -31,13 +31,22 @@ RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/d
 
 ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:$PATH"
 
+# The symbiflow-ql target is the same as in previous versions of Dockerfile.use-installer.
+# It contains no user or entrypoint, which makes it easy to re-use as a parent image.
+#
+# Build the symbiflow-ql target with a command like this:
+# docker build --build-arg TAG=v1.3.0 -f Dockerfile.use-installer --target symbiflow-ql . -t symbiflow-ql
+#
+# Run it with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root symbiflow-ql bash
+#
 FROM base as symbiflow-ql
 
 # The qorc-base target has no user and no entrypoint specified, which makes
 # it useful as a base image.  
-
+#
 # Build the qorc-base target with a command like this:
-# docker build --build-arg TAG=v1.3.0 -f Dockerfile.qorc --target qorc-base . -t qorc-base
+# docker build --build-arg TAG=v1.3.0 -f Dockerfile.use-installer --target qorc-base . -t qorc-base
 #
 # Run it in the qorc-sdk directory or another project directory with a command like this:
 # docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root qorc-base bash
@@ -75,7 +84,7 @@ RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
     conda activate && \
     make
 
-# The following qorc_testapps wouldn't build
+# The following qorc_testapps wouldn't build so they are commented out for now
 #FROM qorc-test-base as qorc-test-qorc_testapps
 
 #WORKDIR /qorc-sdk/qorc-testapps
@@ -85,7 +94,7 @@ RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
 
 # The qorc-user target adds a user and entrypoint to the default target.
 # Build the qorc-user target with a command like this:
-# docker build --build-arg TAG=v1.3.0 -f Dockerfile.qorc --target qorc-user . -t qorc-user
+# docker build --build-arg TAG=v1.3.0 -f Dockerfile.use-installer --target qorc-user . -t qorc-user
 #
 # Run it in the qorc-sdk directory or any project directory with a command like this:
 # docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc-user bash
@@ -116,12 +125,14 @@ COPY conda-user.sh /scripts/conda-user.sh
 
 ENTRYPOINT [ "/scripts/conda-user.sh" ]
 
-
+# I would prefer to move the tests to this point, but doing so didn't work initially so 
+# I left them after the qorc-base target for now.  It may have something to do with adding
+# the entrypoint, or with permissions, or both.  More work is needed to move the tests.
 
 FROM qorc-user as qorc
 # If the above test builds complete, the qorc-user becomes the default target, qorc.
 # Build the default qorc target with a command like this:
-# docker build --build-arg TAG=v1.3.0 -f Dockerfile.qorc . -t qorc
+# docker build --build-arg TAG=v1.3.0 -f Dockerfile.use-installer . -t qorc
 #
 # Run it in the qorc-sdk directory or any project directory with a command like this:
 # docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc bash
