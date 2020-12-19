@@ -23,7 +23,7 @@ the following document:
 
 **NOTE:**
 
-While running the compilation with the latest toolchain (v1.3.1 or the daily-build), the following warning would be seen:
+While running the compilation with the latest toolchain (v1.3.1), the following warning would be seen:
 
 ::
 
