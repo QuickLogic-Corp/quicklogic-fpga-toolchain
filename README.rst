@@ -10,9 +10,8 @@ Installer runs only on Linux 64bit.
 Below are some ways to run SymbiFlow:
 
 1) Run an installer and run an example
-2) Use the daily build and run an example
-3) Compile from source code and run example
-4) Run SymbiFlow in a container
+2) Compile from source code and run example
+3) Run SymbiFlow in a container
 
 
 For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html>`_
@@ -127,71 +126,9 @@ Steps:
      ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf 
 
 
-.. _2-use-the-daily-build-and-run-an-example:
+.. _2-compile-from-source-code-and-run-example:
 
-2)  Use the daily build and run an example
-------------------------------------------
-
-Steps:
-
-- Install
-
-::
-
-  export INSTALL_DIR="specify the installpath"
-  wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda_installer.sh
-  bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-  source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-  echo "include-system-site-packages=false" >> $INSTALL_DIR/conda/pyvenv.cfg
-  CONDA_FLAGS="-y --override-channels -c defaults -c conda-forge"
-  conda update $CONDA_FLAGS -q conda
-  curl $(curl https://storage.googleapis.com/symbiflow-arch-defs-install/latest) > arch.tar.gz
-  tar -C $INSTALL_DIR -xvf arch.tar.gz && rm arch.tar.gz
-  conda install $CONDA_FLAGS -c quicklogic-corp/label/ql yosys="0.8.0_0003_e80fb742f_20201208_122808 None" python=3.7
-  conda install $CONDA_FLAGS -c quicklogic-corp/label/ql yosys-plugins="1.2.0_0011_g21045a9 None"
-  conda install $CONDA_FLAGS -c quicklogic-corp/label/ql vtr="v8.0.0_rc2_2894_gdadca7ecf 20201008_140004"
-  conda install $CONDA_FLAGS -c quicklogic-corp iverilog
-  conda install $CONDA_FLAGS -c tfors gtkwave
-  conda install $CONDA_FLAGS make lxml simplejson intervaltree git pip
-  conda activate
-  pip install python-constraint
-  pip install serial
-  pip install git+https://github.com/QuickLogic-Corp/quicklogic-fasm
-  conda deactivate
-
-- Initialize
-
-::
-
-  export INSTALL_DIR="specify the installpath"
-  export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
-  source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-  conda activate
-
-- Run help command
-
-::
-   
-  ql_symbiflow -h
-
-- Run Example Design
-
-  The example designs are provided in separate directories at :code:`$INSTALL_DIR/quicklogic-arch-defs/tests` :
-
-  1. :code:`counter_16bit` - simple 16-bit up-counter. The design targets the device ql-eos-s3 and package PD64.
-
-   To run this example, run following commands:
-
-   ::
-
-     cd $INSTALL_DIR/quicklogic-arch-defs/tests/counter_16bit
-     ql_symbiflow -compile -d ql-eos-s3 -P pd64 -v counter_16bit.v -t top -p chandalar.pcf 
-
-
-
-.. _3-compile-from-source-code-and-run-example:
-
-3) Compile from source code and run example
+2) Compile from source code and run example
 -------------------------------------------
 
 This release package contains the following GitHub repositories that are
@@ -237,9 +174,9 @@ it:
    cd quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
    make bin2seven-ql-chandalar_fasm
 
-.. _4-run-symbiflow-in-a-container:
+.. _3-run-symbiflow-in-a-container:
 
-4) Run SymbiFlow in a container
+3) Run SymbiFlow in a container
 -------------------------------
 
 Containers provide isolated environments, similar to VMs, but lighter
