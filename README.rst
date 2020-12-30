@@ -196,34 +196,50 @@ Such images are useful for developing continuous integration of FPGA
 projects. The act of building and testing them automatically through
 github actions also provides assurances that what is checked into the
 github source repositories can be built and executed. Below are some of
-the options for using containers to run or build SymbiFlow for
-Quicklogic development.
+the options for using containers to run or build SymbiFlow and the QORC
+toolchain for Quicklogic development.
 
 .. _option-a-build-a-container-image-locally-from-dockerfileuse-installer:
 
 Option A) Build a container image locally from Dockerfile.use-installer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-| The Dockerfile.use-installer in this repo builds a SymbiFlow container
+| The Dockerfile.use-installer in this repo builds a QORC container image
   from a released installer.
-| You can build and tag the symbiflow-ql container with:
+
+| The default target is the full QORC toolchain.  You can build it with:
+::
+   docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer . -t qorc:1.3.1
+
+| The easiest way to test the QORC toolchain container is to clone the qorc-sdk repository and build the sample apps.
+::
+   git clone https://github.com/QuickLogic-Corp/qorc-sdk.git
+   cd qorc-sdk
+   git submodule init
+   git submodule update
+   docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc:1.3.0 bash
+   cd qf_apps
+   make
+
+| Previous versions of this README file documented the symbiflow-ql container which has no compiler, no entrypoint, and runs as root.  
+It is less convenient than the default target, but it is still useful as a base image to build upon.  
+You can still build and tag the symbiflow-ql container image with:
 
 ::
 
-   docker build . -f Dockerfile.use-installer -t symbiflow-ql
+   docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer --target symbiflow-ql . -t symbiflow-ql
 
-In order to view the gtkwave program, the easiest (but not the safest)
-thing to do is allow x connections:
+In order to view the gtkwave program, the easiest thing to do is allow x connections:
 
 ::
 
-   xhost +
+   xhost +local:docker
 
    docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" symbiflow-ql bash
 
    or run a prebuilt container automatically built from the installer by github actions:
 
-   docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" docker.pkg.github.com/thirsty2/quicklogic-fpga-toolchain/symbiflow-ql:1.2.0.0 bash
+   docker run -it -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" docker.pkg.github.com/quicklogic-corp/quicklogic-fpga-toolchain/symbiflow-ql:1.3.1 bash
 
 Inside your running docker container, try some of the commands from the
 tutorial:
@@ -252,7 +268,7 @@ When you are finished, it would be wise to disallow x connections:
 
 ::
 
-   xhost -
+   xhost -local:docker
 
 Option B) Build a container image locally from Dockerfile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -293,7 +309,7 @@ using a docker command like this:
 
 ::
 
-   docker run -it docker.pkg.github.com/quicklogic-corp/quicklogic-fpga-toolchain/symbiflow-ql-src:latest bash
+   docker run -it docker.pkg.github.com/quicklogic-corp/quicklogic-fpga-toolchain/symbiflow-ql:1.3.1 bash
 
 From your bash session in the container, try:
 
