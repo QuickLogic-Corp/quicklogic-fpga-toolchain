@@ -3,11 +3,13 @@ FROM ubuntu:20.04 as base
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
+# install depedencies that are not yet in the installer
 RUN apt-get update && apt-get install -y \
-    libcanberra-gtk-module \
-    make \
     curl \
     git \
+    gnupg \
+    libcanberra-gtk-module \
+    make \
     wget \
     xz-utils && \
     rm -rf /var/lib/apt/lists/*
@@ -15,6 +17,14 @@ RUN apt-get update && apt-get install -y \
 # make /bin/sh symlink to bash instead of dash:
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+# install bazel (needed for tensorFlow)    
+RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg && \
+    mv bazel.gpg /etc/apt/trusted.gpg.d/ && \
+    echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list && \
+    apt update && apt install -y \
+    bazel && \
+    rm -rf /var/lib/apt/lists/*
 
 # add ARGs so that these can be passed in while doing a docker build, the following will be default values
 ARG TAG=v0.0.0
