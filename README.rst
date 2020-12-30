@@ -209,10 +209,12 @@ Option A) Build a container image locally from Dockerfile.use-installer
 
 | The default target is the full QORC toolchain.  You can build it with:
 ::
+
    docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer . -t qorc:1.3.1
 
 | The easiest way to test the QORC toolchain container is to clone the qorc-sdk repository and build the sample apps.
 ::
+
    git clone https://github.com/QuickLogic-Corp/qorc-sdk.git
    cd qorc-sdk
    git submodule init
@@ -221,8 +223,7 @@ Option A) Build a container image locally from Dockerfile.use-installer
    cd qf_apps
    make
 
-| Previous versions of this README file documented the symbiflow-ql container which has no compiler, no entrypoint, and runs as root.  
-It is less convenient than the default target, but it is still useful as a base image to build upon.  
+| Previous versions of this README file documented the symbiflow-ql container which has no compiler, no entrypoint, and runs as root.  It is less convenient than the default target, but it is still useful as a base image to build upon.  
 You can still build and tag the symbiflow-ql container image with:
 
 ::
