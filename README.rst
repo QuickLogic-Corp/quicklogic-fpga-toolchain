@@ -10,10 +10,6 @@ Installer runs only on Linux 64bit.
 For more information specific to various devices, refer to README 
 file for respective devices:
 
-.. toctree::
-   :maxdepth: 2
-
-   eos-s3/README.rst
-   qlf_k4n8/README.rst
-   ...
+1) EOS-S3 README is located at: eos-s3/README.rst
+2) QLF_K4N8 README is located at: qlf_k4n8/README.rst
 
