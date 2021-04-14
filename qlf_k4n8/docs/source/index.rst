@@ -1,4 +1,4 @@
-Welcome to QuickLogic-FPGA-Toolchain's documentation for EOS-S3 Device!
+Welcome to QuickLogic-FPGA-Toolchain's documentation for QLF-K4N8!
 =======================================================================
 
 
@@ -32,20 +32,12 @@ System Requirements
    tutorial/HardwareLimitationsandOnline
 
 
-S3B Device
-==========
-This provides the details of in-built RAMs/FIFOs and Multipliers in S3B and their usage in the user design.
-
-.. toctree::
-   :maxdepth: 3
-
-   ram/S3BDeviceHardmacroResources
-
+QLF-K4N8 Device
+===============
 
 .. |BR| raw:: html
 
    <BR/>
-
 
 .. |U12b| unicode:: U+0000C
    :trim:
@@ -54,8 +46,4 @@ This provides the details of in-built RAMs/FIFOs and Multipliers in S3B and thei
 .. |U174l| unicode:: U+000AE
    :ltrim:
 
-* :ref:`genindex`
-* :ref:`search`
-..
-  * :ref:`modindex`
 
