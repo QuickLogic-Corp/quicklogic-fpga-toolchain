@@ -34,22 +34,22 @@ Performing Design Synthesis
    |br| <TOP>.eblif : netlist file for the design
    |br| <TOP>_synth.log : synthesis log information, refer this file for any issues during synthesis 
    |br| 
-    |br|  Resource utilization in the top_synth.log of the counter:
-    |br|
-    |br|  *Number of wires:                384*
-    |br|  *Number of wire bits:            384*
-    |br|  *Number of public wires:         382*
-    |br|  *Number of public wire bits:     382*
-    |br|  *Number of memories:               0*
-    |br|  *Number of memory bits:            0*
-    |br|  *Number of processes:              0*
-    |br|  *Number of cells:                 67*
-    |br|   *BIDIR_CELL                     18*
-    |br|   *CLOCK_CELL                      1*
-    |br|   *C_FRAG                          4*
-    |br|   *GMUX_IP                         1*
-    |br|   *Q_FRAG                         16*
-    |br|   *T_FRAG                         27*
+      |br|  Resource utilization in the top_synth.log of the counter:
+      |br|
+      |br|  *Number of wires:                384*
+      |br|  *Number of wire bits:            384*
+      |br|  *Number of public wires:         382*
+      |br|  *Number of public wire bits:     382*
+      |br|  *Number of memories:               0*
+      |br|  *Number of memory bits:            0*
+      |br|  *Number of processes:              0*
+      |br|  *Number of cells:                 67*
+      |br|   *BIDIR_CELL                     18*
+      |br|   *CLOCK_CELL                      1*
+      |br|   *C_FRAG                          4*
+      |br|   *GMUX_IP                         1*
+      |br|   *Q_FRAG                         16*
+      |br|   *T_FRAG                         27*
 
 
     .. note:: > All the output log files will be dumped in {source path}/build folder

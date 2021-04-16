@@ -1,3 +1,7 @@
+
+.. index::
+   single: Pin Mapping 
+
 Pin Mapping
 ###########
 
@@ -30,17 +34,17 @@ Note that in eFPGA device, each IO interface can have multiple IO ports (like 16
 
 We require a mechanism to specify pin-mapping for GPIOs with user-defined pin-names rather than default names present in eFPGA I/O interface. 
 
-.. figure:: image1.png
-    :scale: 80 %
-    :alt: 12x12 eFPGA Device
 
-    Above figure is a 12x12 EFPGA device where green-colored cells represent EFPGA IO interface cells and blue-colored cells represent user-defined package:
+.. image:: image1.png
 
-    *   Green colored cells are EFPGA interface cells. Each cell consists of 16 input/16 output ports
-    *   White colored cells are EFPGA core of 12x12 device size
-    *   Blue colored cells are termed as an end-user package. Here end-user is an EFPGA device user who intends to use it in their silicon.
-        *   User defines their pin-mapping to green-colored IO interface ports
-        *   User can define multiple such packages
+
+Above figure is a 12x12 EFPGA device where green-colored cells represent EFPGA IO interface cells and blue-colored cells represent user-defined package:
+
+*   Green colored cells are EFPGA interface cells. Each cell consists of 16 input/16 output ports
+*   White colored cells are EFPGA core of 12x12 device size
+*   Blue colored cells are termed as an end-user package. Here end-user is an EFPGA device user who intends to use it in their silicon.
+    *   User defines their pin-mapping to green-colored IO interface ports
+    *   User can define multiple such packages
 
 In this example, we require the following pin-mapping specifications:
 
