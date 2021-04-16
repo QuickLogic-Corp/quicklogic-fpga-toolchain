@@ -13,7 +13,7 @@ Running Pack, Place and Route tools
 
     .. code-block:: none
 
-        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package file> -s <SDC file>
+        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file>
 
 
    The output files dumped will be:
@@ -27,7 +27,7 @@ Running Pack, Place and Route tools
     .. code-block:: shell
 
         cd <INSTALL_PATH>/quicklogic-arch-defs/tests/counter_16bit
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc
 
    The above command will also run synthesis if it was not run before.
 
@@ -36,7 +36,7 @@ Running Pack, Place and Route tools
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump jlink/post_verilog/header
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc -dump post_verilog/header
 
 
    To Generate the Post-Layout Verilog file
@@ -48,7 +48,7 @@ Running Pack, Place and Route tools
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package file> -s <SDC file> -dump post_verilog
+        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file> -dump post_verilog
 
 
    The output files dumped will be:
@@ -60,7 +60,7 @@ Running Pack, Place and Route tools
     
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump post_verilog
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc -dump post_verilog
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder
@@ -69,9 +69,9 @@ Running Pack, Place and Route tools
     |br|
     |br| *Hold Worst Negative Slack (hWNS): 0 ns*
     |br| *Hold Total Negative Slack (hTNS): 0 ns*
-    |br| *Setup Worst Negative Slack (sWNS): -35.2295 ns*
-    |br| *Setup Total Negative Slack (sTNS): -1062.29 ns*
-    |br| *Final critical path: 35.2295 ns, Fmax: 28.3853 MHz*
+    |br| *Setup Worst Negative Slack (sWNS): -2.91 ns*
+    |br| *Setup Total Negative Slack (sTNS): -162.424 ns*
+    |br| *Final critical path: 2.91 ns, Fmax: 343.643 MHz*
 
 .. |BR| raw:: html
 
