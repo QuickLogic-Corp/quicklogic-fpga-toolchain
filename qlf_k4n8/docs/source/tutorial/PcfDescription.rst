@@ -7,40 +7,45 @@
 PCF Sample 
 ==========
   
- The PCF file is for fix placing the IO to a particular IO location on the device. For S3B device we have 3 packages PD64, PU64 and WR42. 
+The PCF file is for fix placing the IO to a particular IO location on the device.  
+For qlf_k4n8 device, user needs to create a pin mapping csv (as defined in Pin Mapping section). The user-defined pin names can then be specified in the pcf file for IO placement.
+Below mentioned CSV file corresponds to a pin-mapping defined for 24x24 device size for qlf_k4n8 device.
 
-    For package PD64, the counter_16bit has the below IO placements:
-    |br| Syntax: set_io <port_name> <Package IO>
-
-    .. code-block:: shell
-
-        set_io clk A3
-        set_io enable C1
-        set_io reset A1
-        set_io count(0) A2
-        set_io count(1) B2
-        set_io count(2) C3
-        set_io count(3) B3
-        set_io count(4) B1
-        set_io count(5) C4
-        set_io count(6) B4
-        set_io count(7) A4
-        set_io count(8) C5
-        set_io count(9) B5
-        set_io count(10) D6
-        set_io count(11) A5
-        set_io count(12) C6
-        set_io count(13) E7
-        set_io count(14) D7
-        set_io count(15) E8
+.. toctree::
+   :maxdepth: 2
+   
+   qlf_k4n8-qlf_k4n8_umc22_24x24.csv.rst
 
 
-   PCF reference file for various the below packages
+|br| **Syntax:**
 
-   The highlighted pins are the clock ports and can also be used as BIDIR IO. Either IO Location or Alias name can be used.
+    .. code-block:: none
+      
+      set_io <port_name> <Package IO>
 
-.. image:: table_1.PNG
-   :width: 700
+
+For this csv file, the counter_16bit has the below IO placements:
+
+   .. code-block:: shell
+
+      set_io enable A2F_GPIO2_15
+      set_io reset A2F_GPIO2_14
+      set_io count(0) F2A_GPIO2_8
+      set_io count(1) F2A_GPIO2_9
+      set_io count(2) F2A_GPIO2_10
+      set_io count(3) F2A_GPIO2_11
+      set_io count(4) F2A_GPIO2_12
+      set_io count(5) F2A_GPIO2_13
+      set_io count(6) F2A_GPIO2_14
+      set_io count(7) F2A_GPIO2_15
+      set_io count(8) F2A_GPIO2_16
+      set_io count(9) F2A_GPIO2_17
+      set_io count(10) F2A_GPIO2_18
+      set_io count(11) F2A_GPIO2_19
+      set_io count(12) F2A_GPIO2_20
+      set_io count(13) F2A_GPIO2_21
+      set_io count(14) F2A_GPIO2_22
+      set_io count(15) F2A_GPIO2_23
 
 
 .. |BR| raw:: html

@@ -2,9 +2,9 @@
 
 
 .. index::
-   single: Running pack, Place and Route tools
+   single: Running Pack, Place and Route tools
 
-Running pack, Place and Route tools
+Running Pack, Place and Route tools
 ===================================
     
 

@@ -9,10 +9,9 @@ Generate the Binary File format
 FPGA Binary file can be generated, which will contain the following components:
 
 1. FPGA Bitstream
-2. FPGA MemInit (RAM Block Initialization)
-3. FPGA IOMux Configuration
+2. FPGA IOMux Configuration
 
-Then, FPGA bin [${TOP}.bin] == bitstream bin + meminit bin + iomux bin
+Then, FPGA bin [${TOP}.bin] == bitstream bin + iomux bin
 
 We will need a header in the FPGA bin which indicates the component information (sizes).
 
@@ -27,7 +26,6 @@ The header contains the fields:
 
 - FPGA BIN VERSION - which will help handle future changes in bin structure if needed. Currently at v0.1.
 - BITSTREAM BIN SIZE, CRC - size in bytes, and crc of the bitstream binary content
-- MEMINIT BIN SIZE, CRC - size in bytes, and crc of the meminit binary content
 - IOMUX BIN SIZE, CRC - size in bytes, and crc of the iomux binary content
 - RESERVED WORD - for future usage
 
@@ -37,21 +35,6 @@ FPGA bitstream bin
 .. image:: fpga-bin-structure-bitstream.png
 
 The bitstream bin will have 4B words, exactly as is currently generated in ${TOP}.bit
-
-FPGA meminit bin
-~~~~~~~~~~~~~~~~
-
-.. image:: fpga-bin-structure-meminit.png
-
-The meminit bin will have the same structure as is currently generated in the header method.
-
-For each RAM block, we will have:
-
-- RAM block start address 4B
-- RAM block size 4B
-- size B of initialization values
-
-This set will be repeated for as many RAM blocks intialized in the design.
 
 FPGA iomux bin
 ~~~~~~~~~~~~~~

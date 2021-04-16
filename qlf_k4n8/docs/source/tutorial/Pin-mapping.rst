@@ -1,7 +1,7 @@
 Pin Mapping
 ###########
 
-.. contents:: Table of Contents
+.. contents:: **Table of Contents**
     :depth: 2
 
 
@@ -96,7 +96,7 @@ The xml file follows these specifications:
         iii. “startx” or “starty”: For TOP_IO & BOTTOM_IO, “startx” is defined as the starting column number in the given TOP_IO or BOTTOM_IO section, where the given pin mapping starts for bus ports. “starty” is defined as the starting row number in the given LEFT_IO or RIGHT_IO section, where the given pin mapping starts for bus ports. NOTE: it is an error if “startx” is defined in the LEFT_IO or RIGHT_IO section. Similarly, it is an error if “starty” is defined in the TOP_IO & BOTTOM_IO section.
         iv. “endx” or “endy”: For TOP_IO & BOTTOM_IO, “endx” is defined as the ending column number in the given TOP_IO or BOTTOM_IO section, where the given pin mapping ends for bus ports. “endy” is defined as the ending row number in the given LEFT_IO or RIGHT_IO section, where the given pin mapping ends for bus ports. NOTE: it is an error if “endx” is defined in the LEFT_IO or RIGHT_IO section. Similarly, it is an error if “endy” is defined in the TOP_IO & BOTTOM_IO section.
 
-Template xml file for a 24x24 device corresponding vpr_arch xml: <https://github.com/SymbiFlow/symbiflow-arch-defs/blob/master/quicklogic/qlf_k4n8/devices/umc22/interface-mapping_24x24.xml> looks like the following: 
+Template xml file <https://github.com/SymbiFlow/symbiflow-arch-defs/blob/master/quicklogic/qlf_k4n8/devices/umc22/interface-mapping_24x24.xml> for a 24x24 device corresponding vpr_arch xml looks like the following: 
 
 .. code-block:: xml
 
@@ -123,7 +123,7 @@ Template xml file for a 24x24 device corresponding vpr_arch xml: <https://github
         </IO>
     </DEVICE>
 
-NOTE: When more than one port is specified for mapping at a particular location, then the user has a choice to choose any one of the ports, in csv file specification. It is an error if pin mapping is specified for more than one port at a particular location (same x, y and z coordinates).
+**NOTE:** When more than one port is specified for mapping at a particular location, then the user has a choice to choose any one of the ports, in csv file specification. It is an error if pin mapping is specified for more than one port at a particular location (same x, y and z coordinates).
 
 
 
@@ -141,7 +141,7 @@ CSV file contains the following column (in the specified order) and mandatory op
 4. Pin number in the cell: Pin number in the cell. Pre-filled in the template file dumped by Symbiflow. 
 5. Port name: Port name (can be scalar, bus or part-select) defined at interface cell-level. Pre-filled in the template file dumped by Symbiflow. **Mandatory option**.
 6. Mapped pin name: User-defined mapped pin-name. If it is not defined, then the default value for the output port is “NA” and for the input port is “GND”. Needs to be entered by the user for whichever interface port they need to map with. User can edit the interface port name as per their pin specification i.e. if bus interface port name is specified and user wants to specify pin-mapping only for a single scalar interface port from the given bus port, then user can edit the port name in that particular row in the csv file.
-    **For GPIO pins, user must specify an index like 0, 1 etc, instead of specifying any text name**
+   **For GPIO pins, user must specify an index like 0, 1 etc, instead of specifying any text name**
 7. GPIO pin type: Specify “GPIO_IN”, “GPIO_OUT” or “GPIO_EN” to define if the particular port is mapped to a general purpose IO (GPIO) of either of these types - IN (input), OUT (output) or EN (enable). In IO fix placement constraints (defined via input pcf file in symbiflow) can only be defined on the GPIO pins. Default value is “No”. 
 
 Points to Note
@@ -155,97 +155,102 @@ Points to Note
 
 Template csv file that Symbiflow is going to dump out for a 32x32 looks like the following:
 
-NOTE: at a specific location either A2F or F2A signal can be mapped but not both. For example, both gfpga_pad_IO_F2A[0] (output port) & gfpga_pad_IO_A2F[0] (input port) cannot have pin-mapping defined. Symbiflow validates and gives an error if multiple port mappings specified at a specific location.
+**NOTE:** at a specific location either A2F or F2A signal can be mapped but not both. For example, both ``gfpga_pad_IO_F2A[0]`` (output port) & ``gfpga_pad_IO_A2F[0]`` (input port) cannot have pin-mapping defined. Symbiflow validates and gives an error if multiple port mappings specified at a specific location.
 
-Below is the generated template csv file for a 4x4 device. It contains a gfpga_pad_IO_A2F port but users can alternatively use gfpga_pad_IO_F2A at any location for pin-mapping.
+Below is the generated template csv file for a 4x4 device. It contains a ``gfpga_pad_IO_A2F`` port but users can alternatively use ``gfpga_pad_IO_F2A`` at any location for pin-mapping.
 
     **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type**
 
-    TOP,0,1,0,gfpga_pad_IO_A2F[0],
+    .. code-block:: none        
+        
+        TOP,0,1,0,gfpga_pad_IO_A2F[0],
 
-    TOP,0,1,1,gfpga_pad_IO_A2F[1],
+        TOP,0,1,1,gfpga_pad_IO_A2F[1],
 
-    TOP,0,2,0,gfpga_pad_IO_A2F[2],
+        TOP,0,2,0,gfpga_pad_IO_A2F[2],
 
-    TOP,0,2,1,gfpga_pad_IO_A2F[3],
+        TOP,0,2,1,gfpga_pad_IO_A2F[3],
 
-    TOP,0,3,0,gfpga_pad_IO_A2F[4],
+        TOP,0,3,0,gfpga_pad_IO_A2F[4],
 
-    TOP,0,3,1,gfpga_pad_IO_A2F[5],
+        TOP,0,3,1,gfpga_pad_IO_A2F[5],
 
-    TOP,0,4,0,gfpga_pad_IO_A2F[6],
+        TOP,0,4,0,gfpga_pad_IO_A2F[6],
 
-    TOP,0,4,1,gfpga_pad_IO_A2F[7],
+        TOP,0,4,1,gfpga_pad_IO_A2F[7],
 
-    BOTTOM,5,4,0,gfpga_pad_IO_A2F[16],
+        BOTTOM,5,4,0,gfpga_pad_IO_A2F[16],
 
-    BOTTOM,5,4,1,gfpga_pad_IO_A2F[17],
+        BOTTOM,5,4,1,gfpga_pad_IO_A2F[17],
 
-    BOTTOM,5,3,0,gfpga_pad_IO_A2F[18],
+        BOTTOM,5,3,0,gfpga_pad_IO_A2F[18],
 
-    BOTTOM,5,3,1,gfpga_pad_IO_A2F[19],
+        BOTTOM,5,3,1,gfpga_pad_IO_A2F[19],
 
-    BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],
+        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],
 
-    BOTTOM,5,2,1,gfpga_pad_IO_A2F[21],
+        BOTTOM,5,2,1,gfpga_pad_IO_A2F[21],
 
-    BOTTOM,5,1,0,gfpga_pad_IO_A2F[22],
+        BOTTOM,5,1,0,gfpga_pad_IO_A2F[22],
 
-    BOTTOM,5,1,1,gfpga_pad_IO_A2F[23],
+        BOTTOM,5,1,1,gfpga_pad_IO_A2F[23],
 
-    LEFT,1,0,0,gfpga_pad_IO_A2F[24],
+        LEFT,1,0,0,gfpga_pad_IO_A2F[24],
 
-    LEFT,1,0,1,gfpga_pad_IO_A2F[25],
+        LEFT,1,0,1,gfpga_pad_IO_A2F[25],
 
-    LEFT,2,0,0,gfpga_pad_IO_A2F[26],
+        LEFT,2,0,0,gfpga_pad_IO_A2F[26],
 
-    LEFT,2,0,1,gfpga_pad_IO_A2F[27],
+        LEFT,2,0,1,gfpga_pad_IO_A2F[27],
 
-    LEFT,3,0,0,gfpga_pad_IO_A2F[28],
+        LEFT,3,0,0,gfpga_pad_IO_A2F[28],
 
-    LEFT,3,0,1,gfpga_pad_IO_A2F[29],
+        LEFT,3,0,1,gfpga_pad_IO_A2F[29],
 
-    LEFT,4,0,0,gfpga_pad_IO_A2F[30],
+        LEFT,4,0,0,gfpga_pad_IO_A2F[30],
 
-    LEFT,4,0,1,gfpga_pad_IO_A2F[31],
+        LEFT,4,0,1,gfpga_pad_IO_A2F[31],
 
-    RIGHT,4,5,0,gfpga_pad_IO_A2F[8],
+        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],
 
-    RIGHT,4,5,1,gfpga_pad_IO_A2F[9],
+        RIGHT,4,5,1,gfpga_pad_IO_A2F[9],
 
-    RIGHT,3,5,0,gfpga_pad_IO_A2F[10],
+        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],
 
-    RIGHT,3,5,1,gfpga_pad_IO_A2F[11],
+        RIGHT,3,5,1,gfpga_pad_IO_A2F[11],
 
-    RIGHT,2,5,0,gfpga_pad_IO_A2F[12],
+        RIGHT,2,5,0,gfpga_pad_IO_A2F[12],
 
-    RIGHT,2,5,1,gfpga_pad_IO_A2F[13],
+        RIGHT,2,5,1,gfpga_pad_IO_A2F[13],
 
-    RIGHT,1,5,0,gfpga_pad_IO_A2F[14],
+        RIGHT,1,5,0,gfpga_pad_IO_A2F[14],
 
-    RIGHT,1,5,1,gfpga_pad_IO_A2F[15],
+        RIGHT,1,5,1,gfpga_pad_IO_A2F[15],
 
 Users can take the above mentioned csv file and update it in the following manner to define their pin-mapping. Users can specify only those rows where a pin-mapping is specified. It is optional to specify other rows where no pin-mapping is specified. CSV file named as: ‘PACK_4x4.csv’ is defined as follows:
 
     **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type**
 
-    TOP,,,,gfpga_pad_IO_F2A[1:4],user_out_T[0:3], 
+    .. code-block:: none        
+        
+        TOP,,,,gfpga_pad_IO_F2A[1:4],user_out_T[0:3],
 
-    TOP,0,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN
-    
-    TOP,0,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT
-    
-    TOP,0,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN
-    
-    BOTTOM,,,,gfpga_pad_IO_F2A[16:18],user_out_B[2:0],
-    
-    BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],1,GPIO_IN
-    
-    BOTTOM,5,2,1,gfpga_pad_IO_F2A[21],1,GPIO_OUT
-    
-    BOTTOM,5,1,0,gfpga_pad_IO_F2A[22],1,GPIO_EN
+        TOP,0,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN
+        
+        TOP,0,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT
+        
+        TOP,0,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN
+        
+        BOTTOM,,,,gfpga_pad_IO_F2A[16:18],user_out_B[2:0],
+        
+        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],1,GPIO_IN
+        
+        BOTTOM,5,2,1,gfpga_pad_IO_F2A[21],1,GPIO_OUT
+        
+        BOTTOM,5,1,0,gfpga_pad_IO_F2A[22],1,GPIO_EN
 
-Note: in the above example, the first row represents the pin-mapping with bus-ports. In this row, gfpga_pad_IO_F2A[1:4] is mapped to user-defined pins: user_out_T[0:3] such that gfpga_pad_IO_F2A[1] is mapped to user_out_T[0], gfpga_pad_IO_F2A[2] is mapped to user_out_T[1] and so on.
+
+**NOTE**: in the above example, the first row represents the pin-mapping with bus-ports. In this row, ``gfpga_pad_IO_F2A[1:4]`` is mapped to user-defined pins: ``user_out_T[0:3]`` such that ``gfpga_pad_IO_F2A[1]`` is mapped to ``user_out_T[0]``, ``gfpga_pad_IO_F2A[2]`` is mapped to ``user_out_T[1]`` and so on.
 
 
 SDC File Specification
@@ -264,9 +269,18 @@ create_clock
 
 This constraint creates a design clock and defines its characteristics. Clock characteristics include clock name, clock period, waveform, and clock source.
 
-**Syntax`: create_clock -name clockName -period period_float_values [-waveform edge_list] source`**
+|br| **Syntax:**
 
-**Example`: create_clock -period 2.0 -name CLK [get_ports clk]`**
+    .. code-block:: none
+
+        create_clock -name clockName -period period_float_values [-waveform edge_list] source
+
+
+|br| **Example:**
+
+    .. code-block:: none
+
+        create_clock -period 2.0 -name CLK [get_ports clk]
 
 This example generates a clock named CLK, whose clock period is 2.0ns and the clock source is available at the clk port. The clock edges are 0.0 and 1.0, respectively.
 
@@ -274,23 +288,42 @@ This example generates a clock named CLK, whose clock period is 2.0ns and the cl
 set_input_delay/set_output_delay
 ================================
 
-Use` set_input_delay` if you want timing paths from input I/Os analyzed, and` set_output_delay` if you want timing paths to output I/Os analyzed.
+Use *set_input_delay* if you want timing paths from input I/Os analyzed, and *set_output_delay* if you want timing paths to output I/Os analyzed.
 
-These commands constrain each I/O pad specified after` get_ports` to be timing-equivalent to a register clocked on the clock specified after `-clock`. This can be either a clock signal in your design or a virtual clock that does not exist in the design but which is used only to specify the timing of I/Os.
+These commands constrain each I/O pad specified after *get_ports* to be timing-equivalent to a register clocked on the clock specified after *-clock*. This can be either a clock signal in your design or a virtual clock that does not exist in the design but which is used only to specify the timing of I/Os.
 
 The specified delays are added to I/O timing paths and can be used to model board level delays.
 
 This constraint sets the external minimum or maximum arrival time for the design or device input pin with respect to the specified reference clock. This constraint can be used to perform timing analysis from an external source to the next sequential element that is in eFPGA. Since the element is in eFPGA, the user can constrain the design at the eFPGA input.
 
-**Syntax`: set_input_delay delay_float_value -clock ref_clock [-max] [-min] [-clock_fall] input_port/pin_list`**
+|br| **Syntax:**
 
-**Example`: set_input_delay 2.0 -max [get_ports {IN}]`**
+    .. code-block:: none
+    
+        set_input_delay delay_float_value -clock ref_clock [-max] [-min] [-clock_fall] input_port/pin_list
+
+
+|br| **Example:**
+
+    .. code-block:: none
+
+        set_input_delay 2.0 -max [get_ports {IN}]
+
 
 This example sets the input delay of 2.0 ns at the default input port and sets the maximum delay.
 
-**Syntax`: set_output_delay delay_float_value -clock ref_clock [-max] [-min] [-clock_fall] output_port_list`**
+|br| **Syntax:**
 
-**Example`: set_output_delay 1.0 -max [get_ports {count[0]}]`**
+    .. code-block:: none
+    
+        set_output_delay delay_float_value -clock ref_clock [-max] [-min] [-clock_fall] output_port_list
+
+|br| **Example:**
+
+    .. code-block:: none
+
+        set_output_delay 1.0 -max [get_ports {count[0]}]
+
 
 This example sets the output delay to 1.0ns at the count[0] port and sets the maximum delay.
 
@@ -299,33 +332,39 @@ Sample SDC File
 ===============
 
 Sample SDC file looks like the following:
-    
-    create_clock -name SYS_CLK_0 -period 10 -waveform { 0 5} [get_ports SYS_CLK_0]
 
-    create_clock -name SYS_CLK_1 -period 10 -waveform { 0 5} [get_ports SYS_CLK_1]
+    .. code-block:: none        
+        
+        create_clock -name SYS_CLK_0 -period 10 -waveform {0 5} [get_ports SYS_CLK_0]
 
-    create_clock -name SYS_CLK_2 -period 10 -waveform { 0 5} [get_ports SYS_CLK_2]
+        create_clock -name SYS_CLK_1 -period 10 -waveform {0 5} [get_ports SYS_CLK_1]
 
-    create_clock -name SYS_CLK_3 -period 10 -waveform { 0 5} [get_ports SYS_CLK_3]
+        create_clock -name SYS_CLK_2 -period 10 -waveform {0 5} [get_ports SYS_CLK_2]
 
-    create_clock -name SYS_CLK_4 -period 10 -waveform { 0 5} [get_ports SYS_CLK_4]
+        create_clock -name SYS_CLK_3 -period 10 -waveform {0 5} [get_ports SYS_CLK_3]
 
-    set_output_delay 10 -max -clock SYS_CLK_2 [get_ports F1]
+        create_clock -name SYS_CLK_4 -period 10 -waveform {0 5} [get_ports SYS_CLK_4]
 
-    set_output_delay -0 -min -clock SYS_CLK_2 [get_ports F1]
+        set_output_delay 10 -max -clock SYS_CLK_2 [get_ports F1]
 
-    set_input_delay 10 -max -clock SYS_CLK_2 [get_ports A1]
+        set_output_delay -0 -min -clock SYS_CLK_2 [get_ports F1]
 
-    set_input_delay 0 -min -clock SYS_CLK_2 [get_ports A1]
+        set_input_delay 10 -max -clock SYS_CLK_2 [get_ports A1]
 
-    set_output_delay 10 -max -clock SYS_CLK_0 [get_ports F2]
+        set_input_delay 0 -min -clock SYS_CLK_2 [get_ports A1]
 
-    set_output_delay -0 -min -clock SYS_CLK_0 [get_ports F2]
+        set_output_delay 10 -max -clock SYS_CLK_0 [get_ports F2]
 
-    set_input_delay 10 -max -clock SYS_CLK_1 [get_ports A2]
+        set_output_delay -0 -min -clock SYS_CLK_0 [get_ports F2]
 
-    set_input_delay 0 -min -clock SYS_CLK_1 [get_ports A2]
+        set_input_delay 10 -max -clock SYS_CLK_1 [get_ports A2]
+
+        set_input_delay 0 -min -clock SYS_CLK_1 [get_ports A2]
 
 
 Assumptions/Restrictions
 ***************************
+
+.. |BR| raw:: html
+
+   <BR/>
