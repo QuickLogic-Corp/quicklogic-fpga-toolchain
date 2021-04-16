@@ -40,7 +40,7 @@ Setup environment
    Pin-mapping
    RunningpackPlaceandRouteto
    PerformingthePostLayoutSimul
-   GeneratetheBinaryFile
+   GenerateProgrammingFiles
    PcfDescription
 
 .. |BR| raw:: html
