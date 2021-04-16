@@ -37,10 +37,9 @@ Setup environment
 
    PerformingthePreLayoutSimula
    PerformingDesignSynthesis
+   Pin-mapping
    RunningpackPlaceandRouteto
    PerformingthePostLayoutSimul
-   GeneratetheJlinkfile
-   GeneratetheASCIIheaderfilef
    GeneratetheBinaryFile
    PcfDescription
 
