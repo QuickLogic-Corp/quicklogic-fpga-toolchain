@@ -17,6 +17,10 @@ Setup environment
     .. code-block:: shell
 
         export INSTALL_DIR="specify the installpath"
+        cd $INSTALL_DIR; source setup.sh
+        
+        OR
+
         #adding symbiflow toolchain binaries to PATH
         export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
         source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
