@@ -9,7 +9,7 @@ Installer runs only on Linux 64bit.
 
 Symbiflow supports these QuickLogic devices - QLF-K4N8 and EOS-S3
 
-For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html>`_
+For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-quicklogic-fpga-toolchain.readthedocs-hosted.com/en/latest/index.html>`_
 
 Ways to run Symbiflow on these devices are explained in the following sub-sections:
 
