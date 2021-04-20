@@ -71,7 +71,7 @@ it:
    make env
    
    #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-   cd quicklogic/qlf_k4n8/tests/counter
+   cd build/quicklogic/qlf_k4n8/tests/counter
    make counter-umc22-adder_route
 
 
