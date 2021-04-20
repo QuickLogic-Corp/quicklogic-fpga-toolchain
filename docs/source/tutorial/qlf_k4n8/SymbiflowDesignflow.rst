@@ -2,19 +2,19 @@
 
 
 .. index::
-   single: Symbiflow: Design flow
+   single: Symbiflow: Design flow (qlf_k4n8)
 
 
-.. _Hlk510519685:
+.. _Hlk510519686:
 
-Symbiflow: Design flow
-======================
+Symbiflow: Design flow (QLF-K4N8)
+=================================
 
   
    The below figure shows the complete design flow from the HDL to the programming file:
 
 
-.. image:: fig1.png
+.. image:: flow.png
   :width: 700
   :alt: Design flow
                 
