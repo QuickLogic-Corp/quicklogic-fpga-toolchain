@@ -65,7 +65,7 @@ Performing the Pre-Layout Simulation
    
         gtkwave testbench.vcd &
 
-    .. image:: gtk_wave.png
+    .. image:: ../eos-s3/gtk_wave.png
       :width: 700
       :alt: Waveform
     
