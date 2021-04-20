@@ -7,9 +7,74 @@ This guide describes everything you need to set up your system to
 develop for QuickLogic FPGA Toolchain. Currently, the SymbiFlow
 Installer runs only on Linux 64bit.
 
-Symbiflow supports these QuickLogic devices - EOS-S3 and QLF-K4N8
+Symbiflow supports these QuickLogic devices - QLF-K4N8 and EOS-S3
+
+For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html>`_
 
 Ways to run Symbiflow on these devices are explained in the following sub-sections:
+
+QLF-K4N8 Device:
+==============
+
+Below are some ways to run SymbiFlow for QLF-K4N8 Device:
+
+1) Run an installer and run an example
+2) Compile from source code and run example
+
+.. _1-run-an-installer-and-run-an-example:
+
+1) Run an installer and run an example
+----------------------------------------------------------
+
+
+
+.. _2-compile-from-source-code-and-run-example:
+
+2) Compile from source code and run example
+-------------------------------------------
+
+This release package contains the following GitHub repositories that are
+compiled to create this package. Note: Refer the repositories read.md
+pages for the prerequisites to build.
+
+You may use the following command to get the source, compile and install
+it:
+
+::
+
+   #Checkout *yosys* repository (https://github.com/SymbiFlow/yosys.git), branch: **master+wip**. 
+   git clone https://github.com/SymbiFlow/yosys.git quicklogic-yosys
+   cd quicklogic-yosys
+   #compiling using gcc
+   make config-gcc
+   make install PREFIX='specify installation path'
+   cd -
+
+   #Checkout *yosys-symbiflow-plugins* (https://github.com/SymbiFlow/yosys-symbiflow-plugins.git), branch: **master**.
+   git clone https://github.com/SymbiFlow/yosys-symbiflow-plugins.git
+   cd yosys-symbiflow-plugins
+   export PATH='specify Yosys installation path as specified in PREFIX in previous step':$PATH
+   make install
+   cd -
+
+   #Checkout *vpr* repository (https://github.com/SymbiFlow/vtr-verilog-to-routing.git), branch: **master**.
+   git clone https://github.com/SymbiFlow/vtr-verilog-to-routing -b master
+   cd vtr-verilog-to-routing
+   make
+
+   #Checkout *symbiflow-arch-defs* repository (https://github.com/SymbiFlow/symbiflow-arch-defs.git), branch: **master**. 
+   git clone https://github.com/SymbiFlow/symbiflow-arch-defs.git 
+   export YOSYS='path to Yosys binary, installed in first step'
+   export VPR='path to vpr binary built'
+   export GENFASM='path to genfasm binary built'
+   cd symbiflow-arch-defs
+   make env
+   
+   #Run any test case in the current terminal window. For example, follow these steps to run a test case:
+   cd quicklogic/qlf_k4n8/tests/counter
+   make counter-umc22-adder_route
+
+
 
 EOS-S3 Device:
 ==============
@@ -19,9 +84,6 @@ Below are some ways to run SymbiFlow for EOS-S3 Device:
 1) Run an installer and run an example
 2) Compile from source code and run example
 3) Run SymbiFlow in a container
-
-
-For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html>`_
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to
 the following document:
