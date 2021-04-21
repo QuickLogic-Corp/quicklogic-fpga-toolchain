@@ -9,7 +9,9 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     
 
    The eblif file generated during the synthesis is used for pack, place and route along with device information, pcf and the sdc file.
-    |br| Syntax:
+   |br| User needs to provide the csv,sdc and pcf file. These are optional input files.
+   |br|
+   |br| Syntax:
 
     .. code-block:: none
 
@@ -31,7 +33,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
 
    The above command will also run synthesis if it was not run before.
 
-   To Generate Various files during compile, use the below options
+   To Generate Various files during compile, use the below options.
    Common command with just output file change:
 
     .. code-block:: shell

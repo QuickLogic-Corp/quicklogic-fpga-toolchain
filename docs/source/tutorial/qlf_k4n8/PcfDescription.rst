@@ -9,7 +9,7 @@ PCF Sample
   
 The PCF file is for fix placing the IO to a particular IO location on the device.  
 For qlf_k4n8 device, user needs to create a pin mapping csv (as defined in Pin Mapping section). The user-defined pin names can then be specified in the pcf file for IO placement.
-Below mentioned CSV file corresponds to a pin-mapping defined for 24x24 device size for qlf_k4n8 device.
+Below mentioned CSV file(not part of package) corresponds to a pin-mapping defined for 24x24 device size for qlf_k4n8.
 
 .. toctree::
    :maxdepth: 2
@@ -24,7 +24,7 @@ Below mentioned CSV file corresponds to a pin-mapping defined for 24x24 device s
       set_io <port_name> <Package IO>
 
 
-For this csv file, the counter_16bit has the below IO placements:
+For this csv file, the counter_16bit one can add these IO placements:
 
    .. code-block:: shell
 
