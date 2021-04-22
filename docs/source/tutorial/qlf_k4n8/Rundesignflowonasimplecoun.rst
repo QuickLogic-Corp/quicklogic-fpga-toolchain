@@ -33,7 +33,7 @@ Setup environment
     |br| 3.Create the simulation stimuli using any text editor.
 
    The code and testbench for the example design are present at:
-   |br| *<Install_Path>*/quicklogic-arch-defs/tests/counter_16bit/
+   |br| *<Install_Path>*/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit/
 
 
 .. toctree::
