@@ -63,7 +63,7 @@ Performing the Pre-Layout Simulation
 
     .. code-block:: shell
    
-        gtkwave testbench.vcd &
+        gtkwave counter_16bit_tb.vcd &
 
     .. image:: ../eos-s3/gtk_wave.png
       :width: 700

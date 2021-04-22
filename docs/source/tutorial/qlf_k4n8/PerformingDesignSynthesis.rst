@@ -31,23 +31,26 @@ Performing Design Synthesis
 
         ql_symbiflow -synth -d qlf_k4n8 -t top -v counter_16bit.v
    
-   Output files for synthesis are:
-   |br| <TOP>.eblif : netlist file for the design
+   Output files for synthesis are present in 'build' folder: 
+
+   <TOP>.eblif : netlist file for the design
    |br| <TOP>_synth.log : synthesis log information, refer this file for any issues during synthesis 
-   |br| 
-      |br|  Resource utilization in the top_synth.log of the counter:
-      |br|
-      |br|  *Number of wires:                23*
-      |br|  *Number of wire bits:            68*
-      |br|  *Number of public wires:         23*
-      |br|  *Number of public wire bits:     68*
-      |br|  *Number of memories:              0*
-      |br|  *Number of memory bits:           0*
-      |br|  *Number of processes:             0*
-      |br|  *Number of cells:                48*
-      |br|   *$_DFF_P_L                      16*
-      |br|   *$lut:                          16*
-      |br|   *adder_lut4:                    16*
+      
+      Resource utilization in the top_synth.log of the counter: 
+      
+      .. code-block:: none
+         
+         Number of wires:                 23
+         Number of wire bits:             68
+         Number of public wires:          23
+         Number of public wire bits:      68
+         Number of memories:               0
+         Number of memory bits:            0
+         Number of processes:              0
+         Number of cells:                 48
+           dff                            16
+           lut                            16
+           adder_lut4                     16
 
     .. note:: > All the output log files will be dumped in {source path}/build folder
       |br| > -src command is optional if run from the same directory where source files are present.

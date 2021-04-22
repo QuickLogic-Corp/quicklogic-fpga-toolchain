@@ -9,7 +9,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     
 
    The eblif file generated during the synthesis is used for pack, place and route along with device information, pcf and the sdc file.
-   |br| User needs to provide the csv,sdc and pcf file. These are optional input files.
+   |br| User needs to provide the csv, sdc and pcf file. These are optional input files. CSV and pcf file is not present in the test folder.
    |br|
    |br| Syntax:
 
@@ -28,8 +28,8 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     
     .. code-block:: shell
 
-        cd <INSTALL_PATH>/quicklogic-arch-defs/tests/counter_16bit
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc
+        cd <INSTALL_PATH>/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc
 
    The above command will also run synthesis if it was not run before.
 
@@ -38,7 +38,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc -dump post_verilog/header
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -dump post_verilog/header
 
 
    To Generate the Post-Layout Verilog file
@@ -62,18 +62,20 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -p counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -s counter_16bit.sdc -dump post_verilog
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -dump post_verilog
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder
 
     For the counter design below is the timing report from the top.log file:
-    |br|
-    |br| *Hold Worst Negative Slack (hWNS): 0 ns*
-    |br| *Hold Total Negative Slack (hTNS): 0 ns*
-    |br| *Setup Worst Negative Slack (sWNS): -2.91 ns*
-    |br| *Setup Total Negative Slack (sTNS): -162.424 ns*
-    |br| *Final critical path: 2.91 ns, Fmax: 343.643 MHz*
+    
+    .. code-block:: none
+    
+        Hold Worst Negative Slack (hWNS):    0 ns
+        Hold Total Negative Slack (hTNS):    0 ns
+        Setup Worst Negative Slack (sWNS):   -2.91 ns
+        Setup Total Negative Slack (sTNS):   -162.424 ns
+        Final critical path: 2.91 ns, Fmax:  343.643 MHz
 
 .. |BR| raw:: html
 

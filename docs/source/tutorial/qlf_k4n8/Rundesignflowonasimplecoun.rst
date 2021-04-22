@@ -11,26 +11,25 @@ Run design flow on a simple counter design (QLF-K4N8)
 
 Setup environment
 
+To run any example, perform these steps once.
 
- To run any example, perform these steps once.
+   .. code-block:: shell
 
-    .. code-block:: shell
+      export INSTALL_DIR="specify the installpath"
+      cd $INSTALL_DIR; source setup.sh
+      
+      OR
 
-        export INSTALL_DIR="specify the installpath"
-        cd $INSTALL_DIR; source setup.sh
-        
-        OR
-
-        #adding symbiflow toolchain binaries to PATH
-        export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda activate
+      #adding symbiflow toolchain binaries to PATH
+      export PATH="$INSTALL_DIR/quicklogic-arch-defs/bin:$INSTALL_DIR/quicklogic-arch-defs/bin/python:$PATH"
+      source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
+      conda activate
 
    Entering an HDL Design:
 
-    1.Write a Verilog code for the design using any text editor.
-    |br| 2.Verify the syntax.
-    |br| 3.Create the simulation stimuli using any text editor.
+    1. Write a Verilog code for the design using any text editor.
+    |br| 2. Verify the syntax.
+    |br| 3. Create the simulation stimuli using any text editor.
 
    The code and testbench for the example design are present at:
    |br| *<Install_Path>*/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit/
