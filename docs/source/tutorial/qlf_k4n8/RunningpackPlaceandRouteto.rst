@@ -33,36 +33,20 @@ Running Pack, Place and Route Tools (QLF-K4N8)
 
    The above command will also run synthesis if it was not run before.
 
+   If user wants to do IO fix placement, then pcf and csv files need to be specified in the following manner:
+
+    .. code-block:: shell
+
+        cd <INSTALL_PATH>/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -pcf counter_16bit.pcf -csv pinmap_qlf_k4n8_umc22.csv
+
+
    To Generate Various files during compile, use the below options.
    Common command with just output file change:
 
     .. code-block:: shell
 
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -dump post_verilog/header
-
-
-   To Generate the Post-Layout Verilog file
-
-
-    This is the Verilog file used for the functional simulation to verify the Place and Route output.
-    |br| 
-    |br| Syntax:
-
-    .. code-block:: shell
-
-        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file> -dump post_verilog
-
-
-   The output files dumped will be:
-
-    top_bit.v : Post layout Verilog file (for verifying the configuration bits)
-    |br| top_post_synthesis.v : Post layout Verilog file (for timing simulation)
-    |br| top_post_synthesis.sdf : SDF file (for timing simulation)
-
-    
-    .. code-block:: shell
-
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -dump post_verilog
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc 
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder

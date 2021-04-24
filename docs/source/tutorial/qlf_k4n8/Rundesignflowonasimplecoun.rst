@@ -42,7 +42,6 @@ To run any example, perform these steps once.
    PerformingDesignSynthesis
    Pin-mapping
    RunningpackPlaceandRouteto
-   PerformingthePostLayoutSimul
    GenerateProgrammingFiles
    PcfDescription
 

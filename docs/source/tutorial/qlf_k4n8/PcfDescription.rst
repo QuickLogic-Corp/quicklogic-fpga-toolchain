@@ -28,24 +28,24 @@ For this csv file, the counter_16bit one can add these IO placements:
 
    .. code-block:: shell
 
-      set_io enable A2F_GPIO2_15
-      set_io reset A2F_GPIO2_14
-      set_io count(0) F2A_GPIO2_8
-      set_io count(1) F2A_GPIO2_9
-      set_io count(2) F2A_GPIO2_10
-      set_io count(3) F2A_GPIO2_11
-      set_io count(4) F2A_GPIO2_12
-      set_io count(5) F2A_GPIO2_13
-      set_io count(6) F2A_GPIO2_14
-      set_io count(7) F2A_GPIO2_15
-      set_io count(8) F2A_GPIO2_16
-      set_io count(9) F2A_GPIO2_17
-      set_io count(10) F2A_GPIO2_18
-      set_io count(11) F2A_GPIO2_19
-      set_io count(12) F2A_GPIO2_20
-      set_io count(13) F2A_GPIO2_21
-      set_io count(14) F2A_GPIO2_22
-      set_io count(15) F2A_GPIO2_23
+      set_io enable user_IN_T[0]
+      set_io reset user_IN_T[1]
+      set_io count[0] user_OUT_T[8]
+      set_io count[1] user_OUT_T[9]
+      set_io count[2] user_OUT_T[10]
+      set_io count[3] user_OUT_T[11]
+      set_io count[4] user_OUT_T[12]
+      set_io count[5] user_OUT_T[13]
+      set_io count[6] user_OUT_T[14]
+      set_io count[7] user_OUT_T[15]
+      set_io count[8] user_OUT_T[16]
+      set_io count[9] user_OUT_T[17]
+      set_io count[10] user_OUT_T[18]
+      set_io count[11] user_OUT_T[19]
+      set_io count[12] user_OUT_T[20]
+      set_io count[13] user_OUT_T[21]
+      set_io count[14] user_OUT_T[22]
+      set_io count[15] user_OUT_T[23]
 
 
 .. |BR| raw:: html
