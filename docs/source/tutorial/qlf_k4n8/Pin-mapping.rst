@@ -139,14 +139,16 @@ Symbiflow is going to dump a template csv file which eFPGA users can update to s
 CSV file contains the following column (in the specified order) and mandatory options must be specified.
 
 
-1. Orientation: Valid values are – TOP, BOTTOM, RIGHT or LEFT. Pre-filled in the template file dumped by Symbiflow. **Mandatory option**.
-2. Row: Row number of the IO cell containing this pin. Pre-filled in the template file dumped by Symbiflow. 
-3. Column: Column number of the IO cell containing this pin. Pre-filled in the template file dumped by Symbiflow. 
-4. Pin number in the cell: Pin number in the cell. Pre-filled in the template file dumped by Symbiflow. 
-5. Port name: Port name (can be scalar, bus or part-select) defined at interface cell-level. Pre-filled in the template file dumped by Symbiflow. **Mandatory option**.
-6. Mapped pin name: User-defined mapped pin-name. If it is not defined, then the default value for the output port is “NA” and for the input port is “GND”. Needs to be entered by the user for whichever interface port they need to map with. User can edit the interface port name as per their pin specification i.e. if bus interface port name is specified and user wants to specify pin-mapping only for a single scalar interface port from the given bus port, then user can edit the port name in that particular row in the csv file.
+1. **Orientation**: Valid values are – TOP, BOTTOM, RIGHT or LEFT. Pre-filled in the template file dumped by Symbiflow. **Mandatory option**.
+2. **Row**: Row number of the IO cell containing this pin. Pre-filled in the template file dumped by Symbiflow. 
+3. **Column**: Column number of the IO cell containing this pin. Pre-filled in the template file dumped by Symbiflow. 
+4. **Pin number in the cell**: Pin number in the cell. Pre-filled in the template file dumped by Symbiflow. 
+5. **Port name**: Port name (can be scalar, bus or part-select) defined at interface cell-level. Pre-filled in the template file dumped by Symbiflow. **Mandatory option**.
+6. **Mapped pin name**: User-defined mapped pin-name. If it is not defined, then the default value for the output port is “NA” and for the input port is “GND”. Needs to be entered by the user for whichever interface port they need to map with. User can edit the interface port name as per their pin specification i.e. if bus interface port name is specified and user wants to specify pin-mapping only for a single scalar interface port from the given bus port, then user can edit the port name in that particular row in the csv file.
    **For GPIO pins, user must specify an index like 0, 1 etc, instead of specifying any text name**
-7. GPIO pin type: Specify “GPIO_IN”, “GPIO_OUT” or “GPIO_EN” to define if the particular port is mapped to a general purpose IO (GPIO) of either of these types - IN (input), OUT (output) or EN (enable). In IO fix placement constraints (defined via input pcf file in symbiflow) can only be defined on the GPIO pins. Default value is “No”. 
+7. **GPIO pin type**: Specify “GPIO_IN”, “GPIO_OUT” or “GPIO_EN” to define if the particular port is mapped to a general purpose IO (GPIO) of either of these types - IN (input), OUT (output) or EN (enable). In IO fix placement constraints (defined via input pcf file in symbiflow) can only be defined on the GPIO pins. Default value is “No”. 
+8. **Associated Clock**: Specify device clock associated to this port. In case of qlf_k4n8 device, device clocks are - CLK0, CLK1, CLK2 and CLK3. You can specify multiple clocks with a space in between.
+9. **Clock Edge**: Type of clock edge at which the data is available. The value can be rising or falling.
 
 Points to Note
 ==============
@@ -163,95 +165,59 @@ Template csv file that Symbiflow is going to dump out for a 32x32 looks like the
 
 Below is the generated template csv file for a 4x4 device. It contains a ``gfpga_pad_IO_A2F`` port but users can alternatively use ``gfpga_pad_IO_F2A`` at any location for pin-mapping.
 
-    **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type**
+    **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type,Associated Clock,Clock Edge**
 
     .. code-block:: none        
         
-        TOP,0,1,0,gfpga_pad_IO_A2F[0],
-
-        TOP,0,1,1,gfpga_pad_IO_A2F[1],
-
-        TOP,0,2,0,gfpga_pad_IO_A2F[2],
-
-        TOP,0,2,1,gfpga_pad_IO_A2F[3],
-
-        TOP,0,3,0,gfpga_pad_IO_A2F[4],
-
-        TOP,0,3,1,gfpga_pad_IO_A2F[5],
-
-        TOP,0,4,0,gfpga_pad_IO_A2F[6],
-
-        TOP,0,4,1,gfpga_pad_IO_A2F[7],
-
-        BOTTOM,5,4,0,gfpga_pad_IO_A2F[16],
-
-        BOTTOM,5,4,1,gfpga_pad_IO_A2F[17],
-
-        BOTTOM,5,3,0,gfpga_pad_IO_A2F[18],
-
-        BOTTOM,5,3,1,gfpga_pad_IO_A2F[19],
-
-        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],
-
-        BOTTOM,5,2,1,gfpga_pad_IO_A2F[21],
-
-        BOTTOM,5,1,0,gfpga_pad_IO_A2F[22],
-
-        BOTTOM,5,1,1,gfpga_pad_IO_A2F[23],
-
-        LEFT,1,0,0,gfpga_pad_IO_A2F[24],
-
-        LEFT,1,0,1,gfpga_pad_IO_A2F[25],
-
-        LEFT,2,0,0,gfpga_pad_IO_A2F[26],
-
-        LEFT,2,0,1,gfpga_pad_IO_A2F[27],
-
-        LEFT,3,0,0,gfpga_pad_IO_A2F[28],
-
-        LEFT,3,0,1,gfpga_pad_IO_A2F[29],
-
-        LEFT,4,0,0,gfpga_pad_IO_A2F[30],
-
-        LEFT,4,0,1,gfpga_pad_IO_A2F[31],
-
-        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],
-
-        RIGHT,4,5,1,gfpga_pad_IO_A2F[9],
-
-        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],
-
-        RIGHT,3,5,1,gfpga_pad_IO_A2F[11],
-
-        RIGHT,2,5,0,gfpga_pad_IO_A2F[12],
-
-        RIGHT,2,5,1,gfpga_pad_IO_A2F[13],
-
-        RIGHT,1,5,0,gfpga_pad_IO_A2F[14],
-
-        RIGHT,1,5,1,gfpga_pad_IO_A2F[15],
+        TOP,0,1,0,gfpga_pad_IO_A2F[0],,,
+        TOP,0,1,1,gfpga_pad_IO_A2F[1],,,
+        TOP,0,2,0,gfpga_pad_IO_A2F[2],,,
+        TOP,0,2,1,gfpga_pad_IO_A2F[3],,,
+        TOP,0,3,0,gfpga_pad_IO_A2F[4],,,
+        TOP,0,3,1,gfpga_pad_IO_A2F[5],,,
+        TOP,0,4,0,gfpga_pad_IO_A2F[6],,,
+        TOP,0,4,1,gfpga_pad_IO_A2F[7],,,
+        BOTTOM,5,4,0,gfpga_pad_IO_A2F[16],,,
+        BOTTOM,5,4,1,gfpga_pad_IO_A2F[17],,,
+        BOTTOM,5,3,0,gfpga_pad_IO_A2F[18],,,
+        BOTTOM,5,3,1,gfpga_pad_IO_A2F[19],,,
+        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],,,
+        BOTTOM,5,2,1,gfpga_pad_IO_A2F[21],,,
+        BOTTOM,5,1,0,gfpga_pad_IO_A2F[22],,,
+        BOTTOM,5,1,1,gfpga_pad_IO_A2F[23],,,
+        LEFT,1,0,0,gfpga_pad_IO_A2F[24],,,
+        LEFT,1,0,1,gfpga_pad_IO_A2F[25],,,
+        LEFT,2,0,0,gfpga_pad_IO_A2F[26],,,
+        LEFT,2,0,1,gfpga_pad_IO_A2F[27],,,
+        LEFT,3,0,0,gfpga_pad_IO_A2F[28],,,
+        LEFT,3,0,1,gfpga_pad_IO_A2F[29],,,
+        LEFT,4,0,0,gfpga_pad_IO_A2F[30],,,
+        LEFT,4,0,1,gfpga_pad_IO_A2F[31],,,
+        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],,,
+        RIGHT,4,5,1,gfpga_pad_IO_A2F[9],,,
+        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],,,
+        RIGHT,3,5,1,gfpga_pad_IO_A2F[11],,,
+        RIGHT,2,5,0,gfpga_pad_IO_A2F[12],,,
+        RIGHT,2,5,1,gfpga_pad_IO_A2F[13],,,
+        RIGHT,1,5,0,gfpga_pad_IO_A2F[14],,,
+        RIGHT,1,5,1,gfpga_pad_IO_A2F[15],,,
 
 Users can take the above mentioned csv file and update it in the following manner to define their pin-mapping. Users can specify only those rows where a pin-mapping is specified. It is optional to specify other rows where no pin-mapping is specified. CSV file named as: ‘PACK_4x4.csv’ is defined as follows:
 
-    **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type**
+    **orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type,Associated Clock,Clock Edge**
 
     .. code-block:: none        
         
-        TOP,,,,gfpga_pad_IO_F2A[1:4],user_out_T[0:3],
-
-        TOP,0,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN
-        
-        TOP,0,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT
-        
-        TOP,0,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN
-        
-        BOTTOM,,,,gfpga_pad_IO_F2A[16:18],user_out_B[2:0],
-        
-        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],1,GPIO_IN
-        
-        BOTTOM,5,2,1,gfpga_pad_IO_F2A[21],1,GPIO_OUT
-        
-        BOTTOM,5,1,0,gfpga_pad_IO_F2A[22],1,GPIO_EN
+        TOP,,,,gfpga_pad_IO_F2A[1:4],user_out_T[0:3],,CLK0,
+        TOP,0,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN,,
+        TOP,0,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT,,
+        TOP,0,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN,,
+        BOTTOM,,,,gfpga_pad_IO_F2A[16:18],user_out_B[2:0],,CLK2 CLK3,
+        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],1,GPIO_IN,,
+        BOTTOM,5,2,1,gfpga_pad_IO_F2A[21],1,GPIO_OUT,,
+        BOTTOM,5,1,0,gfpga_pad_IO_F2A[22],1,GPIO_EN,,
+        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],user_in_R[0],,,
+        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],user_in_R[1],,CLK1,
 
 
 **NOTE**: in the above example, the first row represents the pin-mapping with bus-ports. In this row, ``gfpga_pad_IO_F2A[1:4]`` is mapped to user-defined pins: ``user_out_T[0:3]`` such that ``gfpga_pad_IO_F2A[1]`` is mapped to ``user_out_T[0]``, ``gfpga_pad_IO_F2A[2]`` is mapped to ``user_out_T[1]`` and so on.
