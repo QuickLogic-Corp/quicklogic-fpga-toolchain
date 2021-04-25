@@ -38,15 +38,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     .. code-block:: shell
 
         cd <INSTALL_PATH>/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -pcf counter_16bit.pcf -csv pinmap_qlf_k4n8_umc22.csv
-
-
-   To Generate Various files during compile, use the below options.
-   Common command with just output file change:
-
-    .. code-block:: shell
-
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc 
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -pcf counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder
