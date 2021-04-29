@@ -15,7 +15,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
 
     .. code-block:: none
 
-        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file>
+        ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file> -j <clk constraint file>
 
 
    The output files dumped will be:
@@ -38,7 +38,7 @@ Running Pack, Place and Route Tools (QLF-K4N8)
     .. code-block:: shell
 
         cd <INSTALL_PATH>/quicklogic-arch-defs/share/symbiflow/tests/counter_16bit
-        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -pcf counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv
+        ql_symbiflow -compile -src $PWD -d qlf_k4n8 -t top -v counter_16bit.v -s counter_16bit.sdc -pcf counter_16bit.pcf -P pinmap_qlf_k4n8_umc22.csv -j clk_constraints.json
 
 
    The Timing analysis refer the files *report_timing.hold.rpt, report_timing.setup.rpt and top.log*  inside the build folder
