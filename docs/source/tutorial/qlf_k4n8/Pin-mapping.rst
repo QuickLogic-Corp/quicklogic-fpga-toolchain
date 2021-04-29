@@ -108,7 +108,7 @@ Template xml file <https://github.com/SymbiFlow/symbiflow-arch-defs/blob/master/
 
     <DEVICE name= "qlf_k4n8_umc22" family="qlf_k4n8" width="26" height="26" z="16">
         <IO>
-            <TOP_IO y="0">
+            <TOP_IO y="25">
                 <CELL port_name="f2a_i" mapped_name="gfpga_pad_IO_F2A[0:383]" startx="1" endx="24"/>
                 <CELL port_name="a2f_o" mapped_name="gfpga_pad_IO_A2F[0:383]" startx="1" endx="24"/>
             </TOP_IO>
@@ -116,7 +116,7 @@ Template xml file <https://github.com/SymbiFlow/symbiflow-arch-defs/blob/master/
                 <CELL port_name="f2a_i" mapped_name="gfpga_pad_IO_F2A[384:767]" starty="24" endy="1"/>
                 <CELL port_name="a2f_o" mapped_name="gfpga_pad_IO_A2F[384:767]" starty="24" endy="1"/>
             </RIGHT_IO>
-            <BOTTOM_IO y="25">
+            <BOTTOM_IO y="0">
                 <CELL port_name="f2a_i" mapped_name="gfpga_pad_IO_F2A[768:1151]" startx="24" endx="1"/>
                 <CELL port_name="a2f_o" mapped_name="gfpga_pad_IO_A2F[768:1151]" startx="24" endx="1"/>
             </BOTTOM_IO>
@@ -169,38 +169,34 @@ Below is the generated template csv file for a 4x4 device. It contains a ``gfpga
 
     .. code-block:: none        
         
-        TOP,0,1,0,gfpga_pad_IO_A2F[0],,,
-        TOP,0,1,1,gfpga_pad_IO_A2F[1],,,
-        TOP,0,2,0,gfpga_pad_IO_A2F[2],,,
-        TOP,0,2,1,gfpga_pad_IO_A2F[3],,,
-        TOP,0,3,0,gfpga_pad_IO_A2F[4],,,
-        TOP,0,3,1,gfpga_pad_IO_A2F[5],,,
-        TOP,0,4,0,gfpga_pad_IO_A2F[6],,,
-        TOP,0,4,1,gfpga_pad_IO_A2F[7],,,
-        BOTTOM,5,4,0,gfpga_pad_IO_A2F[16],,,
-        BOTTOM,5,4,1,gfpga_pad_IO_A2F[17],,,
-        BOTTOM,5,3,0,gfpga_pad_IO_A2F[18],,,
-        BOTTOM,5,3,1,gfpga_pad_IO_A2F[19],,,
-        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],,,
-        BOTTOM,5,2,1,gfpga_pad_IO_A2F[21],,,
-        BOTTOM,5,1,0,gfpga_pad_IO_A2F[22],,,
-        BOTTOM,5,1,1,gfpga_pad_IO_A2F[23],,,
-        LEFT,1,0,0,gfpga_pad_IO_A2F[24],,,
-        LEFT,1,0,1,gfpga_pad_IO_A2F[25],,,
-        LEFT,2,0,0,gfpga_pad_IO_A2F[26],,,
-        LEFT,2,0,1,gfpga_pad_IO_A2F[27],,,
-        LEFT,3,0,0,gfpga_pad_IO_A2F[28],,,
-        LEFT,3,0,1,gfpga_pad_IO_A2F[29],,,
-        LEFT,4,0,0,gfpga_pad_IO_A2F[30],,,
-        LEFT,4,0,1,gfpga_pad_IO_A2F[31],,,
-        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],,,
-        RIGHT,4,5,1,gfpga_pad_IO_A2F[9],,,
-        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],,,
-        RIGHT,3,5,1,gfpga_pad_IO_A2F[11],,,
-        RIGHT,2,5,0,gfpga_pad_IO_A2F[12],,,
-        RIGHT,2,5,1,gfpga_pad_IO_A2F[13],,,
-        RIGHT,1,5,0,gfpga_pad_IO_A2F[14],,,
-        RIGHT,1,5,1,gfpga_pad_IO_A2F[15],,,
+        TOP,5,1,0,gfpga_pad_IO_A2F[0],,,,
+        TOP,5,1,1,gfpga_pad_IO_A2F[1],,,,
+        TOP,5,2,0,gfpga_pad_IO_A2F[2],,,,
+        TOP,5,2,1,gfpga_pad_IO_A2F[3],,,,
+        TOP,5,3,0,gfpga_pad_IO_A2F[4],,,,
+        TOP,5,3,1,gfpga_pad_IO_A2F[5],,,,
+        TOP,5,4,0,gfpga_pad_IO_A2F[6],,,,
+        TOP,5,4,1,gfpga_pad_IO_A2F[7],,,,
+        BOTTOM,0,4,0,gfpga_pad_IO_A2F[128],,,,
+        BOTTOM,0,4,1,gfpga_pad_IO_A2F[129],,,,
+        BOTTOM,0,3,0,gfpga_pad_IO_A2F[130],,,,
+        BOTTOM,0,3,1,gfpga_pad_IO_A2F[131],,,,
+        BOTTOM,0,2,0,gfpga_pad_IO_A2F[132],,,,
+        BOTTOM,0,2,1,gfpga_pad_IO_A2F[133],,,,
+        BOTTOM,0,1,0,gfpga_pad_IO_A2F[134],,,,
+        BOTTOM,0,1,1,gfpga_pad_IO_A2F[135],,,,
+        LEFT,1,0,0,gfpga_pad_IO_A2F[192],,,,
+        LEFT,1,0,1,gfpga_pad_IO_A2F[193],,,,
+        LEFT,2,0,0,gfpga_pad_IO_A2F[194],,,,
+        LEFT,2,0,1,gfpga_pad_IO_A2F[195],,,,
+        RIGHT,4,5,0,gfpga_pad_IO_A2F[64],,,,
+        RIGHT,4,5,1,gfpga_pad_IO_A2F[65],,,,
+        RIGHT,3,5,0,gfpga_pad_IO_A2F[66],,,,
+        RIGHT,3,5,1,gfpga_pad_IO_A2F[67],,,,
+        RIGHT,2,5,0,gfpga_pad_IO_A2F[68],,,,
+        RIGHT,2,5,1,gfpga_pad_IO_A2F[69],,,,
+        RIGHT,1,5,0,gfpga_pad_IO_A2F[70],,,,
+        RIGHT,1,5,1,gfpga_pad_IO_A2F[71],,,,
 
 Users can take the above mentioned csv file and update it in the following manner to define their pin-mapping. Users can specify only those rows where a pin-mapping is specified. It is optional to specify other rows where no pin-mapping is specified. CSV file named as: ‘PACK_4x4.csv’ is defined as follows:
 
@@ -209,15 +205,15 @@ Users can take the above mentioned csv file and update it in the following manne
     .. code-block:: none        
         
         TOP,,,,gfpga_pad_IO_F2A[1:4],user_out_T[0:3],,CLK0,
-        TOP,0,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN,,
-        TOP,0,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT,,
-        TOP,0,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN,,
+        TOP,5,3,1,gfpga_pad_IO_A2F[5],0,GPIO_IN,,
+        TOP,5,4,0,gfpga_pad_IO_F2A[6],0,GPIO_OUT,,
+        TOP,5,4,1,gfpga_pad_IO_F2A[7],0,GPIO_EN,,
         BOTTOM,,,,gfpga_pad_IO_F2A[16:18],user_out_B[2:0],,CLK2 CLK3,
-        BOTTOM,5,2,0,gfpga_pad_IO_A2F[20],1,GPIO_IN,,
-        BOTTOM,5,2,1,gfpga_pad_IO_F2A[21],1,GPIO_OUT,,
-        BOTTOM,5,1,0,gfpga_pad_IO_F2A[22],1,GPIO_EN,,
-        RIGHT,4,5,0,gfpga_pad_IO_A2F[8],user_in_R[0],,,
-        RIGHT,3,5,0,gfpga_pad_IO_A2F[10],user_in_R[1],,CLK1,
+        BOTTOM,0,2,0,gfpga_pad_IO_A2F[132],1,GPIO_IN,,
+        BOTTOM,0,2,1,gfpga_pad_IO_F2A[133],1,GPIO_OUT,,
+        BOTTOM,0,1,0,gfpga_pad_IO_F2A[134],1,GPIO_EN,,
+        RIGHT,4,5,0,gfpga_pad_IO_A2F[64],user_in_R[0],,,
+        RIGHT,3,5,0,gfpga_pad_IO_A2F[66],user_in_R[1],,CLK1,
 
 
 **NOTE**: in the above example, the first row represents the pin-mapping with bus-ports. In this row, ``gfpga_pad_IO_F2A[1:4]`` is mapped to user-defined pins: ``user_out_T[0:3]`` such that ``gfpga_pad_IO_F2A[1]`` is mapped to ``user_out_T[0]``, ``gfpga_pad_IO_F2A[2]`` is mapped to ``user_out_T[1]`` and so on.
@@ -225,6 +221,8 @@ Users can take the above mentioned csv file and update it in the following manne
 
 SDC File Specification
 *************************
+
+**NOTE**: In the current Symbiflow implementation, the below mentioned sdc support is not present. Currently user needs to specify eFPGA device interface port names in sdc commands.
 
 In case of eFPGA flow, the user needs to provide SDC timing constraints on the mapped pin name (to eFPGA interface ports). 
 
