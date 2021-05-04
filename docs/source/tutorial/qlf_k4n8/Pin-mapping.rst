@@ -21,9 +21,9 @@ This requirement document lists down the requirements for a pin mapping specific
 Example
 ============
 
-As an example, refer to `OpenFPGA Caraval architecture <https://skywater-openfpga.readthedocs.io/en/latest/datasheet/sofa_hd/sofa_hd_fpga_arch/>`
+As an example, refer to `OpenFPGA Caraval architecture <https://skywater-openfpga.readthedocs.io/en/latest/datasheet/sofa_hd/sofa_hd_fpga_arch/>`__
 
-Its I/O resources are explained `here <https://skywater-openfpga.readthedocs.io/en/latest/datasheet/sofa_hd/sofa_hd_io_resource/>`
+Its I/O resources are explained `here <https://skywater-openfpga.readthedocs.io/en/latest/datasheet/sofa_hd/sofa_hd_io_resource/>`__
 
 To summarize, it is 12x12 size eFPGA architecture with 144 I/Os that consists of:
 
