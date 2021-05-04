@@ -42,37 +42,15 @@ it:
 
 ::
 
-   #Checkout *yosys* repository (https://github.com/SymbiFlow/yosys.git), branch: **master+wip**. 
-   git clone https://github.com/SymbiFlow/yosys.git quicklogic-yosys
-   cd quicklogic-yosys
-   #compiling using gcc
-   make config-gcc
-   make install PREFIX='specify installation path'
-   cd -
-
-   #Checkout *yosys-symbiflow-plugins* (https://github.com/SymbiFlow/yosys-symbiflow-plugins.git), branch: **master**.
-   git clone https://github.com/SymbiFlow/yosys-symbiflow-plugins.git
-   cd yosys-symbiflow-plugins
-   export PATH='specify Yosys installation path as specified in PREFIX in previous step':$PATH
-   make install
-   cd -
-
-   #Checkout *vpr* repository (https://github.com/SymbiFlow/vtr-verilog-to-routing.git), branch: **master**.
-   git clone https://github.com/SymbiFlow/vtr-verilog-to-routing -b master
-   cd vtr-verilog-to-routing
-   make
-
-   #Checkout *symbiflow-arch-defs* repository (https://github.com/SymbiFlow/symbiflow-arch-defs.git), branch: **master**. 
-   git clone https://github.com/SymbiFlow/symbiflow-arch-defs.git 
-   export YOSYS='path to Yosys binary, installed in first step'
-   export VPR='path to vpr binary built'
-   export GENFASM='path to genfasm binary built'
+   #Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **master**. 
+   git clone https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git 
    cd symbiflow-arch-defs
    make env
+   cd build;make all_conda
    
    #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-   cd build/quicklogic/qlf_k4n8/tests/counter
-   make counter-umc22-adder_route
+   cd build/quicklogic/qlf_k4n8/tests/counter_16bit
+   make counter_16bit-umc22-adder_route
 
 
 
