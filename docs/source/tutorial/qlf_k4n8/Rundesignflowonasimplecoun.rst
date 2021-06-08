@@ -2,10 +2,10 @@
 
 
 .. index::
-   single: Run design flow on a simple counter design (qlf_k4n8)
+   single: Run design flow on a simple counter design
 
-Run design flow on a simple counter design (QLF-K4N8)
-=====================================================
+Run design flow on a simple counter design
+==========================================
 
 
 
@@ -42,6 +42,7 @@ To run any example, perform these steps once.
    PerformingDesignSynthesis
    Pin-mapping
    RunningpackPlaceandRouteto
+   PerformingthePostLayoutSimul
    GenerateProgrammingFiles
    PcfDescription
 

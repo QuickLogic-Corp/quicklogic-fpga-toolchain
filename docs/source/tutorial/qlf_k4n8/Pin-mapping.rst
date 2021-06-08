@@ -2,8 +2,8 @@
 .. index::
    single: Pin Mapping 
 
-Pin Mapping
-###########
+Pin Mapping(QLF_K4N8)
+#####################
 
 .. contents:: **Table of Contents**
     :depth: 2
@@ -304,29 +304,17 @@ Sample SDC file looks like the following:
     .. code-block:: none        
         
         create_clock -name SYS_CLK_0 -period 10 -waveform {0 5} [get_ports SYS_CLK_0]
-
         create_clock -name SYS_CLK_1 -period 10 -waveform {0 5} [get_ports SYS_CLK_1]
-
         create_clock -name SYS_CLK_2 -period 10 -waveform {0 5} [get_ports SYS_CLK_2]
-
         create_clock -name SYS_CLK_3 -period 10 -waveform {0 5} [get_ports SYS_CLK_3]
-
         create_clock -name SYS_CLK_4 -period 10 -waveform {0 5} [get_ports SYS_CLK_4]
-
         set_output_delay 10 -max -clock SYS_CLK_2 [get_ports F1]
-
         set_output_delay -0 -min -clock SYS_CLK_2 [get_ports F1]
-
         set_input_delay 10 -max -clock SYS_CLK_2 [get_ports A1]
-
         set_input_delay 0 -min -clock SYS_CLK_2 [get_ports A1]
-
         set_output_delay 10 -max -clock SYS_CLK_0 [get_ports F2]
-
         set_output_delay -0 -min -clock SYS_CLK_0 [get_ports F2]
-
         set_input_delay 10 -max -clock SYS_CLK_1 [get_ports A2]
-
         set_input_delay 0 -min -clock SYS_CLK_1 [get_ports A2]
 
 

@@ -54,6 +54,8 @@ Performing Design Synthesis
 
     .. note:: > All the output log files will be dumped in {source path}/build folder
       |br| > -src command is optional if run from the same directory where source files are present.
+      |br| > -synth option is supported for both devices qlf_k4n8 and qlf_k6n10.
+
  
 
 
