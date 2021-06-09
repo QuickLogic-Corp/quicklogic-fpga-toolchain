@@ -49,7 +49,7 @@ it:
    cd build;make all_conda
    
    #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-   cd build/quicklogic/qlf_k4n8/tests/counter_16bit
+   cd build/quicklogic/qlf_k4n8/tests/design_flow/counter_16bit
    make counter_16bit-umc22-adder_route
 
 
