@@ -35,9 +35,9 @@ This provides details about running designs using qlf-k4n8 device on Symbiflow
 .. toctree::
    :maxdepth: 3
    
-   tutorial/qlf_k4n8/SymbiflowDesignflow
-   tutorial/qlf_k4n8/Rundesignflowonasimplecoun
-   tutorial/qlf_k4n8/OnlineReferences
+   tutorial/qlf_devices/SymbiflowDesignflow
+   tutorial/qlf_devices/Rundesignflowonasimplecoun
+   tutorial/qlf_devices/OnlineReferences
 
 
 S3B Device
