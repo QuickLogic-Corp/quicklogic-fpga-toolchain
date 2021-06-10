@@ -33,7 +33,7 @@ Performing Design Synthesis
    
    Output files for synthesis are present in 'build' folder: 
 
-   <TOP>.eblif : netlist file for the design
+   *TOP*.eblif : netlist file for the design
    |br| <TOP>_synth.log : synthesis log information, refer this file for any issues during synthesis 
       
       Resource utilization in the top_synth.log of the counter: 

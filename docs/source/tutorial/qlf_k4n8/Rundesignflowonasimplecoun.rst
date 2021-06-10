@@ -40,6 +40,7 @@ To run any example, perform these steps once.
 
    PerformingthePreLayoutSimula
    PerformingDesignSynthesis
+   RAM_DSPinfer
    Pin-mapping
    RunningpackPlaceandRouteto
    PerformingthePostLayoutSimul
