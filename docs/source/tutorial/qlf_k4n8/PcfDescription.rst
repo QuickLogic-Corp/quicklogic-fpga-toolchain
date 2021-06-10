@@ -4,8 +4,8 @@
 .. index::
    single: PCF sample 
 
-PCF Sample 
-==========
+PCF Sample(QLF_K4N8) 
+====================
   
 The PCF file is for fix placing the IO to a particular IO location on the device.  
 For qlf_k4n8 device, user needs to create a pin mapping csv (as defined in Pin Mapping section). The user-defined pin names can then be specified in the pcf file for IO placement.

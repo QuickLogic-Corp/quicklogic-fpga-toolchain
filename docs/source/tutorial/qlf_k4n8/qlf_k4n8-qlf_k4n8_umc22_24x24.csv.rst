@@ -4,6 +4,22 @@
 24x24 Device Pin Mapping CSV File
 ======================================
 
+
+ To map the IO's in the pcf file, refer the below csv file. The column mapped_pin names are used to map in the pcf file.
+ For example if a design has two input ports A_in, B_in and one output port C_out, the pcf file will look like this.
+
+.. code-block:: none
+
+   set_io A_in A2F_GPIO2_29
+   set_io B_in A2F_GPIO2_28
+   set_io C_out F2A_GPIO2_31
+
+If a user does not provide a pcf file, then one can refer the *<design>*.place file.
+    | Where mapping from *<design>.place* file to csv file is as shown:
+    | x -> col
+    | y -> row
+    | subblk -> pin_number 
+
 .. code-block:: none
 
     orientation,row,col,pin_num_in_cell,port_name,mapped_pin,GPIO_type
