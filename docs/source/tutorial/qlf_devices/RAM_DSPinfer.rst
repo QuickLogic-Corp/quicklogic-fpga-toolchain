@@ -91,9 +91,9 @@ BRAM and DSP(QLF_K6N10)
 
    
    The various configuration of the BRAMS can be configured by changing the AWIDTH and DWIDTH parameters as shown below.
-    |br| BRAM 4x4096 : AWIDTH=12, DWIDTH=4
-    BRAM 8x2048 : AWIDTH=11, DWIDTH=8
-    BRAM 32x512 : AWIDTH=10, DWIDTH=16
+    | BRAM 4x4096 : AWIDTH=12, DWIDTH=4
+    | BRAM 8x2048 : AWIDTH=11, DWIDTH=8
+    | BRAM 32x512 : AWIDTH=10, DWIDTH=16
 
 |U160b| 
 
