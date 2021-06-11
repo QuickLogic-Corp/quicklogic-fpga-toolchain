@@ -28,9 +28,9 @@ System Requirements
    tutorial/InstallingSymbiflowonLinux
 
 
-QLF-K4N8 Device
-===============
-This provides details about running designs using qlf-k4n8 device on Symbiflow
+QLF-K4N8/QLF-K6N10 Device
+=========================
+This provides details about running designs using qlf-k4n8/qlf-k6n10 device on Symbiflow
 
 .. toctree::
    :maxdepth: 3
