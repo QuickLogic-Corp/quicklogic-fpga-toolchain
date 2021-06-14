@@ -149,6 +149,8 @@ CSV file contains the following column (in the specified order) and mandatory op
 7. **GPIO pin type**: Specify “GPIO_IN”, “GPIO_OUT” or “GPIO_EN” to define if the particular port is mapped to a general purpose IO (GPIO) of either of these types - IN (input), OUT (output) or EN (enable). In IO fix placement constraints (defined via input pcf file in symbiflow) can only be defined on the GPIO pins. Default value is “No”. 
 8. **Associated Clock**: Specify device clock associated to this port. In case of qlf_k4n8 device, device clocks are - CLK0, CLK1, CLK2 and CLK3. You can specify multiple clocks with a space in between.
 9. **Clock Edge**: Type of clock edge at which the data is available. The value can be rising or falling.
+10. **Clock Orientation**: CLK0 -> BOTTOM, CLK1 -> RIGHT, CLK2 -> TOP, CLK3 -> LEFT.
+   
 
 Points to Note
 ==============
@@ -241,14 +243,14 @@ This constraint creates a design clock and defines its characteristics. Clock ch
 
     .. code-block:: none
 
-        create_clock -name clockName -period period_float_values [-waveform edge_list] source
+        create_clock -name clockName -period period_float_values [-waveform edge_list] 
 
 
 |br| **Example:**
 
     .. code-block:: none
 
-        create_clock -period 2.0 -name CLK [get_ports clk]
+        create_clock -name CLK -period 2.0 -waveform {0 5}
 
 This example generates a clock named CLK, whose clock period is 2.0ns and the clock source is available at the clk port. The clock edges are 0.0 and 1.0, respectively.
 
@@ -303,11 +305,11 @@ Sample SDC file looks like the following:
 
     .. code-block:: none        
         
-        create_clock -name SYS_CLK_0 -period 10 -waveform {0 5} [get_ports SYS_CLK_0]
-        create_clock -name SYS_CLK_1 -period 10 -waveform {0 5} [get_ports SYS_CLK_1]
-        create_clock -name SYS_CLK_2 -period 10 -waveform {0 5} [get_ports SYS_CLK_2]
-        create_clock -name SYS_CLK_3 -period 10 -waveform {0 5} [get_ports SYS_CLK_3]
-        create_clock -name SYS_CLK_4 -period 10 -waveform {0 5} [get_ports SYS_CLK_4]
+        create_clock -name SYS_CLK_0 -period 10 -waveform {0 5} 
+        create_clock -name SYS_CLK_1 -period 10 -waveform {0 5} 
+        create_clock -name SYS_CLK_2 -period 10 -waveform {0 5} 
+        create_clock -name SYS_CLK_3 -period 10 -waveform {0 5} 
+        create_clock -name SYS_CLK_4 -period 10 -waveform {0 5} 
         set_output_delay 10 -max -clock SYS_CLK_2 [get_ports F1]
         set_output_delay -0 -min -clock SYS_CLK_2 [get_ports F1]
         set_input_delay 10 -max -clock SYS_CLK_2 [get_ports A1]
