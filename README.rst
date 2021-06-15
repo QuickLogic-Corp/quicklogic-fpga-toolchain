@@ -7,16 +7,19 @@ This guide describes everything you need to set up your system to
 develop for QuickLogic FPGA Toolchain. Currently, the SymbiFlow
 Installer runs only on Linux 64bit.
 
-Symbiflow supports these QuickLogic devices - QLF-K4N8 and EOS-S3
+Note:  Place a request for the installers that support QLF-K4N8 and QLF-K6N10.
+For EOS-S3 devices, the Release tag has installer which can be downloaded. 
+
+Symbiflow supports these QuickLogic devices - QLF-K4N8, QLF-K6N10 and EOS-S3
 
 For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-quicklogic-fpga-toolchain.readthedocs-hosted.com/en/latest/index.html>`_
 
 Ways to run Symbiflow on these devices are explained in the following sub-sections:
 
-QLF-K4N8 Device:
-==============
+QLF-K4N8/QLF-K6N10 Device:
+==========================
 
-Below are some ways to run SymbiFlow for QLF-K4N8 Device:
+Below are some ways to run SymbiFlow for QLF-K4N8/QLF-K6N10 Devices:
 
 1) Run an installer and run an example
 2) Compile from source code and run example
@@ -49,8 +52,11 @@ it:
    cd build;make all_conda
    
    #Run any test case in the current terminal window. For example, follow these steps to run a test case:
-   cd build/quicklogic/qlf_k4n8/tests/design_flow/counter_16bit
+   cd build/quicklogic/<device>/tests/design_flow/counter_16bit
+   #For qlf_k4n8
    make counter_16bit-umc22-adder_route
+   #For qlf_k6n10
+   make counter_16bit-gf12-adder_route
 
 
 
