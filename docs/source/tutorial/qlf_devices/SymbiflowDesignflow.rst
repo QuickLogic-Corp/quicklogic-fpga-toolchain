@@ -11,7 +11,8 @@ Symbiflow: Design flow (QLF-K4N8/QLF-K6N10)
 ===========================================
 
   
-   The below figure shows the complete design flow from the HDL to the programming file:
+   Symbiflow design flow starts with the verilog as input, synthesis done using the yosys, pack, place and route with VPR tool.
+   Finally the programming files are dumped which can be used for the fpga programming. Post layout verilog files can be used to validate the verilog design netlist dumped after the place and route.
 
 
 .. image:: flow.png
@@ -19,11 +20,6 @@ Symbiflow: Design flow (QLF-K4N8/QLF-K6N10)
   :alt: Design flow
                 
 
-
-.. toctree::
-   :maxdepth: 2
-
-   Commandssupported
 
 .. |BR| raw:: html
 

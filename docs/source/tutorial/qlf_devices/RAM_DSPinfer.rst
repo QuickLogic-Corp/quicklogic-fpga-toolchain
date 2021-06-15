@@ -3,15 +3,15 @@
 
 
 .. index::
-   single: BRAM and DSP Inference(qlf_k6n10)
+   single: BRAM and DSP Inference
 
-BRAM and DSP(QLF_K6N10)
-=======================
+BRAM and DSP
+============
 
 
    To infer BRAM:
 
-    In SymbiFlow, the synthesis of Verilog files is performed with Yosys which infers the BRAM.
+    In SymbiFlow, the synthesis of Verilog files is performed with Yosys which infers the BRAM for the device qlf_k6n10.
 
    Syntax:
 
@@ -131,6 +131,7 @@ BRAM and DSP(QLF_K6N10)
 
         endmodule
 
+.. note:: > The programming files are only supported for the **QLF_K6N10**
 
 |U160b| 
 

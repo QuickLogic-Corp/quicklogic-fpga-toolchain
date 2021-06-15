@@ -36,13 +36,15 @@ This provides details about running designs using qlf-k4n8/qlf-k6n10 device on S
    :maxdepth: 3
    
    tutorial/qlf_devices/SymbiflowDesignflow
+   tutorial/qlf_devices/Commandssupported
    tutorial/qlf_devices/Rundesignflowonasimplecoun
+   tutorial/qlf_devices/RAM_DSPinfer
    tutorial/qlf_devices/OnlineReferences
 
 
 S3B Device
 ==========
-This provides the details of in-built RAMs/FIFOs and Multipliers in S3B and their usage in the user design.
+This provides the details of running designs and in-built RAMs/FIFOs/Multipliers in S3B.
 
 .. toctree::
    :maxdepth: 3

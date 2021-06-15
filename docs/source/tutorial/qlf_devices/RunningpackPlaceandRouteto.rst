@@ -17,10 +17,8 @@ Running Pack, Place and Route Tools
 
      ql_symbiflow -compile -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package CSV file> -s <SDC file> -pnr_corner <fast/slow>
 
-
-   .. note:: > Options : -p, -P, -s, -pnr_corner are only available for qlf_k4n8
-
-   The output files dumped will be:
+    
+    The output files dumped will be:
     |br| *<TOP>*.net : Once packing is complete.
     |br| *<TOP>*.place : Placer file from VPR
     |br| *<TOP>*.route |U160l|  : Router file from VPR
@@ -55,6 +53,8 @@ Running Pack, Place and Route Tools
         Setup Total Negative Slack (sTNS):   -162.424 ns
         Final critical path: 2.91 ns, Fmax:  343.643 MHz
 
+    .. note:: Options : -P, -s, -p, -pnr_corner are only available for **QLF_K4N8**
+    
 .. |BR| raw:: html
 
    <BR/>

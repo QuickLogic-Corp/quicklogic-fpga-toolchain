@@ -11,7 +11,7 @@ Performing Design Synthesis
 
    To perform a design synthesis:
 
-    In SymbiFlow, the synthesis of Verilog files is performed with Yosys. Yosys parses Verilog files, applies basic optimizations, performs technological mapping to FPGA blocks, and generates JSON and EBLIF files for the place and route tool.
+    In SymbiFlow, the synthesis of Verilog files is performed with Yosys. Yosys parses Verilog files, applies basic optimizations, performs technological mapping to FPGA blocks, and generates JSON and EBLIF files for the place and route tool. Example is for qlf_k4n8.
 
    Syntax:
 
@@ -54,7 +54,7 @@ Performing Design Synthesis
 
     .. note:: > All the output log files will be dumped in {source path}/build folder
       |br| > -src command is optional if run from the same directory where source files are present.
-      |br| > -synth option is supported for both devices qlf_k4n8 and qlf_k6n10.
+      |br| > -synth option is supported for both devices **QLF_K4N8** & **QLF_K6N10**.
 
  
 

@@ -29,7 +29,7 @@ Performing the Post-Layout Timing Simulation
     |br| - View the simulation results in the Waveform/ Data Analyzer and verify.
 
     .. note:: > cells_sim.v : This file has the definition for technology mapped macros
-      |br|    > Supported only for qlf_k4n8
+      |br|    > Supported only for **QLF_K4N8**
 
 
 

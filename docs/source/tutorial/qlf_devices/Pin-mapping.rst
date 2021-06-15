@@ -2,8 +2,8 @@
 .. index::
    single: Pin Mapping 
 
-Pin Mapping(QLF_K4N8)
-#####################
+Pin Mapping
+###########
 
 .. contents:: **Table of Contents**
     :depth: 2
@@ -14,12 +14,12 @@ Document for pin mapping file specification
 This describes in detail about the xml and csv file format that are used to define the pin mapping.
 
 Scope
-********
+*****
 
 This requirement document lists down the requirements for a pin mapping specification file. This file format addresses the requirements for specifying pin mapping of an eFPGA device interface ports to end-user defined package (explained in below example)
 
 Example
-============
+=======
 
 As an example, refer to `OpenFPGA Caraval architecture <https://skywater-openfpga.readthedocs.io/en/latest/datasheet/sofa_hd/sofa_hd_fpga_arch/>`__
 
@@ -127,12 +127,12 @@ Template xml file <https://github.com/SymbiFlow/symbiflow-arch-defs/blob/master/
         </IO>
     </DEVICE>
 
-**NOTE:** When more than one port is specified for mapping at a particular location, then the user has a choice to choose any one of the ports, in csv file specification. It is an error if pin mapping is specified for more than one port at a particular location (same x, y and z coordinates).
+.. note::  When more than one port is specified for mapping at a particular location, then the user has a choice to choose any one of the ports, in csv file specification. It is an error if pin mapping is specified for more than one port at a particular location (same x, y and z coordinates).
 
 
 
 CSV File Specification
-*************************
+**********************
 
 Symbiflow is going to dump a template csv file which eFPGA users can update to specify their pin-mapping specifications. 
 
@@ -163,7 +163,7 @@ Points to Note
 
 Template csv file that Symbiflow is going to dump out for a 32x32 looks like the following:
 
-**NOTE:** at a specific location either A2F or F2A signal can be mapped but not both. For example, both ``gfpga_pad_IO_F2A[0]`` (output port) & ``gfpga_pad_IO_A2F[0]`` (input port) cannot have pin-mapping defined. Symbiflow validates and gives an error if multiple port mappings specified at a specific location.
+.. note:: At a specific location either A2F or F2A signal can be mapped but not both. For example, both ``gfpga_pad_IO_F2A[0]`` (output port) & ``gfpga_pad_IO_A2F[0]`` (input port) cannot have pin-mapping defined. An error is reported if multiple port mappings specified at a specific location.
 
 Below is the generated template csv file for a 4x4 device. It contains a ``gfpga_pad_IO_A2F`` port but users can alternatively use ``gfpga_pad_IO_F2A`` at any location for pin-mapping.
 
@@ -218,15 +218,15 @@ Users can take the above mentioned csv file and update it in the following manne
         RIGHT,3,5,0,gfpga_pad_IO_A2F[66],user_in_R[1],,CLK1,
 
 
-**NOTE**: in the above example, the first row represents the pin-mapping with bus-ports. In this row, ``gfpga_pad_IO_F2A[1:4]`` is mapped to user-defined pins: ``user_out_T[0:3]`` such that ``gfpga_pad_IO_F2A[1]`` is mapped to ``user_out_T[0]``, ``gfpga_pad_IO_F2A[2]`` is mapped to ``user_out_T[1]`` and so on.
+   .. note:: > The pinmap and csv files are only supported for the eFPGA flow for **QLF_K4N8**
+     |br|    > In the above example, the first row represents the pin-mapping with bus-ports. 
+     |br|    > In this row, ``gfpga_pad_IO_F2A[1:4]`` is mapped to user-defined pins: ``user_out_T[0:3]`` such that ``gfpga_pad_IO_F2A[1]`` is mapped to ``user_out_T[0]``, ``gfpga_pad_IO_F2A[2]`` is mapped to ``user_out_T[1]`` and so on.
 
 
 SDC File Specification
 *************************
 
-**NOTE**: In the current Symbiflow implementation, the below mentioned sdc support is not present. Currently user needs to specify eFPGA device interface port names in sdc commands.
-
-In case of eFPGA flow, the user needs to provide SDC timing constraints on the mapped pin name (to eFPGA interface ports). 
+In case of eFPGA flow, the user needs to provide SDC timing constraints on the mapped pin name/net name. 
 
 SDC File can be specified as input with timing constraints applied on the mapped user-defined pins.
 
@@ -319,9 +319,6 @@ Sample SDC file looks like the following:
         set_input_delay 10 -max -clock SYS_CLK_1 [get_ports A2]
         set_input_delay 0 -min -clock SYS_CLK_1 [get_ports A2]
 
-
-Assumptions/Restrictions
-***************************
 
 .. |BR| raw:: html
 

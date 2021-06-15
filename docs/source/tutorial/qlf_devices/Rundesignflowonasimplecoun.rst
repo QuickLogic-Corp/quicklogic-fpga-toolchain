@@ -2,16 +2,16 @@
 
 
 .. index::
-   single: Run design flow on a simple counter design
+   single: Design flow
 
-Run design flow on a simple counter design
-==========================================
+Design flow 
+===========
 
 
 
 Setup environment
 
-To run any example, perform these steps once.
+To run the counter_16bit or any example, perform these steps once. Design flow will be covered using the counter_16bit design which is avaiable in the package. We will use the device QLF_K4N8 for this run. However the flow for the device QLF_K6N10 is similar except that it is supported only till place and route.
 
    .. code-block:: shell
 
@@ -40,7 +40,6 @@ To run any example, perform these steps once.
 
    PerformingthePreLayoutSimula
    PerformingDesignSynthesis
-   RAM_DSPinfer
    Pin-mapping
    RunningpackPlaceandRouteto
    PerformingthePostLayoutSimul
