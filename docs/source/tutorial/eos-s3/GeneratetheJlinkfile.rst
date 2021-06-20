@@ -44,7 +44,7 @@ Generate the Jlink and openOCD file
     .. code-block:: shell
 
         ql_symbiflow -compile -src $PWD -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64 -s counter_16bit.sdc -dump openocd
-   |br|    
+   |br| 
 
 .. |BR| raw:: html
 

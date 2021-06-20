@@ -16,8 +16,7 @@ Performing Design Synthesis
 
     .. code-block:: shell
 
-        ql_symbiflow -synth -src <source complete path> -d <device> -t <top module name> -v <verilog files> -p <pcf file> -P <Package file> -s <SDC file>
-
+        ql_symbiflow -synth -src <source complete path> -d <device> -t <top module name> -v <verilog files> 
 
     .. code-block:: shell
 
@@ -28,14 +27,14 @@ Performing Design Synthesis
 
     .. code-block:: shell
 
-        ql_symbiflow -synth -d ql-eos-s3 -t top -v counter_16bit.v -p chandalar.pcf -P PD64
+        ql_symbiflow -synth -d ql-eos-s3 -t top -v counter_16bit.v
    
    Output files for synthesis are:
    |br| <TOP>.eblif : netlist file for the design
    |br| <TOP>_synth.log : synthesis log information, refer this file for any issues during synthesis 
    |br| 
-    |br|  Resource utilization in the top_synth.log of the counter:
-    |br|
+    |br|  Resource utilization in the top_synth.log of the counter: 
+    |br| 
     |br|  *Number of wires:                384*
     |br|  *Number of wire bits:            384*
     |br|  *Number of public wires:         382*
@@ -53,7 +52,6 @@ Performing Design Synthesis
 
 
     .. note:: > All the output log files will be dumped in {source path}/build folder
-      |br| > For pcf related information, please refer pcf sample
       |br| > -src command is optional if run from the same directory where source files are present.
  
 

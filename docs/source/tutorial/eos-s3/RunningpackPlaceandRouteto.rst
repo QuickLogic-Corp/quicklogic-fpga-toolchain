@@ -2,10 +2,10 @@
 
 
 .. index::
-   single: Running pack, Place and Route tools
+   single: Running pack, Place and Route tools (eos-s3
 
-Running pack, Place and Route tools
-===================================
+Running pack, Place and Route tools (EOS-S3)
+============================================
     
 
    The eblif file generated during the synthesis is used for pack, place and route along with device information, pcf and the sdc file.

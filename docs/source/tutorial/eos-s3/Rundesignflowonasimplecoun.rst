@@ -2,10 +2,10 @@
 
 
 .. index::
-   single: Run design flow on a simple counter design
+   single: Run design flow on a simple counter design (eos-s3)
 
-Run design flow on a simple counter design
-==========================================
+Run design flow on a simple counter design (EOS-S3)
+===================================================
 
 
 

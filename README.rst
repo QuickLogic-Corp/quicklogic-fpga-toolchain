@@ -7,14 +7,67 @@ This guide describes everything you need to set up your system to
 develop for QuickLogic FPGA Toolchain. Currently, the SymbiFlow
 Installer runs only on Linux 64bit.
 
-Below are some ways to run SymbiFlow:
+Note:  Place a request for the installers that support QLF-K4N8 and QLF-K6N10.
+For EOS-S3 devices, the Release tag has installer which can be downloaded. 
+
+Symbiflow supports these QuickLogic devices - QLF-K4N8, QLF-K6N10 and EOS-S3
+
+For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-quicklogic-fpga-toolchain.readthedocs-hosted.com/en/latest/index.html>`_
+
+Ways to run Symbiflow on these devices are explained in the following sub-sections:
+
+QLF-K4N8/QLF-K6N10 Device:
+==========================
+
+Below are some ways to run SymbiFlow for QLF-K4N8/QLF-K6N10 Devices:
+
+1) Run an installer and run an example
+2) Compile from source code and run example
+
+.. _1-run-an-installer-and-run-an-example:
+
+1) Run an installer and run an example
+----------------------------------------------------------
+
+
+
+.. _2-compile-from-source-code-and-run-example:
+
+2) Compile from source code and run example
+-------------------------------------------
+
+This release package contains the following GitHub repositories that are
+compiled to create this package. Note: Refer the repositories read.md
+pages for the prerequisites to build.
+
+You may use the following command to get the source, compile and install
+it:
+
+::
+
+   #Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **master**. 
+   git clone https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git 
+   cd symbiflow-arch-defs
+   make env
+   cd build;make all_conda
+   
+   #Run any test case in the current terminal window. For example, follow these steps to run a test case:
+   cd build/quicklogic/<device>/tests/design_flow/counter_16bit
+   #For qlf_k4n8
+   make counter_16bit-umc22-adder_route
+   #For qlf_k6n10
+   make counter_16bit-gf12-adder_route
+
+
+
+EOS-S3 Device:
+==============
+
+Below are some ways to run SymbiFlow for EOS-S3 Device:
 
 1) Run an installer and run an example
 2) Compile from source code and run example
 3) Run SymbiFlow in a container
-
-
-For more details on the symbiflow options refer the tutorial guide: `Symbiflow_Tutorial <https://quicklogic-fpga-tool-docs.readthedocs.io/en/latest/index.html>`_
 
 For details on the usage of RAM, FIFO and Multiplier blocks, refer to
 the following document:
@@ -329,3 +382,7 @@ Hardware features that are not supported in this release
 
 -  IO registers: Usage of IO registers available in the IO block
    (Hardware)
+
+
+
+

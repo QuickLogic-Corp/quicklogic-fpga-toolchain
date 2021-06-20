@@ -2,13 +2,13 @@
 
 
 .. index::
-   single: Symbiflow: Design flow
+   single: Symbiflow: Design flow (eos-s3)
 
 
 .. _Hlk510519685:
 
-Symbiflow: Design flow
-======================
+Symbiflow: Design flow (EOS-S3)
+===============================
 
   
    The below figure shows the complete design flow from the HDL to the programming file:

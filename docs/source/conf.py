@@ -17,8 +17,8 @@ import sphinx_rtd_theme
 
 project = 'QuickLogic-FPGA-Toolchain'
 html_title = 'QuickLogic-FPGA-Toolchain'
-copyright = '2020, QuickLogic Corporation'
-author = 'Kishore Kumar'
+copyright = '2021, QuickLogic Corporation'
+author = 'Lalit Narain Sharma'
 
 # The short X.Y version
 version = '1.0'
