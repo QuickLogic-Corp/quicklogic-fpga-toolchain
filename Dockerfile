@@ -14,6 +14,7 @@ RUN apt-get update -qq \
     git \
     libffi-dev \
     libreadline-dev \
+    libtbb-dev \
     tcl-dev \
     graphviz \
     wget \
