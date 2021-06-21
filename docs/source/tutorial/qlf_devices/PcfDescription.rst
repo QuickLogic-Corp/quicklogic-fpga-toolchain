@@ -19,9 +19,17 @@ Below mentioned CSV file(not part of package) corresponds to a pin-mapping defin
 
 |br| **Syntax:**
 
+To set constraint for the IO
     .. code-block:: none
       
       set_io <port_name> <Package IO>
+
+To set constraint for the clock port
+    .. code-block:: none
+      
+      set_clk <clk_name> <port_name> 
+
+clock names supported: clk[0], clk[1], clk[2], clk[3]      
 
 
 For this csv file, the counter_16bit one can add these IO placements:
@@ -30,6 +38,7 @@ For this csv file, the counter_16bit one can add these IO placements:
 
       set_io enable user_IN_T[0]
       set_io reset user_IN_T[1]
+      set_clk clk[0] clk
       set_io count[0] user_OUT_T[8]
       set_io count[1] user_OUT_T[9]
       set_io count[2] user_OUT_T[10]
@@ -46,6 +55,7 @@ For this csv file, the counter_16bit one can add these IO placements:
       set_io count[13] user_OUT_T[21]
       set_io count[14] user_OUT_T[22]
       set_io count[15] user_OUT_T[23]
+
 
 .. note:: > The pcf file support is only supported for the **QLF_K4N8**
 
