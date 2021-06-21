@@ -92,10 +92,10 @@ FROM release-candidate AS all_quick_tests
 WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
 RUN make all_quick_tests
 
-FROM release-candidate AS all_ql_tests
+# FROM release-candidate AS all_ql_tests
 
-WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
-RUN make all_ql_tests
+# WORKDIR /symbiflow-arch-defs/build/quicklogic/pp3/tests
+# RUN make all_ql_tests
 
 
 FROM release-candidate AS release
