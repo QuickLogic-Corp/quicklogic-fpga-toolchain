@@ -37,8 +37,7 @@ Below are some ways to run SymbiFlow for QLF-K4N8/QLF-K6N10 Devices:
 -------------------------------------------
 
 This release package contains the following GitHub repositories that are
-compiled to create this package. Note: Refer the repositories read.md
-pages for the prerequisites to build.
+compiled to create this package. 
 
 You may use the following command to get the source, compile and install
 it:
@@ -185,8 +184,9 @@ Steps:
 -------------------------------------------
 
 This release package contains the following GitHub repositories that are
-compiled to create this package. Note: Refer the repositories read.md
-pages for the prerequisites to build.
+compiled to create this package. 
+
+**Note: Refer the repositories read.md pages for the prerequisites to build.**
 
 You may use the following command to get the source, compile and install
 it:
