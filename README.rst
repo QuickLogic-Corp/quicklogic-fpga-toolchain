@@ -338,7 +338,7 @@ From your bash session in the container, try:
 Option C) Use a container image that is built automatically by a github action workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the 'packages' links for the Docker command to pull a Symbiflow
+See the `packages <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/packages/449834>`_ links for the Docker command to pull a Symbiflow
 container image, or use it as the basis of a new container.
 
 You can run bash interactively inside of a prebuilt SymbiFlow container
