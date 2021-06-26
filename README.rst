@@ -37,8 +37,7 @@ Below are some ways to run SymbiFlow for QLF-K4N8/QLF-K6N10 Devices:
 -------------------------------------------
 
 This release package contains the following GitHub repositories that are
-compiled to create this package. Note: Refer the repositories read.md
-pages for the prerequisites to build.
+compiled to create this package. 
 
 You may use the following command to get the source, compile and install
 it:
@@ -185,8 +184,9 @@ Steps:
 -------------------------------------------
 
 This release package contains the following GitHub repositories that are
-compiled to create this package. Note: Refer the repositories read.md
-pages for the prerequisites to build.
+compiled to create this package. 
+
+**Note: Refer the repositories read.md pages for the prerequisites to build.**
 
 You may use the following command to get the source, compile and install
 it:
@@ -355,7 +355,7 @@ From your bash session in the container, try:
 Option C) Use a container image that is built automatically by a github action workflow
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the 'packages' links for the Docker command to pull a Symbiflow
+See the `packages <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/packages/449834>`_ links for the Docker command to pull a Symbiflow
 container image, or use it as the basis of a new container.
 
 You can run bash interactively inside of a prebuilt SymbiFlow container
