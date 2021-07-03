@@ -1,0 +1,59 @@
+FROM ubuntu:20.04 as builder
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Los_Angeles
+
+RUN apt-get update && apt-get install -y \
+    libcanberra-gtk-module \
+    wget \
+    xz-utils && \
+    rm -rf /var/lib/apt/lists/*
+
+# make /bin/sh symlink to bash instead of dash:
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+# add ARGs so that these can be passed in while doing a docker build, the following will be default values
+ARG TAG=v0.0.0
+ARG USER=docker
+ARG UID=1000
+ARG GID=1000
+# default password for user
+ARG PW=docker
+
+# using unencrypted password/specifying password
+RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | \
+      chpasswd
+
+# using the same encrypted password as host (doesn't work yet)
+#COPY /etc/group /etc/group 
+#COPY /etc/passwd /etc/passwd
+#COPY /etc/shadow /etc/shadow
+
+# [unused] : run this as root user before changing to local user - removing fixed entrypoint for now
+#COPY ./docker-entrypoint.sh /
+#RUN chmod +x /docker-entrypoint.sh
+
+
+ENV INSTALL_DIR=/opt/symbiflow/eos-s3/$TAG
+
+#  create dir and chown to local user
+RUN mkdir /opt/symbiflow
+RUN chown ${USER} /opt/symbiflow
+
+# become local user for installation
+USER ${UID}:${GID}
+WORKDIR /home/${USER}
+
+# continue with installation
+RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/$TAG/Symbiflow_$TAG.gz.run
+RUN chmod 755 Symbiflow_$TAG.gz.run
+RUN ./Symbiflow_$TAG.gz.run
+RUN rm Symbiflow_$TAG.gz.run
+
+ENV PATH="${INSTALL_DIR}/install/bin:${INSTALL_DIR}/install/bin/python:$PATH"
+
+# [unused] we can always specify the entrypoint at runtime, so default would be to drop into a bash session.
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
+
