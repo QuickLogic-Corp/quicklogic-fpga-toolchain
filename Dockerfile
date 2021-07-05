@@ -14,6 +14,7 @@ RUN apt-get update -qq \
     git \
     libffi-dev \
     libreadline-dev \
+    libtbb-dev \
     tcl-dev \
     graphviz \
     wget \
@@ -40,10 +41,10 @@ RUN apt-get update -qq \
     iverilog \
     pkg-config
 
-#Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased**. 
+#Checkout *yosys* repository (https://github.com/QuickLogic-Corp/yosys.git), branch: **quicklogic-rebased**.
 RUN git clone https://github.com/QuickLogic-Corp/yosys.git -b quicklogic-rebased quicklogic-yosys
-RUN cd quicklogic-yosys
 WORKDIR /quicklogic-yosys
+
 RUN make config-gcc
 RUN make install PREFIX=${INSTALL_DIR}/install
 RUN cd -
@@ -51,24 +52,24 @@ RUN cd -
 #Checkout *yosys-symbiflow-plugins* (https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins), branch: **ql-ios**.
 WORKDIR /
 RUN git clone https://github.com/QuickLogic-Corp/yosys-symbiflow-plugins -b ql-ios
-RUN cd yosys-symbiflow-plugins
+
 WORKDIR /yosys-symbiflow-plugins
 # export PATH='specify Yosys installation path as specified in PREFIX in previous step':$PATH
 RUN make
 RUN make install
 RUN cd -
 
-#Checkout *vpr* repository (https://github.com/QuickLogic-Corp/vtr-verilog-to-routing.git), branch: **blackbox_timing**.
+#Checkout *vpr* repository (https://github.com/SymbiFlow/vtr-verilog-to-routing.git), branch: **master**.
 WORKDIR /
-RUN git clone https://github.com/QuickLogic-Corp/vtr-verilog-to-routing -b blackbox_timing
+RUN git clone https://github.com/SymbiFlow/vtr-verilog-to-routing -b master
 RUN cd vtr-verilog-to-routing
 WORKDIR /vtr-verilog-to-routing
 RUN make
 
-#Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **quicklogic-upstream-rebase**. 
+#Checkout *symbiflow-arch-defs* repository (https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git), branch: **quicklogic-upstream-rebase**.
 WORKDIR /
 RUN git clone https://github.com/QuickLogic-Corp/symbiflow-arch-defs.git -b quicklogic-upstream-rebase
-RUN cd symbiflow-arch-defs
+
 WORKDIR /symbiflow-arch-defs
 
 RUN make env
@@ -85,6 +86,11 @@ COPY --from=build /opt/symbiflow/eos-s3 /opt/symbiflow/eos-s3/
 COPY --from=build /symbiflow-arch-defs /symbiflow-arch-defs/
 COPY --from=build /yosys-symbiflow-plugins /yosys-symbiflow-plugins/
 COPY --from=build /vtr-verilog-to-routing /vtr-verilog-to-routing/
+
+# Probably should add these to the release candidate:
+# ENV YOSYS='path to Yosys binary, installed in first step'
+# ENV VPR='path to vpr binary built'
+# ENV GENFASM='path to genfasm binary built'
 
 FROM release-candidate AS all_quick_tests
 
