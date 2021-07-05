@@ -73,7 +73,8 @@ RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-a
     tar -xjvf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
     rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
 
-ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux:$PATH
+ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH
+ENV QORC_TC_PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update/bin
 
 # The following tests are run automatically during a build of the default qorc image
 FROM qorc-base as qorc-test-base
@@ -87,21 +88,6 @@ WORKDIR /qorc-sdk/qf_apps
 RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
     conda activate && \
     make
-
-FROM qorc-test-base as qorc-test-qf_vr_apps
-
-WORKDIR /qorc-sdk/qf_vr_apps
-RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
-    conda activate && \
-    make
-
-# The following qorc_testapps wouldn't build so they are commented out for now
-#FROM qorc-test-base as qorc-test-qorc_testapps
-
-#WORKDIR /qorc-sdk/qorc-testapps
-#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
-#conda activate && \
-#make
 
 # The qorc-user target adds a user and entrypoint to the default target.
 # Build the qorc-user target with a command like this:
@@ -123,6 +109,7 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 ARG USER=ic
+ENV USER=${USER}
 ARG UID=1000
 ARG GID=1000
 RUN addgroup --gid ${GID} ${USER}
@@ -131,14 +118,101 @@ RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bi
 USER ${USER}
 WORKDIR /home/${USER}
 
-SHELL [ "/bin/bash" ]
-COPY conda-user.sh /scripts/conda-user.sh
+COPY --chown=ic:ic conda-user.sh /scripts/conda-user.sh
 
 ENTRYPOINT [ "/scripts/conda-user.sh" ]
 
-# I would prefer to move the tests to this point, but doing so didn't work initially so 
-# I left them after the qorc-base target for now.  It may have something to do with adding
-# the entrypoint, or with permissions, or both.  More work is needed to move the tests.
+# create a base layer that checks out the qorc-sdk repo containing various projects
+# that may be used to test the image.  We run tests using the qorc-user layer, and
+# if none of them fail, that layer is tagged as the default qorc layer.
+FROM qorc-user as qorc-user-test
+
+RUN echo $PATH
+RUN git --version
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+
+# The following tests run automatically during a build of the default qorc target.
+# If any of these tests fail, the build will not tag a qorc image.
+
+FROM qorc-user-test as qorc-user-test-qf-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qf_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
+
+# One of the following qf_vr_apps wouldn't build from the main makefile, so
+# building them independently for now.  
+FROM qorc-user-test as qorc-user-test-qf_vr_apps
+
+WORKDIR /home/${USER}/qorc-sdk/qf_vr_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make 1micvr_app && \
+    make 2micvr_app && \
+    make vr_raw_app && \
+    make host_app && \
+    make vr_i2s_app && \
+    make vr_opus_app && \
+    make vr_raw_wifi_app && \
+    make vr_aec_app
+#    make amazon_alexa_app 
+# won't link, so commented it out.   
+
+
+FROM qorc-user-test as qorc-user-test-qorc-testapps
+
+# The main makefile only runs 3 of these, so testing them independently
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_advancedfpga_separate/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_baremetal/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_gwtestharness_fll/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_helloworldm4/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_helloworldsw_separate/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_ramblockinit/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+# The qf_usbspeed app doesn't compile, so commented it out for now.
+#WORKDIR /qorc-sdk/qorc-testapps/qf_usbspeed/GCC_Project
+#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+#conda activate && \
+#make 
+
+FROM qorc-user-test as qorc-user-test-qomu-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qomu_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make
+
+
+FROM qorc-user-test as qorc-user-test-qorc-example-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-example-apps/qf_pm2dot5aqi/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make
 
 FROM qorc-user as qorc
 # If the above test builds complete, the qorc-user becomes the default target, qorc.
