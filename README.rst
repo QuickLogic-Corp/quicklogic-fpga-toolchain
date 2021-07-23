@@ -130,7 +130,7 @@ While running the compilation with the latest toolchain (v1.3.1), the following 
 ----------------------------------------------------------
 
 Download
-`Symbiflow_v1.3.1 <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.1/Symbiflow_v1.3.1.gz.run>`__
+`Symbiflow_v1.3.2 <https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.3.2/Symbiflow_v1.3.2.gz.run>`__
 
 This package installs these toolchains :
 
@@ -147,7 +147,7 @@ Steps:
 ::
 
   export INSTALL_DIR="specify the installpath"
-  bash Symbiflow_v1.3.1.gz.run
+  bash Symbiflow_v1.3.2.gz.run
 
 - Initialize
 
