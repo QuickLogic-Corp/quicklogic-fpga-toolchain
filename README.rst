@@ -236,19 +236,22 @@ https://github.com/QuickLogic-Corp/qorc-sdk
 A quick way to get started without installing any tools is to use a docker container.  Build your own 
 container image from Dockerfile.use-installer with:
 
-::
+  ::
+
     docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer . -t qorc:1.3.1
 
 Or pull a prebuilt container image from github with:
 
-::
+  ::
+
     docker pull ghcr.io/thirsty2/quicklogic-fpga-toolchain/qorc:1.3.1
     docker tag ghcr.io/thirsty2/quicklogic-fpga-toolchain/qorc:1.3.1 qorc:1.3.1
 
 If you have cloned the qorc-sdk project, you can use the container and build an example project.
 Change to the qorc-sdk directory, and start bash in a qorc container with:
 
-::
+  ::
+
     cd qorc-sdk
     docker run -it --rm -v $(pwd):/home/ic/qorc-sdk qorc:1.3.1 bash
     source $INSTALL_DIR/conda/etc/profile.d/conda.sh
