@@ -1,13 +1,16 @@
-FROM ubuntu:20.04 as builder
+FROM ubuntu:20.04 as base
 
 ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=America/Los_Angeles
 
+# install depedencies that are not yet in the installer
 RUN apt-get update && apt-get install -y \
-    libcanberra-gtk-module \
-    make \
     curl \
     git \
+    gnupg \
+    libcanberra-gtk-module \
+    libtbb-dev\
+    make \
     wget \
     xz-utils && \
     rm -rf /var/lib/apt/lists/*
@@ -16,8 +19,16 @@ RUN apt-get update && apt-get install -y \
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
+# install bazel (needed for tensorFlow)    
+RUN curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg && \
+    mv bazel.gpg /etc/apt/trusted.gpg.d/ && \
+    echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list && \
+    apt update && apt install -y \
+    bazel && \
+    rm -rf /var/lib/apt/lists/*
+
 # add ARGs so that these can be passed in while doing a docker build, the following will be default values
-ARG TAG=v1.3.0
+ARG TAG=v0.0.0
 ENV INSTALL_DIR="/opt/symbiflow/eos-s3"
 # Appending all of these commands (mostly the chmod 755 commands) saved about 1.9 GB in image size
 RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/${TAG}/Symbiflow_${TAG}.gz.run && \
@@ -26,7 +37,192 @@ RUN wget https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/d
     rm Symbiflow_${TAG}.gz.run && \
     chmod 755 /opt/symbiflow && \
     chmod 755 /opt/symbiflow/eos-s3 && \
-    chmod -R 755 /opt/symbiflow/eos-s3/conda
+    chmod -R 755 /opt/symbiflow/eos-s3/conda && \
+    chmod -R 755 /opt/symbiflow/eos-s3/quicklogic-arch-defs
 
 ENV PATH="${INSTALL_DIR}/quicklogic-arch-defs/bin:${INSTALL_DIR}/quicklogic-arch-defs/bin/python:$PATH"
+
+# The symbiflow-ql target is the same as in previous versions of Dockerfile.use-installer.
+# It contains no user or entrypoint, which makes it easy to re-use as a parent image.
+#
+# Build the symbiflow-ql target with a command like this:
+# docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer --target symbiflow-ql . -t symbiflow-ql
+#
+# Run it with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root symbiflow-ql bash
+#
+FROM base as symbiflow-ql
+
+# The qorc-base target has no user and no entrypoint specified, which makes
+# it useful as a base image.  
+#
+# Build the qorc-base target with a command like this:
+# docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer --target qorc-base . -t qorc-base
+#
+# Run it in the qorc-sdk directory or another project directory with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/root qorc-base bash
+#
+# Note that when using the qorc-base target, there is no entrypoint script so you need to source 
+# the conda.sh file, and activate conda before running make in qorc-sdk.
+#
+FROM symbiflow-ql as qorc-base
+
+WORKDIR /opt
+
+RUN wget https://developer.arm.com/-/media/Files/downloads/gnu-rm/9-2020q2/gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
+    tar -xjvf gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2 && \
+    rm gcc-arm-none-eabi-9-2020-q2-update-x86_64-linux.tar.bz2
+
+ENV PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update/bin:$PATH
+ENV QORC_TC_PATH=/opt/gcc-arm-none-eabi-9-2020-q2-update/bin
+
+# The following tests are run automatically during a build of the default qorc image
+FROM qorc-base as qorc-test-base
+
+WORKDIR /
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+
+FROM qorc-test-base as qorc-test-qf_apps
+
+WORKDIR /qorc-sdk/qf_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
+
+# The qorc-user target adds a user and entrypoint to the default target.
+# Build the qorc-user target with a command like this:
+# docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer --target qorc-user . -t qorc-user
+#
+# Run it in the qorc-sdk directory or any project directory with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc-user bash
+#
+# Note that the conda-user.sh file used as an entrypoint sources the conda.sh file and activates conda
+# so there is no need to do those things when using this qorc-user target.  Simply run make inside qorc-sdk.
+#
+FROM qorc-base as qorc-user
+
+RUN apt-get update && apt-get install -y \
+    libusb-1.0-0 \
+    python3-pip \
+    usbutils \
+    udev && \
+    rm -rf /var/lib/apt/lists/*
+
+ARG USER=ic
+ENV USER=${USER}
+ARG UID=1000
+ARG GID=1000
+RUN addgroup --gid ${GID} ${USER}
+RUN adduser --uid ${UID} --gid ${GID} --gecos "" --disabled-password --shell /bin/bash ${USER} 
+
+USER ${USER}
+WORKDIR /home/${USER}
+
+COPY --chown=ic:ic conda-user.sh /scripts/conda-user.sh
+
+ENTRYPOINT [ "/scripts/conda-user.sh" ]
+
+# create a base layer that checks out the qorc-sdk repo containing various projects
+# that may be used to test the image.  We run tests using the qorc-user layer, and
+# if none of them fail, that layer is tagged as the default qorc layer.
+FROM qorc-user as qorc-user-test
+
+RUN echo $PATH
+RUN git --version
+RUN git clone --recursive https://github.com/QuickLogic-Corp/qorc-sdk.git
+
+# The following tests run automatically during a build of the default qorc target.
+# If any of these tests fail, the build will not tag a qorc image.
+
+FROM qorc-user-test as qorc-user-test-qf-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qf_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make
+
+# One of the following qf_vr_apps wouldn't build from the main makefile, so
+# building them independently for now.  
+FROM qorc-user-test as qorc-user-test-qf_vr_apps
+
+WORKDIR /home/${USER}/qorc-sdk/qf_vr_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+    conda activate && \
+    make 1micvr_app && \
+    make 2micvr_app && \
+    make vr_raw_app && \
+    make host_app && \
+    make vr_i2s_app && \
+    make vr_opus_app && \
+    make vr_raw_wifi_app && \
+    make vr_aec_app
+#    make amazon_alexa_app 
+# won't link, so commented it out.   
+
+
+FROM qorc-user-test as qorc-user-test-qorc-testapps
+
+# The main makefile only runs 3 of these, so testing them independently
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_advancedfpga_separate/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_baremetal/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_gwtestharness_fll/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_helloworldm4/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_helloworldsw_separate/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-testapps/qf_ramblockinit/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make 
+
+# The qf_usbspeed app doesn't compile, so commented it out for now.
+#WORKDIR /qorc-sdk/qorc-testapps/qf_usbspeed/GCC_Project
+#RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+#conda activate && \
+#make 
+
+FROM qorc-user-test as qorc-user-test-qomu-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qomu_apps
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make
+
+
+FROM qorc-user-test as qorc-user-test-qorc-example-apps
+
+WORKDIR /home/${USER}/qorc-sdk/qorc-example-apps/qf_pm2dot5aqi/GCC_Project
+RUN source $INSTALL_DIR/conda/etc/profile.d/conda.sh && \
+conda activate && \
+make
+
+FROM qorc-user as qorc
+# If the above test builds complete, the qorc-user becomes the default target, qorc.
+# Build the default qorc target with a command like this:
+# docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer . -t qorc
+#
+# Run it in the qorc-sdk directory or any project directory with a command like this:
+# docker run -it --rm -e DISPLAY=$DISPLAY -v "/tmp/.X11-unix:/tmp/.X11-unix" -v $(pwd):/home/ic qorc bash
+#
+# Note that the conda-user.sh file used as an entrypoint sources the conda.sh file and activates conda
+# so there is no need to do those things when using this qorc target.  Simply run make inside qorc-sdk.
+#
 

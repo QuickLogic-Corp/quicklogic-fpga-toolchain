@@ -21,9 +21,6 @@ QLF-K4N8/QLF-K6N10 Device:
 
 Below are some ways to run SymbiFlow for QLF-K4N8/QLF-K6N10 Devices:
 
-1) Run an installer and run an example
-2) Compile from source code and run example
-
 .. _1-run-an-installer-and-run-an-example:
 
 1) Run an installer and run an example
@@ -226,6 +223,48 @@ it:
    #Run any test case in the current terminal window. For example, follow these steps to run a test case:
    cd quicklogic/pp3/tests/quicklogic_testsuite/bin2seven
    make bin2seven-ql-chandalar_fasm
+
+.. _3-run-symbiflow-in-a-container:
+
+3) Run SymbiFlow in a container
+-------------------------------------------
+
+The qorc-sdk project from Quicklogic's github page contains good examples for running the qorc tools to
+create hardware and FPGA gateware for the quickfeather development kit.  
+https://github.com/QuickLogic-Corp/qorc-sdk
+
+A quick way to get started without installing any tools is to use a docker container.  Build your own 
+container image from Dockerfile.use-installer with:
+
+  ::
+
+    docker build --build-arg TAG=v1.3.1 -f Dockerfile.use-installer . -t qorc:1.3.1
+
+Or pull a prebuilt container image from github with:
+
+  ::
+
+    docker pull ghcr.io/thirsty2/quicklogic-fpga-toolchain/qorc:1.3.1
+    docker tag ghcr.io/thirsty2/quicklogic-fpga-toolchain/qorc:1.3.1 qorc:1.3.1
+
+If you have cloned the qorc-sdk project, you can use the container and build an example project.
+Change to the qorc-sdk directory, and start bash in a qorc container with:
+
+  ::
+
+    cd qorc-sdk
+    docker run -it --rm -v $(pwd):/home/ic/qorc-sdk qorc:1.3.1 bash
+    source $INSTALL_DIR/conda/etc/profile.d/conda.sh
+    conda activate
+    cd qorc-sdk/qf_apps/qf_helloworldhw/GCC_Project
+    make
+
+You can use qfprog in a container to program the quickfeather hardware.
+Instructions and a Dockerfile are here:
+https://github.com/Thirsty2/qfprog
+
+Or use pip3 to install the programming tool from the QuickLogic github page here:
+https://github.com/QuickLogic-Corp/TinyFPGA-Programmer-Application
 
 
 Hardware features that are not supported in this release
